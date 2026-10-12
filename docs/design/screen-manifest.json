@@ -1,0 +1,160 @@
+{
+  "version": "2026-10-12-v1",
+  "penFile": "luna-explorer-ui.pen",
+  "assets": "luna-explorer-ui-assets",
+  "screens": [
+    {
+      "number": 1,
+      "name": "地貌探索 / 默认首页",
+      "penNodeId": "T9MKxz",
+      "preview": "previews/01-explore.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "f2675482537bda5508edb3be432b66c57b1b8c4fe123e9324063bd2422ecbca7"
+    },
+    {
+      "number": 2,
+      "name": "着陆点探索",
+      "penNodeId": "iSGZ0",
+      "preview": "previews/02-landing-sites.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "7760110a01d015d87731ad9b61480db84b461c4be9f46ef091209ad277b095e5"
+    },
+    {
+      "number": 3,
+      "name": "搜索与坐标定位",
+      "penNodeId": "jVKpl",
+      "preview": "previews/03-search-coordinates.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "419485772cb702f684b89c4810700b30d108b72b0144a4c8231167d522147987"
+    },
+    {
+      "number": 4,
+      "name": "观察设置",
+      "penNodeId": "bivcu",
+      "preview": "previews/04-observation-settings.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "297f1a322d988089bae77027f0265eceee29e70df3f327bff7a34f4971899a43"
+    },
+    {
+      "number": 5,
+      "name": "自转轴开启",
+      "penNodeId": "sgbl9",
+      "preview": "previews/05-rotation-axis.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "c53ea5ed18a2a44f750e2641545a741a4ea12a3ea8497be9bb90bf54cca1893c"
+    },
+    {
+      "number": 6,
+      "name": "经纬网开启",
+      "penNodeId": "ECAeh",
+      "preview": "previews/06-coordinate-grid.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "a2f287aaa75f044b5317f72a631e69ece29df8e3e6db3a697d623dab559bab6e"
+    },
+    {
+      "number": 7,
+      "name": "模拟月相",
+      "penNodeId": "q1brAX",
+      "preview": "previews/07-simulated-phase.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "e709858c4304883b4db7084651cc2fc09d9b59afb44cb90926f6543b1e2a03fa"
+    },
+    {
+      "number": 8,
+      "name": "自转控制",
+      "penNodeId": "iSt9e",
+      "preview": "previews/08-auto-rotation.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "b0dfe8066dde12971a9bf90a82cd6e338dcf4c56058cce696ac05a50907827a6"
+    },
+    {
+      "number": 9,
+      "name": "图层与影像选项",
+      "penNodeId": "TqZs1",
+      "preview": "previews/09-imagery-layers.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "7ef55bbc64600a12e0ab1a9e32168ce5945787785bccab2aa7e4b54c031365e3"
+    },
+    {
+      "number": 10,
+      "name": "画质与高级数据",
+      "penNodeId": "VjGmA",
+      "preview": "previews/10-quality-data.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "941e1ea525c65e207d18f8b02abc0a8bfc7cbe2c222b47271d8dfc1d885ec776"
+    },
+    {
+      "number": 11,
+      "name": "面板可见性管理",
+      "penNodeId": "D9GG1D",
+      "preview": "previews/11-ui-visibility.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "7469ea5ae8055079443f822bc8e608c5a1ba45049c2a0f6ddab07816e0728a4c"
+    },
+    {
+      "number": 12,
+      "name": "沉浸 / 全部隐藏",
+      "penNodeId": "xexF4",
+      "preview": "previews/12-immersive-clean.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "e913c3ab8d21c25115358da05cdc5815ff52dd875ac1f8124afc570d84c71faa"
+    },
+    {
+      "number": 13,
+      "name": "沉浸 / 临时恢复入口",
+      "penNodeId": "FNeeL",
+      "preview": "previews/13-immersive-restore.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "f7d0bbd25bc8178a36f6888ddbb666b3592c96f362d9bc252a66679cd9ecfa01"
+    },
+    {
+      "number": 14,
+      "name": "月球概览",
+      "penNodeId": "IbYpb",
+      "preview": "previews/14-moon-overview.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "3e510f4e17eddae5e2defe39d26100ce11021da2acb6d6c4fb5fc5b8c1f6614e"
+    },
+    {
+      "number": 15,
+      "name": "手机 / 月面探索",
+      "penNodeId": "KgaJF",
+      "preview": "previews/15-mobile-explore.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "89ca80db47c9815b895ab11223f6abc6ff426ac070e861d0fca241b45995def7"
+    },
+    {
+      "number": 16,
+      "name": "手机 / 观察设置",
+      "penNodeId": "MycK5",
+      "preview": "previews/16-mobile-settings.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "78f24c8113fc4ea507dd30555beaef472acbe347a094bd615977b27594c79ceb"
+    },
+    {
+      "number": 17,
+      "name": "组件与异常状态规范",
+      "penNodeId": "JkTd7",
+      "preview": "previews/17-components-states.png",
+      "width": 1440,
+      "height": 900,
+      "sha256": "4f96d83649555809db8d5365bc67dcb6b5ca908f3e96bfe5dfaf19413d992b0d"
+    }
+  ]
+}
