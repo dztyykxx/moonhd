@@ -17,6 +17,10 @@ docs/validation/coords/tiles/
 sites/
 luna-8k-sites.tar.gz
 
+# 地名核验的原始抓取产物（USGS shapefile/KML、逐条页面快照，约 76 MB）。
+# 结论已整理进 docs/data/*.json，需要时可从那里记录的 URL 重新抓。
+.iaunomen/
+
 # ── 系统与编辑器 ─────────────────────────────────────────────────
 .DS_Store
 *.swp

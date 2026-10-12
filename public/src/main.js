@@ -9,6 +9,13 @@ import { hpToRender, renderToHp } from './hips/healpix.js';
 import { TileAtlas, TileLayer } from './hips/tiles.js';
 import { openTileCache, clearTileCache, cacheEstimate } from './hips/cache.js';
 
+import { createUI } from './ui/app.js';
+import { createOverlays } from './scene/overlays.js';
+import { PICK_RADIUS, pickLocal, occludedBySphere } from './geo/pick.js';
+import { MOON_RADIUS_KM, dirFromLatLon, latLonFromDir, separationDeg } from './geo/coords.js';
+import { northTangent, sampleLocalScale } from './geo/metrics.js';
+import { capAngleDeg, pickStep, STEP_LEVELS, poleLabels } from './geo/graticule.js';
+
 const $ = (s) => document.querySelector(s);
 const canvas = $('#scene');
 const isMobile = matchMedia('(max-width: 820px)').matches;
@@ -21,6 +28,9 @@ const isMobile = matchMedia('(max-width: 820px)').matches;
  *   ?detail=0|1        初始是否开启国内细节
  *   ?cal=0|1           初始是否开启亮度标定
  *   ?seg=1             显示分段耗时/统计到控制台
+ *   ?ui=0              启动时不创建界面（对照帧率/请求量）
+ *   ?ui=axis,grid      启动时开启指定辅助层（逗号分隔）
+ *   ?immersive=1       启动即进入沉浸模式
  * 示例：index.html?spin=0&d=1.35&lon=-11.36&lat=-43.31
  */
 const TEST = (() => {
@@ -28,9 +38,11 @@ const TEST = (() => {
   const num = (k) => (q.has(k) ? Number(q.get(k)) : null);
   const flag = (k) => (q.has(k) ? q.get(k) !== '0' : null);
   return {
-    active: ['spin', 'd', 'lon', 'lat', 'detail', 'cal', 'seg'].some((k) => q.has(k)),
+    active: ['spin', 'd', 'lon', 'lat', 'detail', 'cal', 'seg', 'ui', 'immersive', 'lock'].some((k) => q.has(k)),
     spin: flag('spin'), d: num('d'), lon: num('lon'), lat: num('lat'),
-    detail: flag('detail'), cal: flag('cal'), seg: flag('seg'),
+    detail: flag('detail'), cal: flag('cal'), seg: flag('seg'), lock: flag('lock'),
+    ui: flag('ui'), immersive: flag('immersive'),
+    layers: (q.get('ui') && q.get('ui') !== '0' ? q.get('ui') : (q.get('layers') || '')).split(',').filter(Boolean),
   };
 })();
 
@@ -40,6 +52,10 @@ const state = {
   detail: TEST.detail === null ? true : TEST.detail,
   color: true,
   calibrate: TEST.cal === null ? true : TEST.cal,
+  exposure: 1.05,
+  phase: 104,
+  quality: 'auto',
+  spinSpeed: 1,
 };
 
 /* ============ 渲染器 / 场景 / 相机 ============ */
@@ -100,9 +116,17 @@ moonMat.customProgramCacheKey = () => 'moonhd-base-v1';
  * 但足以避免两层同半径几何的 z-fighting——否则瓦片会被底图挡掉。
  */
 const BASE_RADIUS = 0.997;
+
+/**
+ * 月球模型的**固定**朝向（不含自转累积量）。
+ * 月相预设需要一个不随自转漂移的参考观察方向，下面的参考方位角由它解出。
+ */
+const MOON_BASE_YAW = -Math.PI / 2 + 0.3;
+const MOON_BASE_ROLL = THREE.MathUtils.degToRad(1.5);
+
 const moon = new THREE.Mesh(new THREE.SphereGeometry(BASE_RADIUS, SEG, SEG >> 1), moonMat);
-moon.rotation.z = THREE.MathUtils.degToRad(1.5);
-moon.rotation.y = -Math.PI / 2 + 0.3;
+moon.rotation.z = MOON_BASE_ROLL;
+moon.rotation.y = MOON_BASE_YAW;
 scene.add(moon);
 
 /* ============ 光照 ============ */
@@ -119,6 +143,13 @@ scene.add(moon);
  *
  * 改小后底图与瓦片仍然同步（同一套光照），两者贴顶比例接近（11.8% / 17.1%），
  * 过渡处不会出现亮度台阶。
+ *
+ * ⚠️ 本轮 UI 工作**没有改动这里的光照强度与太阳位置公式**，只改了界面上
+ * "光照角度"的含义标注与预设映射：滑块值仍然是光源在 XZ 平面上的角度 a，
+ * sun.position = (sin a, 0.10, −cos a)·80。以默认正面视角（相机在 +X）为例，
+ * 可见亮面比例 = (1 + cos∠(sun, cam))/2 = (1 + sin a)/2：
+ *   a = 90° → 满月 · a = 270° → 新月 · a = 0° → 上弦 · a = 180° → 下弦。
+ * 旧界面上"0°=新月 · 180°=满月"的文字与实际画面不符，这里按实际画面更正。
  */
 const sun = new THREE.DirectionalLight(0xfff6ea, 1.4);
 scene.add(sun, sun.target);
@@ -159,6 +190,7 @@ function tune(tex, srgb) {
   return tex;
 }
 async function loadTex(url, srgb, onp) {
+  const report = typeof onp === 'function' ? onp : () => {};
   const res = await fetch(url);
   const total = Number(res.headers.get('content-length') || 0);
   let src = url, tmp = '';
@@ -169,7 +201,7 @@ async function loadTex(url, srgb, onp) {
       const r = await rd.read();
       if (r.done) break;
       chunks.push(r.value); got += r.value.length;
-      onp(got / total);
+      report(got / total);
     }
     tmp = URL.createObjectURL(new Blob(chunks));
     src = tmp;
@@ -271,15 +303,10 @@ let persist = null;
 let normalTex = null;
 
 async function initHips() {
-  const mDetail = $('#m-detail');
   try {
     const { props, config, fromCache, error: metaErr } = await fetchSourceConfigCached(DEFAULT_SOURCE);
     hipsState.config = config;
-    $('#m-source').textContent = config.label + (fromCache ? '（离线元数据）' : '');
-    $('#m-source').title = `${config.title} · order ${config.orderMin}-${config.orderMax} · ${config.tileWidth}px/瓦片`
-      + (fromCache ? `\n元数据取自本地缓存；本次联网失败：${metaErr && metaErr.message}` : '');
-    mDetail.textContent = '准备中';
-
+    setStatus();
     tileLoader = new HttpTileLoader(config, { timeoutMs: 25000 });
     atlas = new TileAtlas({ renderer, maxPages: HIPS.maxPages, mipmaps: !isMobile });
     tileLayer = new TileLayer({ renderer, atlas });
@@ -312,18 +339,16 @@ async function initHips() {
       maxRetries: 3,
       retryBaseMs: 700,
       persistentGet: persist ? (order, npix) => persist.get(order, npix) : null,
-      persistentPut: persist ? (order, npix, blob) => persist.put(order, npix, blob) : null,
+      persistentPut: persist ? (order, npix, data) => persist.put(order, npix, data) : null,
     });
 
     hipsState.ready = true;
-    mDetail.textContent = '开启';
-    $('#m-cache').textContent = persist ? '内存 + 浏览器' : '仅内存';
+    setStatus();
     if (persist) updatePersistStats();
   } catch (e) {
     hipsState.error = e;
     console.error('[moonhd] HiPS 初始化失败：', e);
-    mDetail.textContent = '不可用';
-    $('#m-source').textContent = '基础底图';
+    setStatus();
   }
 }
 
@@ -332,7 +357,6 @@ async function updatePersistStats() {
   try {
     const e = await cacheEstimate();
     hipsState.persistentBytes = e.usage || 0;
-    $('#m-cache').textContent = (persist ? '内存 + 浏览器 ' : '仅内存 ') + fmtBytes(e.usage || 0);
   } catch (err) { /* 忽略 */ }
 }
 
@@ -345,7 +369,6 @@ function fmtBytes(b) {
 
 /** 相机在月球局部坐标的位置。 */
 const _camLocal = new THREE.Vector3();
-const _v = new THREE.Vector3();
 const _inv = new THREE.Matrix4();
 
 /**
@@ -397,6 +420,22 @@ function unprojectLocal(nx, ny) {
   return [_dir.x, _dir.y, _dir.z];
 }
 
+/**
+ * 把"相机 / 月球"的最新矩阵同步到一组复用的局部变量。
+ *
+ * 瓦片选择、拾取、标签投影都依赖它。以前只在 refreshTileSelection() 里更新，
+ * 那是以 0.25 s 为周期；现在拾取与标签每帧都要用，所以提到每帧开头。
+ * 一次 4×4 求逆 + 一次点变换，开销可忽略。
+ */
+function syncLocalFrame() {
+  camera.updateMatrixWorld();
+  moon.updateMatrixWorld(true);
+  _inv.copy(moon.matrixWorld).invert();
+  _rot.extractRotation(_inv);
+  updateCameraBasis();
+  _camLocal.copy(camera.position).applyMatrix4(_inv);
+}
+
 /* ---------------- 坐标系边界：渲染系 (y=极轴) ↔ 天文系 (z=极轴) ----------------
  *
  * lod.js / healpix.js 全程用天文坐标系（z = 极轴，见 healpix.js 里 hpToRender 的
@@ -433,7 +472,6 @@ function projectFromHp(v) {
  * @returns {{moonPx:number, baseMag:number}}
  */
 function measureBaseMagnification() {
-  const W = renderer.domElement.width;          // 设备像素
   const H = renderer.domElement.height;
   const baseW = (moonMat.map && moonMat.map.image && moonMat.map.image.width) || 8192;
 
@@ -448,7 +486,7 @@ function measureBaseMagnification() {
 
   // 月球 180° 视角对应 baseW 个纹素（等距圆柱全宽 360°，月球占一半）
   const texelsAcross = baseW / 2;
-  return { moonPx: moonPxV, baseMag: moonPxV / texelsAcross, canvasW: W };
+  return { moonPx: moonPxV, baseMag: moonPxV / texelsAcross };
 }
 
 /**
@@ -468,12 +506,7 @@ function updateDetailGate() {
 function refreshTileSelection(now) {
   if (!hipsState.ready) return;
   const t0 = performance.now();
-  camera.updateMatrixWorld(true);
-  moon.updateMatrixWorld(true);
-  _inv.copy(moon.matrixWorld).invert();
-  _rot.extractRotation(_inv);
-  updateCameraBasis();
-  _camLocal.copy(camera.position).applyMatrix4(_inv);
+  syncLocalFrame();
 
   /**
    * 整球视角只显示底图：不选瓦片、不发请求。
@@ -572,13 +605,26 @@ function uploadReadyTiles() {
 }
 
 /* ============ 画质档位 ============ */
-const qv = $('#quality-v');
+let baseRes = 1024;
+let upgrading = false;
+/** 升清失败原因；非空时状态栏要如实报出来，不能假装是 8K。 */
+let upgradeError = null;
+
+const QUALITY_KEY = 'luna.ui.quality';
+
 function pickQuality() {
   const f = new URLSearchParams(location.search).get('q');
   if (f) return Number(f);
-  const sel = $('#quality').value;
-  if (sel === 'auto') return isMobile ? 2048 : 8192;
-  return Number(sel);
+  if (state.quality === 'auto') return isMobile ? 2048 : 8192;
+  return Number(state.quality);
+}
+
+/** 记住用户显式选择的底图档位，重开页面不会被"自动"改回小图。 */
+function saveQuality(q) {
+  try { localStorage.setItem(QUALITY_KEY, String(q)); } catch (e) { /* 隐私模式忽略 */ }
+}
+function loadQuality() {
+  try { return localStorage.getItem(QUALITY_KEY) || null; } catch (e) { return null; }
 }
 async function upgrade(q, onp) {
   const tex = await loadTex('assets/moon_albedo_' + q / 1024 + 'k.webp', true, onp);
@@ -586,25 +632,628 @@ async function upgrade(q, onp) {
   moonMat.map = tex;
   moonMat.needsUpdate = true;
   if (old) old.dispose();
-  $('#m-res').textContent = q + ' x ' + q / 2;
-  qv.textContent = '';
+  baseRes = q;
+  setStatus();
 }
 
-/* ============ 启动 ============ */
-(async function boot() {
+/** 运行时切换底图画质：只加载目标档位，不改变 LOD 与缓存策略，也不需要刷新页面。 */
+async function setQuality(q) {
+  state.quality = q === 'auto' || q == null ? 'auto' : String(q);
+  saveQuality(state.quality);
+  const target = pickQuality();
+  if (target === baseRes) { setStatus(); return; }
+  if (upgrading) return;
+  upgrading = true;
+  setStatus('正在切换到 ' + target / 1024 + 'K 底图…');
   const bar = $('#load-bar');
-  moonMat.map = await loadTex('assets/moon_albedo_1k.webp', true, (p) => { bar.style.width = p * 25 + '%'; });
-  moonMat.needsUpdate = true;
-  $('#m-res').textContent = '1024 x 512';
-  $('#loading').classList.add('is-done');
-  setTimeout(() => { $('#loading').style.display = 'none'; }, 900);
+  try {
+    await upgrade(target, (p) => { if (bar) bar.style.width = p * 100 + '%'; });
+    setStatus();
+  } catch (e) {
+    console.warn('[moonhd] 画质切换失败：', e);
+    setStatus('底图档位切换失败');
+  }
+  upgrading = false;
+}
+
+/* ============ 三维辅助层 ============ */
+const overlays = createOverlays({ moon });
+
+/* ============ 局部坐标系下的拾取 / 投影 ============ */
+let hoverCoord = null;
+let centerCoord = null;
+
+/**
+ * 画布 CSS 尺寸缓存。
+ *
+ * 标签一趟要投影几十个点，如果每个点都调 getBoundingClientRect()，
+ * 一秒就是上千次强制布局。这里每趟只读一次。
+ */
+const viewRect = { width: 1, height: 1, left: 0, top: 0 };
+function refreshViewRect() {
+  const r = renderer.domElement.getBoundingClientRect();
+  viewRect.width = r.width; viewRect.height = r.height;
+  viewRect.left = r.left; viewRect.top = r.top;
+}
+
+/** NDC → 月面交点（月球局部系）。 */
+function pickNDC(nx, ny) {
+  const dir = unprojectLocal(nx, ny);
+  if (!dir) return null;
+  return pickLocal([_camLocal.x, _camLocal.y, _camLocal.z], dir, PICK_RADIUS);
+}
+
+/** 画布 CSS 尺寸下的月球中心与视半径（用于标签剔除）。 */
+function moonScreen() {
+  _w.set(0, 0, 0).applyMatrix4(moon.matrixWorld).project(camera);
+  const cx = (_w.x * 0.5 + 0.5) * viewRect.width;
+  const cy = (-_w.y * 0.5 + 0.5) * viewRect.height;
+  const d = camera.position.length();
+  const ang = Math.asin(Math.min(1, BASE_RADIUS / Math.max(1e-6, d)));
+  const th = Math.tan((camera.fov * Math.PI) / 360);
+  const r = (Math.tan(ang) / th) * (viewRect.height / 2);
+  return { cx, cy, r, w: viewRect.width, h: viewRect.height };
+}
+
+/**
+ * 月球局部点 → 画布 CSS 像素 + 遮挡判定。
+ * @returns {{x:number,y:number,onScreen:boolean,occluded:boolean}}
+ */
+function projectPoint(local) {
+  const occluded = occludedBySphere([_camLocal.x, _camLocal.y, _camLocal.z], local, PICK_RADIUS);
+  _w.set(local[0], local[1], local[2]).applyMatrix4(moon.matrixWorld).project(camera);
+  const x = (_w.x * 0.5 + 0.5) * viewRect.width;
+  const y = (-_w.y * 0.5 + 0.5) * viewRect.height;
+  return {
+    x, y, occluded,
+    onScreen: _w.z > -1 && _w.z < 1
+      && x >= -40 && x <= viewRect.width + 40
+      && y >= -30 && y <= viewRect.height + 30,
+  };
+}
+
+/** 经纬度 → 局部点（略微抬高，避免标签贴在球面上被裁掉）。 */
+function localOfLatLon(lat, lon, lift = 0.002) {
+  const d = dirFromLatLon(lat, lon, [0, 0, 0]);
+  const k = 1 + lift;
+  return [d[0] * k, d[1] * k, d[2] * k];
+}
+
+/* ============ 相机飞行 ============ */
+const flight = {
+  active: false, t: 0, dur: 0.78,
+  from: new THREE.Vector3(), to: new THREE.Vector3(),
+  spinHold: false,
+};
+let spinHoldUntil = 0;
+
+function pauseSpin(seconds) {
+  spinHoldUntil = Math.max(spinHoldUntil, performance.now() / 1000 + seconds);
+}
+const spinRunning = () => state.spin && performance.now() / 1000 >= spinHoldUntil;
+
+function defaultViewDistance() { return 5.25; }
+
+function cancelFlight() {
+  if (!flight.active) return;
+  flight.active = false;
+  controls.enabled = true;
+}
+
+/**
+ * 平滑飞到月固经纬度上方。
+ * 飞行期间暂停自转；用户 pointerdown 会取消飞行（不吞掉这次操作）。
+ */
+function flyTo(lat, lon, { distance = null, duration = 0.78 } = {}) {
+  if (!Number.isFinite(lat) || !Number.isFinite(lon)) return;
+  intro = 1;
+  // 月球自身带固定朝向（rotation.y/z）与自转，必须先把世界矩阵刷新到最新，
+  // 否则在首帧之前调用会读到单位矩阵，把相机放到错误的经度上。
+  moon.updateMatrixWorld(true);
+  const dirWorld = new THREE.Vector3(...dirFromLatLon(lat, lon, [0, 0, 0]))
+    .applyMatrix4(new THREE.Matrix4().extractRotation(moon.matrixWorld))
+    .normalize();
+  const d = THREE.MathUtils.clamp(
+    distance == null ? camera.position.length() : distance,
+    controls.minDistance + 0.02, controls.maxDistance,
+  );
+  flight.from.copy(camera.position);
+  flight.to.copy(dirWorld).multiplyScalar(d);
+  flight.t = 0;
+  flight.dur = Math.max(0.12, duration);
+  flight.active = true;
+  controls.enabled = false;
+  pauseSpin(flight.dur + 0.4);
+}
+
+function resetView({ duration = 0.86 } = {}) {
+  flyTo(0, 0, { distance: defaultViewDistance(), duration });
+}
+
+function zoomBy(factor) {
+  const d = THREE.MathUtils.clamp(
+    camera.position.length() * factor, controls.minDistance + 0.02, controls.maxDistance,
+  );
+  const dir = camera.position.clone().normalize();
+  flight.from.copy(camera.position);
+  flight.to.copy(dir).multiplyScalar(d);
+  flight.t = 0;
+  flight.dur = 0.22;
+  flight.active = true;
+  controls.enabled = false;
+}
+
+function stepFlight(dt) {
+  if (!flight.active) return;
+  flight.t += dt;
+  let k = Math.min(1, flight.t / flight.dur);
+  k = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;   // easeInOutCubic
+  camera.position.lerpVectors(flight.from, flight.to, k);
+  camera.lookAt(0, 0, 0);
+  if (flight.t >= flight.dur) {
+    flight.active = false;
+    controls.enabled = true;
+    controls.update();
+  }
+}
+
+/* ============ 标签（三维投影 → DOM） ============ */
+let markerPlaces = [];
+let gridAnchor = { lat: 999, lon: 999 };
+
+function setMarkerPlaces(list) {
+  markerPlaces = Array.isArray(list) ? list.filter((p) => Number.isFinite(p.latDeg) && Number.isFinite(p.lonDeg)) : [];
+}
+
+/**
+ * 计算这一趟要显示的标签。
+ *
+ * 规则：
+ *  - 选中点始终显示；
+ *  - 每个收录地点的球面圆点始终显示（属于"地名与选点标记"这一可见性分组）；
+ *    文字只给距离视野中心最近的前若干个，避免整球时糊成一片；
+ *  - 极点标签只在"自转轴 + 极点标注"都开启时出现；
+ *  - 经纬网坐标标签由 buildGraticule 每根线给一个、锚在朝向相机的一侧。
+ * 所有标签都必须通过"是否被月球挡住"的判定，背面不透出。
+ */
+function computeLabels() {
+  const out = [];
+  const vis = overlays.state;
+  refreshViewRect();
+  const scr = moonScreen();
+
+  if (selectedPoint && vis.markers) {
+    const p = projectPoint(localOfLatLon(selectedPoint.lat, selectedPoint.lon, 0.004));
+    if (p.onScreen && !p.occluded) {
+      out.push({ id: 'sel', kind: 'point', x: p.x, y: p.y, text: '选中点', active: true, priority: 0 });
+    }
+  }
+
+  if (vis.markers && markerPlaces.length) {
+    const cand = [];
+    for (const pl of markerPlaces) {
+      const p = projectPoint(localOfLatLon(pl.latDeg, pl.lonDeg, 0.0025));
+      if (!p.onScreen || p.occluded) continue;
+      cand.push({ pl, p, dist: Math.hypot(p.x - scr.cx, p.y - scr.cy), active: pl.id === selectedId });
+    }
+    cand.sort((a, b) => a.dist - b.dist);
+    const labelBudget = camera.position.length() > 3.2 ? 4 : 8;
+    let used = 0;
+    for (const c of cand) {
+      const withText = c.active || used < labelBudget;
+      if (withText && !c.active) used++;
+      out.push({
+        id: 'place:' + c.pl.id,
+        kind: 'place',
+        x: c.p.x,
+        y: c.p.y,
+        text: withText ? (c.pl.nameZh || c.pl.name) : '',
+        active: c.active,
+        priority: 1,
+      });
+    }
+  }
+
+  if (vis.axis && vis.poles) {
+    for (const pole of poleLabels(1.03)) {
+      const p = projectPoint(pole.pos);
+      if (!p.onScreen || p.occluded) continue;
+      out.push({ id: 'pole:' + pole.text, kind: 'pole', x: p.x, y: p.y, text: pole.text, priority: 3 });
+    }
+  }
+
+  if (vis.grid && vis.gridLabels) {
+    for (const l of overlays.gridLabels) {
+      const p = projectPoint(localOfLatLon(l.lat, l.lon, 0.004));
+      if (!p.onScreen || p.occluded) continue;
+      out.push({ id: `grid:${l.kind}:${l.text}`, kind: 'grid', x: p.x, y: p.y, text: l.text, priority: 4 });
+    }
+  }
+  return out;
+}
+
+/* ============ UI 桥接 ============ */
+let ui = null;
+/** 当前选中的收录地点 id（由 UI 通知）；选点则是任意月面位置。 */
+let selectedId = null;
+let selectedPoint = null;
+
+const api = {
+  /* 视图 */
+  flyTo,
+  resetView,
+  zoom: zoomBy,
+  distance: () => camera.position.length(),
+  /* 坐标 */
+  centerCoord: () => centerCoord,
+  hoverCoord: () => hoverCoord,
+  separationKm: (lat1, lon1, lat2, lon2) => separationDeg(lat1, lon1, lat2, lon2) * (Math.PI / 180) * MOON_RADIUS_KM,
+  northAngle,
+  localScale,
+  /* 设置 */
+  setting: (k) => state[k],
+  setSetting(k, v) { applySetting(k, v); },
+  setExposure(v) { state.exposure = Number(v); renderer.toneMappingExposure = state.exposure; },
+  setRelief(v) {
+    state.relief = Number(v);
+    moonMat.normalScale.set(state.relief, state.relief);
+    if (tileLayer) tileLayer.setNormalScale(state.relief);
+  },
+  setPhase(v, opts) { setPhase(Number(v), opts); },
+  phaseRatioText,
+  /** 参考视角下与四个预设名称对应的光照角度（由模型固定朝向解出）。 */
+  phasePresets: () => ({ ...PHASE_PRESETS }),
+  setQuality,
+  setSpinSpeed(v) { state.spinSpeed = Number(v); },
+  gridStep: () => overlays.gridStep || STEP_LEVELS[0],
+  resetDefaults() {
+    applySetting('stars', true); applySetting('earth', true); applySetting('color', true);
+    applySetting('detail', true); applySetting('calibrate', true); applySetting('spin', true);
+    state.exposure = 1.05; renderer.toneMappingExposure = 1.05;
+    state.relief = 1.2; api.setRelief(1.2);
+    setPhase(104);
+    state.spinSpeed = 1;
+  },
+  /* 运行数据 */
+  stats,
+  clearCache: async () => {
+    const n = await clearTileCache().catch(() => 0);
+    await updatePersistStats();
+    return n;
+  },
+  /* 覆盖层 */
+  overlays: {
+    setAxis: (on) => overlays.setAxis(on),
+    setPoles: (on) => overlays.setPoles(on),
+    setGrid: (on) => overlays.setGrid(on),
+    setGridLabels: (on) => overlays.setGridLabels(on),
+    setMarkers: (on) => overlays.setMarkers(on),
+  },
+  setMarkerPlaces,
+  /** 经纬度 → 画布 CSS 像素（验收脚本与调试用；与标签用的是同一条投影路径）。 */
+  projectLatLon: (lat, lon, lift = 0.0025) => {
+    syncLocalFrame();
+    refreshViewRect();
+    const p = projectPoint(localOfLatLon(lat, lon, lift));
+    return { x: p.x, y: p.y, onScreen: p.onScreen, occluded: p.occluded };
+  },
+  /** 画布 CSS 像素 → 月面经纬度（验收脚本用；与点击走同一条拾取路径）。 */
+  pickAtScreen: (x, y) => {
+    syncLocalFrame();
+    refreshViewRect();
+    const nx = (x / viewRect.width) * 2 - 1;
+    const ny = -(y / viewRect.height) * 2 + 1;
+    const hit = pickNDC(nx, ny);
+    return hit ? { lat: hit.lat, lon: hit.lon } : null;
+  },
+  /** UI 通知当前选中的收录地点（用于标签高亮）。 */
+  setSelected(id) { selectedId = id || null; if (!id) selectedPoint = null; },
+  /** UI 清空选点。 */
+  clearPoint() { selectedPoint = null; },
+  lastGestureWasDrag: () => lastGesture.dragged,
+};
+
+/* ============ 屏幕方向与比例尺 ============ */
+function northAngle() {
+  if (!centerCoord) return null;
+  const t = northTangent(centerCoord.lat, centerCoord.lon);
+  if (!t) return null;
+  const base = localOfLatLon(centerCoord.lat, centerCoord.lon, 0.002);
+  const tip = [base[0] + t[0] * 0.02, base[1] + t[1] * 0.02, base[2] + t[2] * 0.02];
+  const a = projectPoint(base);
+  const b = projectPoint(tip);
+  if (!a || !b) return null;
+  const dx = b.x - a.x, dy = b.y - a.y;
+  if (Math.hypot(dx, dy) < 0.6) return null;      // 退化视角（正对极点）：隐藏方向指示
+  return Math.atan2(dx, -dy) * 180 / Math.PI;     // 0 = 屏幕正上方，顺时针为正
+}
+
+function localScale() {
+  const rect = renderer.domElement.getBoundingClientRect();
+  return sampleLocalScale({
+    screenW: rect.width,
+    pickAt: (nx, ny) => {
+      const hit = pickNDC(nx, ny);
+      return hit ? { lat: hit.lat, lon: hit.lon } : null;
+    },
+  });
+}
+
+/* ============ 运行状态 ============ */
+let lastFps = 0;
+
+function statusInfo() {
+  if (upgradeError) return { text: `${baseRes / 1024}K 底图 · 升清失败`, dot: '#D98C7A' };
+  if (hipsState.error) return { text: '暂用底图 · 高清不可用', dot: '#D98C7A' };
+  if (!hipsState.ready) return { text: `${baseRes / 1024}K 底图 · 高清连接中…`, dot: '#979CA3' };
+  if (!state.detail) return { text: `${baseRes / 1024}K 底图 · 高清已关闭`, dot: '#979CA3' };
+  if (!hipsState.detailActive) return { text: `${baseRes / 1024}K 底图 · 高清待命`, dot: '#C8AA73' };
+  // 用**当前**这一帧的缺图数量，而不是上一次选择时的快照，
+  // 否则瓦片都到齐了状态栏还显示"加载中"。
+  if (pendingNow() > 0) return { text: `高清加载中 · L${hipsState.centerOrder}`, dot: '#979CA3' };
+  return { text: `高清已就绪 · L${hipsState.centerOrder}`, dot: '#C8AA73' };
+}
+
+/** 当前视野里还没就绪的瓦片数。 */
+function pendingNow() {
+  return Math.max(0, hipsState.tiles.length - hipsState.readyKeys.size);
+}
+
+function setStatus(override) {
+  const n = $('#status-imagery');
+  if (!n) return;
+  const s = statusInfo();
+  n.textContent = override || s.text;
+  n.title = `底图 ${baseRes} × ${baseRes / 2}`
+    + (upgradeError ? `\n升清中断：${upgradeError}` : '')
+    + (hipsState.config ? `\n高清源：${hipsState.config.label}` : '\n高清源：未连接');
+  const d = $('#status-dot');
+  if (d) d.style.background = s.dot;
+}
+
+function stats() {
+  const st = scheduler ? scheduler.getStats() : null;
+  const s = statusInfo();
+  const maxOrder = Math.min(hipsState.config ? hipsState.config.orderMax : HIPS.maxOrder, HIPS.maxOrder);
+  return {
+    fps: lastFps,
+    baseRes,
+    detailToggle: state.detail,
+    detailActive: hipsState.detailActive,
+    order: hipsState.centerOrder,
+    maxOrder,
+    metersPerPx: Math.round(28 * 2 ** (7 - maxOrder)),
+    tiles: hipsState.tiles.length,
+    ready: hipsState.readyKeys.size,
+    pending: pendingNow(),
+    bytes: st ? st.bytes : 0,
+    bytesText: fmtBytes(st ? st.bytes : 0),
+    memBudgetText: fmtBytes(HIPS.memoryBudget),
+    persistent: !!persist,
+    persistBytesText: fmtBytes(hipsState.persistentBytes),
+    persistBudgetText: fmtBytes(HIPS.persistBudget),
+    requests: st ? st.requests : 0,
+    memoryHits: st ? st.memoryHits : 0,
+    persistentHits: st ? st.persistentHits : 0,
+    errors: st ? st.errors : 0,
+    evictions: st ? st.evictions : 0,
+    queued: st ? st.queued : 0,
+    inflight: st ? st.inflight : 0,
+    capRadiusDeg: hipsState.capRadiusDeg,
+    selectMs: hipsState.selectMs,
+    autoIsMobile: isMobile,
+    qualityChoice: state.quality,
+    upgradeError,
+    statusText: s.text,
+    dotColor: s.dot,
+    sourceLabel: hipsState.config ? hipsState.config.label : null,
+    sourceTitle: hipsState.config ? hipsState.config.title : null,
+    baseMag: hipsState.baseMag,
+  };
+}
+
+/* ============ 设置应用 ============ */
+function applySetting(k, v) {
+  const on = !!v;
+  switch (k) {
+    case 'spin': state.spin = on; break;
+    case 'stars': state.stars = on; break;
+    case 'earth': state.earth = on; break;
+    case 'detail': state.detail = on; break;
+    case 'color': state.color = on; uni.chromaAmt.value = on ? 0.7 : 0; break;
+    case 'calibrate':
+      state.calibrate = on;
+      if (tileLayer) tileLayer.setCalibration(on ? HIPS.gain : 1, 0);
+      break;
+    default: break;
+  }
+  if (ui) ui.syncSwitches();
+}
+
+/* ============ 月相 / 光照方向 ============ */
+/** 参考观察方向（正面 0°N·0°E 的相机方向）与屏幕右方向，都在世界系。 */
+const _phaseC = new THREE.Vector3(1, 0, 0)
+  .applyQuaternion(new THREE.Quaternion().setFromEuler(new THREE.Euler(0, MOON_BASE_YAW, MOON_BASE_ROLL, 'XYZ')))
+  .normalize();
+const _phaseRight = new THREE.Vector3()
+  .crossVectors(_phaseC.clone().negate(), new THREE.Vector3(0, 1, 0))
+  .normalize();
+
+/**
+ * 光照角度 → 世界系太阳方向。
+ *
+ * ⚠️ 公式与历史版本**完全一致**，没有改动渲染：sun = normalize(sin a, 0.10, −cos a)。
+ * 用户已认可的默认画面依赖这个式子，所以本轮只改界面标注与预设映射，
+ * 不动光源位置。
+ *
+ * "光照角度"是光源在场景 XZ 平面上的角度，**不是**天文相位角。以参考观察方向
+ * c 为准，可见亮面比例 = (1 + s·c)/2。把 c 的方位角记为 φ，则
+ *   满月 a = 180° − φ 、新月 a = 360° − φ 、上弦 a = 90° − φ 、下弦 a = 270° − φ 。
+ * 当前模型 φ = atan2(c.x, c.z) ≈ 17.19°，于是四个预设是 162.8 / 342.8 / 72.8 / 252.8°；
+ * 预设按实测标定，"新月/上弦/满月/下弦"与参考视角下真正看到的画面一致。
+ * 旧界面写"0°=新月 · 180°=满月"，与画面不符（实测 0° 是 3%、180° 是 98%），已更正。
+ *
+ * 默认 104° → 可见亮面约 76%，与设计稿 01 的月球背景一致。
+ */
+const PHASE_REF_AZIMUTH = Math.atan2(_phaseC.x, _phaseC.z) * (180 / Math.PI);
+const PHASE_PRESETS = {
+  full: (180 - PHASE_REF_AZIMUTH + 360) % 360,
+  new: (360 - PHASE_REF_AZIMUTH + 360) % 360,
+  first: (90 - PHASE_REF_AZIMUTH + 360) % 360,
+  last: (270 - PHASE_REF_AZIMUTH + 360) % 360,
+};
+
+function sunDirectionFor(deg, out = new THREE.Vector3()) {
+  const a = THREE.MathUtils.degToRad(deg);
+  return out.set(Math.sin(a), 0.10, -Math.cos(a)).normalize();
+}
+
+function setPhase(deg, { goToReferenceView = false } = {}) {
+  state.phase = deg;
+  sunDirectionFor(deg, sun.position).multiplyScalar(80);
+  if (goToReferenceView) {
+    flyTo(0, 0, {
+      distance: Math.max(camera.position.length(), defaultViewDistance() * 0.85),
+      duration: 0.86,
+    });
+  }
+}
+
+/**
+ * 可见亮面比例：按**当前相机方向**与光源方向的实际夹角计算，
+ * fraction = (1 + cos∠(sun, cam)) / 2。这是半球近似，会随镜头变化；
+ * 旧界面用的是 (1 − cos 滑块值)/2，没有考虑镜头方向，所以不能拿来当观测值。
+ */
+function phaseRatioText(deg = null) {
+  const s = sunDirectionFor(deg == null ? state.phase : Number(deg), new THREE.Vector3());
+  const c = camera.position.clone().normalize();
+  const f = (1 + s.dot(c)) / 2;
+  return `${Math.round(f * 100)}%`;
+}
+
+/* ============ 指针交互：拖拽 / 选点 / 指向坐标 ============ */
+const lastGesture = { dragged: false, x: 0, y: 0, t: 0 };
+let activePointers = 0;
+let hoverAt = 0;
+
+function ndcOf(e) {
+  const r = renderer.domElement.getBoundingClientRect();
+  return [((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1];
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  activePointers++;
+  if (flight.active) cancelFlight();
+  if (activePointers > 1) { lastGesture.dragged = true; return; }
+  lastGesture.dragged = false;
+  lastGesture.x = e.clientX;
+  lastGesture.y = e.clientY;
+  lastGesture.t = performance.now();
+  pauseSpin(1.4);
+}, { passive: true });
+
+canvas.addEventListener('pointermove', (e) => {
+  if (activePointers > 0) {
+    if (Math.hypot(e.clientX - lastGesture.x, e.clientY - lastGesture.y) > 5) {
+      if (!lastGesture.dragged) pauseSpin(1.6);
+      lastGesture.dragged = true;
+    }
+    if (lastGesture.dragged) { hoverCoord = null; return; }
+  }
+  const now = performance.now();
+  if (now - hoverAt < 50) return;      // 约 20 Hz
+  hoverAt = now;
+  syncLocalFrame();
+  const [nx, ny] = ndcOf(e);
+  const hit = pickNDC(nx, ny);
+  hoverCoord = hit ? { lat: hit.lat, lon: hit.lon } : null;
+}, { passive: true });
+
+canvas.addEventListener('pointerup', (e) => {
+  activePointers = Math.max(0, activePointers - 1);
+  if (lastGesture.dragged || e.button !== 0) { lastGesture.dragged = false; return; }
+  syncLocalFrame();
+  const [nx, ny] = ndcOf(e);
+  const hit = pickNDC(nx, ny);
+  if (hit) {
+    selectedId = null;
+    selectedPoint = { lat: hit.lat, lon: hit.lon, matchedName: null };
+    if (ui) ui.onPickPoint({ lat: hit.lat, lon: hit.lon });
+  }
+}, { passive: true });
+
+canvas.addEventListener('pointercancel', () => {
+  activePointers = Math.max(0, activePointers - 1);
+  lastGesture.dragged = false;
+}, { passive: true });
+
+canvas.addEventListener('pointerleave', () => { hoverCoord = null; }, { passive: true });
+
+canvas.addEventListener('dblclick', (e) => {
+  syncLocalFrame();
+  const [nx, ny] = ndcOf(e);
+  const hit = pickNDC(nx, ny);
+  if (hit) flyTo(hit.lat, hit.lon, { distance: Math.max(controls.minDistance + 0.05, camera.position.length() * 0.62) });
+});
+
+/* ============ 启动 ============ */
+let uiEnabled = TEST.ui !== false;
+let intro = isMobile ? 1 : 0;
+const clock = new THREE.Clock();
+let fpsN = 0, fpsT = 0;
+
+(async function boot() {
+  // 画质优先级：?q= > 上次显式选择 > 自动
+  const qParam = new URLSearchParams(location.search).get('q');
+  if (qParam) state.quality = qParam;
+  else { const saved = loadQuality(); if (saved) state.quality = saved; }
+
+  // 光照必须在这里初始化一次：旧代码靠 bind('phase') 在绑定时调用 setPhase 顺带设好，
+  // 现在滑块由 UI 模块接管，不初始化的话太阳会停在上方默认位置 (0,1,0)，
+  // 整个月球的明暗分布就与设计稿不一致（实测默认视角下亮度分布明显偏暗）。
+  setPhase(state.phase);
+
+  const bar = $('#load-bar');
+  const loading = $('#loading');
+  const dropLoading = () => {
+    if (!loading) return;
+    loading.classList.add('is-done');
+    setTimeout(() => { loading.style.display = 'none'; }, 900);
+  };
+  /**
+   * 底图首帧失败也必须放行：旧写法里 boot 一旦在 await 上抛错，
+   * 全屏 loading 遮罩就永远留在页面上，用户看到的是"旋转缩放全坏了"。
+   */
+  try {
+    moonMat.map = await loadTex('assets/moon_albedo_1k.webp', true, (p) => { if (bar) bar.style.width = p * 25 + '%'; });
+    moonMat.needsUpdate = true;
+    baseRes = 1024;
+    dropLoading();
+  } catch (e) {
+    console.error('[moonhd] 底图加载失败：', e);
+    dropLoading();
+    if (ui) ui.toast('底图加载失败，请检查网络后刷新', true);
+    setStatus('底图加载失败');
+    return;
+  }
+
+  // UI 先接上，让用户能立刻操作；升清在后台继续
+  if (uiEnabled) {
+    ui = createUI(api);
+    ui.init();
+  } else {
+    for (const id of ['#ui-topbar', '#ui-catalog', '#ui-rightcol', '#ui-toolbar', '#ui-coordbar', '#ui-zoomtools']) {
+      const n = $(id); if (n) n.hidden = true;
+    }
+  }
+
   renderer.setAnimationLoop(frame);
 
   // 彩色调制层（LROC WAC 彩色合成，极区已填充）
   loadTex('assets/moon_chroma_1k.webp', true, () => {}).then((t) => {
     uni.chromaMap.value = t;
     uni.chromaAmt.value = state.color ? 0.7 : 0;
-  }).catch(() => { $('#t-color').classList.remove('is-on'); });
+  }).catch(() => { applySetting('color', false); });
 
   // 地形法线（LOLA 高程）——高清影像是影像，不因此获得高清地形
   loadTex('assets/moon_normal_' + (isMobile ? '2048' : '5760') + '.webp', false, () => {}).then((t) => {
@@ -624,27 +1273,41 @@ async function upgrade(q, onp) {
     if (tileLayer) tileLayer.setNormalMap(normalTex, state.relief);
   }).catch(() => {});
 
-  const target = pickQuality();
-  for (let q = 2048; q <= target; q *= 2) {
-    try {
-      await upgrade(q, (p) => { qv.textContent = '载入 ' + Math.round(p * 100) + '%'; });
-    } catch (e) {
-      qv.textContent = '已是最优';
-      break;
-    }
-  }
-
-  // 底图就绪后再接入国内 HiPS，避免与首屏加载抢带宽
-  initHips();
-
   // 测试模式：固定相机与朝向
   if (TEST.active) applyTestView();
+
+  // 底图升清 → 底图就绪后再接入国内 HiPS，避免与首屏加载抢带宽
+  (async () => {
+    const target = pickQuality();
+    const bar2 = $('#load-bar');
+    for (let q = 2048; q <= target; q *= 2) {
+      try {
+        // 必须传进度回调：早先这里漏了参数，loadTex 里回调调用抛错被 catch 吞掉，
+        // 底图会永远停在 1K，细节层门槛（按底图放大倍率）随之误判成"该拉瓦片"。
+        await upgrade(q, (p) => { if (bar2) bar2.style.width = p * 100 + '%'; });
+      } catch (e) {
+        console.warn('[moonhd] 底图升清中断于 ' + q + '：', e && e.message);
+        upgradeError = e && e.message ? e.message : String(e);
+        setStatus();
+        break;
+      }
+    }
+    initHips();
+  })();
 })();
 
 /** 把相机放到指定经纬度上方指定距离；用于可复现的验收截图。 */
 function applyTestView() {
   if (TEST.d !== null) {
-    controls.enabled = false;
+    /**
+     * 固定机位只在 `?lock=1` 时锁死交互。
+     *
+     * 老行为是只要带 `?d=` 就 `controls.enabled = false`，一次都不能拖——
+     * 用户点到带参数的链接后就会以为"旋转和缩放坏了"。默认不锁，
+     * 验收脚本要确定性时显式加 `?lock=1`。
+     */
+    if (TEST.lock) controls.enabled = false;
+    intro = 1;
     /**
      * lon/lat 指的是**月固经纬度**，方向用渲染坐标系公式算：
      *   D_base(λ,φ) = (cosφ·cosλ, sinφ, −cosφ·sinλ)
@@ -652,23 +1315,21 @@ function applyTestView() {
      * 那样算出来的方向在渲染系里是"经度相同、纬度被换掉"的另一个点。
      */
     const dirLocal = TEST.lon !== null && TEST.lat !== null
-      ? new THREE.Vector3(...(() => {
-        const c = Math.cos((TEST.lat * Math.PI) / 180);
-        const lo = (TEST.lon * Math.PI) / 180;
-        return [c * Math.cos(lo), Math.sin((TEST.lat * Math.PI) / 180), -c * Math.sin(lo)];
-      })())
+      ? new THREE.Vector3(...dirFromLatLon(TEST.lat, TEST.lon, [0, 0, 0]))
       : new THREE.Vector3(1, 0, 0);          // 默认：正对月面中心 (lon 0, lat 0)
+    // 必须先刷新世界矩阵：boot 里这一步跑在首帧之前，否则 moon.matrixWorld 还是
+    // 单位矩阵，rotation.y=−π/2+0.3 不会计入，相机就落到了错误的经度上（实测差 72.8°）。
+    moon.updateMatrixWorld(true);
     const dirWorld = dirLocal.clone().applyMatrix4(new THREE.Matrix4().extractRotation(moon.matrixWorld)).normalize();
     camera.position.copy(dirWorld.multiplyScalar(TEST.d));
     camera.lookAt(0, 0, 0);
   }
-  // UI 状态同步
-  const det = document.getElementById('t-det');
-  det.classList.toggle('is-on', state.detail);
-  const cal = document.getElementById('t-cal');
-  cal.classList.toggle('is-on', state.calibrate);
-  const spin = document.getElementById('t-spin');
-  spin.classList.toggle('is-on', state.spin);
+  for (const l of TEST.layers) {
+    if (l === 'axis' || l === 'grid' || l === 'markers') {
+      if (ui) ui.store.set(l, true); else overlays['set' + l[0].toUpperCase() + l.slice(1)](true);
+    }
+  }
+  if (TEST.immersive && ui) ui.store.setImmersive(true);
   if (TEST.seg) {
     setInterval(() => {
       const st = scheduler ? scheduler.getStats() : null;
@@ -681,73 +1342,21 @@ function applyTestView() {
         requests: st ? st.requests : 0, errors: st ? st.errors : 0,
         retries: st ? st.retries : 0, cancelled: st ? st.cancelled : 0,
         evictions: st ? st.evictions : 0, persistHits: st ? st.persistentHits : 0,
+        fps: lastFps,
       }));
     }, 2000);
   }
 }
 
-/* ============ 月相 / 光照方向 ============ */
-function setPhase(deg) {
-  const a = THREE.MathUtils.degToRad(deg);
-  sun.position.set(Math.sin(a), 0.10, -Math.cos(a)).normalize().multiplyScalar(80);
-  $('#phase-v').textContent = deg.toFixed(0);
-  $('#m-phase').textContent = Math.round((1 - Math.cos(a)) / 2 * 100) + '%';
-}
-
-/* ============ UI ============ */
-function bind(id, fn) {
-  const el = document.getElementById(id);
-  const h = () => fn(el.value);
-  el.addEventListener('input', h);
-  h();
-}
-function toggle(id, key, after) {
-  const el = document.getElementById(id);
-  el.addEventListener('click', () => {
-    state[key] = state[key] === false;
-    el.classList.toggle('is-on', state[key]);
-    if (after) after(state[key]);
-  });
-}
-bind('phase', (v) => setPhase(Number(v)));
-bind('exposure', (v) => { renderer.toneMappingExposure = Number(v); $('#exposure-v').textContent = Number(v).toFixed(2); });
-bind('relief', (v) => {
-  state.relief = Number(v);
-  moonMat.normalScale.set(state.relief, state.relief);
-  if (tileLayer) tileLayer.setNormalScale(state.relief);
-  $('#relief-v').textContent = state.relief.toFixed(2);
-});
-$('#quality').addEventListener('change', (e) => {
-  const u = new URL(location.href);
-  if (e.target.value === 'auto') u.searchParams.delete('q');
-  else u.searchParams.set('q', e.target.value);
-  location.href = u.toString();
-});
-toggle('t-spin', 'spin');
-toggle('t-stars', 'stars');
-toggle('t-earth', 'earth');
-toggle('t-det', 'detail');
-toggle('t-color', 'color', (on) => { uni.chromaAmt.value = on ? 0.7 : 0; });
-toggle('t-cal', 'calibrate', (on) => {
-  if (tileLayer) tileLayer.setCalibration(on ? HIPS.gain : 1, 0);
-});
-
-$('#cache-clear').addEventListener('click', async () => {
-  if (!persist) return;
-  const n = await clearTileCache().catch(() => 0);
-  await updatePersistStats();
-  $('#cache-clear').textContent = '已清理 ' + n;
-  setTimeout(() => { $('#cache-clear').textContent = '清理缓存'; }, 1600);
-});
-
 /* ============ 主循环 ============ */
-const clock = new THREE.Clock();
-let fpsN = 0, fpsT = 0, intro = isMobile ? 1 : 0;
-let uiT = 0;
+let labelT = 0;
+
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
-  if (state.spin) moon.rotation.y += dt * 0.012;
-  if (intro < 1 && !TEST.active) {
+  const now = performance.now() / 1000;
+
+  if (spinRunning()) moon.rotation.y += dt * 0.012 * state.spinSpeed;
+  if (intro < 1 && !TEST.active && !flight.active) {
     intro = Math.min(1, intro + dt / 1.8);
     const e = 1 - Math.pow(1 - intro, 3);
     camera.position.setLength(9.5 + (5.25 - 9.5) * e);
@@ -755,7 +1364,26 @@ function frame() {
     intro = 1;
   }
 
+  stepFlight(dt);
+  // 自愈：除非显式 ?lock=1，任何情况下都不允许交互被永久关掉
+  // （用户反馈过"进去以后不能旋转和缩放"，这里加一道兜底）
+  if (!controls.enabled && !flight.active && !TEST.lock) controls.enabled = true;
   controls.update();
+  syncLocalFrame();
+
+  // 经纬网：间隔随可见球冠分档（带滞回）；标签锚点用"相机正下方经纬度"，
+  // 锚点转动超过 5° 才重建几何，避免每帧重建 1 万多个顶点。
+  if (overlays.state.grid) {
+    const cap = capAngleDeg(camera.position.length());
+    const next = pickStep(cap, overlays.gridStep || STEP_LEVELS[0]);
+    const cam = latLonFromDir([_camLocal.x, _camLocal.y, _camLocal.z]);
+    const moved = Math.abs(cam.lat - gridAnchor.lat) > 5
+      || Math.abs(((cam.lon - gridAnchor.lon + 540) % 360) - 180) > 5;
+    if (next !== overlays.gridStep || moved || !overlays.gridObject) {
+      overlays.rebuildGrid(next, cam.lat, cam.lon);
+      gridAnchor = { lat: cam.lat, lon: cam.lon };
+    }
+  }
 
   // 瓦片：0.25s 选一次视野；每帧只做上传/淡入，避免自转时抖动
   if (hipsState.ready) {
@@ -780,47 +1408,32 @@ function frame() {
   earthshine.intensity = state.earth ? 0.055 : 0;
   renderer.render(scene, camera);
 
+  // 中心坐标：屏幕中心射线与月球的近交点；未命中就是 null（不拿相机正下方点冒充）
+  const centerHit = pickNDC(0, 0);
+  centerCoord = centerHit ? { lat: centerHit.lat, lon: centerHit.lon } : null;
+
+  // 标签：约 20 Hz 更新 DOM，不每帧重排
+  labelT += dt;
+  if (ui && labelT > 0.05) {
+    labelT = 0;
+    ui.renderLabels(computeLabels());
+  }
+
   fpsN++; fpsT += dt;
   if (fpsT > 0.5) {
-    $('#m-fps').textContent = Math.round(fpsN / fpsT) + ' FPS';
+    lastFps = Math.round(fpsN / fpsT);
     fpsN = 0; fpsT = 0;
+    setStatus();
   }
-  uiT += dt;
-  if (uiT > 0.5 && hipsState.ready) {
-    uiT = 0;
-    updateHipsUi();
-  }
-}
-
-function updateHipsUi() {
-  const st = scheduler ? scheduler.getStats() : null;
-  const n = hipsState.readyKeys.size;
-  const total = hipsState.tiles.length;
-  $('#m-detail').textContent = state.detail
-    ? `L${hipsState.centerOrder} · ${n}/${total}`
-    : '关闭';
-  if (st) {
-    hipsState.bytes = st.bytes;
-    $('#m-cache').textContent = fmtBytes(st.bytes) + ' / ' + fmtBytes(st.memoryBudget)
-      + (persist ? ' + 浏览器' : '');
-  }
-  $('#m-detail').title = [
-    `层级 L${hipsState.centerOrder}`,
-    `可视瓦片 ${total}（已就绪 ${n}，队列 ${st ? st.queued : 0}，进行中 ${st ? st.inflight : 0}）`,
-    `可视球冠半径 ${hipsState.capRadiusDeg ? hipsState.capRadiusDeg.toFixed(1) : '-'}°`,
-    `选择耗时 ${hipsState.selectMs.toFixed(1)}ms`,
-    `累计请求 ${st ? st.requests : 0}（内存命中 ${st ? st.memoryHits : 0}，持久化命中 ${st ? st.persistentHits : 0}）`,
-    `重试 ${st ? st.retries : 0}，失败 ${st ? st.errors : 0}，取消 ${st ? st.cancelled : 0}，淘汰 ${st ? st.evictions : 0}`,
-    `图集页 ${atlas ? atlas.pageCount : 0}/${HIPS.maxPages}，槽位不足跳过 ${hipsState.slotStarved}`,
-    `几何顶点 ${tileLayer ? tileLayer.vertices : 0}`,
-  ].join('\n');
 }
 
 function resize() {
   renderer.setSize(innerWidth, innerHeight, false);
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
+  refreshViewRect();
 }
+
 window.__luna = {
   THREE, scene, camera, renderer, moon, moonMat, controls, sun, uni,
   hips: hipsState,
@@ -829,10 +1442,17 @@ window.__luna = {
   get tileLayer() { return tileLayer; },
   get persist() { return persist; },
   get normalTex() { return normalTex; },
+  get ui() { return ui; },
+  overlays,
+  api,
+  state,
   hpToRender, renderToHp,
   unprojectLocal, unprojectHp, projectLocal, projectFromHp,
   refreshTileSelection,
   clearPersist: () => clearTileCache(),
+  setPhase,
+  flyTo,
+  resetView,
 };
 addEventListener('resize', resize);
 resize();

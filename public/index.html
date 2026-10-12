@@ -3,65 +3,336 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>LUNA · 超高清月球</title>
+<title>LUNA · 月球探索器</title>
+<meta name="description" content="实时三维月球探索器：8K 底图、按需高清细节、月面地名与坐标交互。" />
 <link rel="stylesheet" href="./src/style.css" />
 <script type="importmap">
 {"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}
 </script>
 </head>
 <body>
+
 <canvas id="scene"></canvas>
-<header class="hud hud--tl">
-  <h1>LUNA<span>月球 · 8K 实时渲染</span></h1>
-  <p class="tag">LROC 全球影像 + LOLA 真实高程 · 拖拽旋转 / 滚轮缩放</p>
+
+<!-- 三维投影标签层：地名、选点、极点、经纬网坐标标签 -->
+<div id="overlay" class="overlay"></div>
+
+<!-- ============================ 顶栏 ============================ -->
+<header class="topbar" id="ui-topbar">
+  <div class="brand">
+    <span class="brand__mark">LUNA</span>
+    <span class="brand__sub">月球探索</span>
+  </div>
+
+  <div class="search" id="search">
+    <span class="search__icon" aria-hidden="true">
+      <svg viewBox="0 0 16 16" width="14" height="14"><circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M10.4 10.4 14 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    </span>
+    <input id="search-input" type="search" autocomplete="off" spellcheck="false"
+           placeholder="搜索地貌、着陆点或经纬度" aria-label="搜索地貌、着陆点或经纬度"
+           aria-expanded="false" aria-controls="search-results" role="combobox" />
+    <button class="search__clear" id="search-clear" type="button" aria-label="清空搜索" hidden>×</button>
+    <div class="search__pop" id="search-results" role="listbox" aria-label="搜索结果" hidden></div>
+  </div>
+
+  <nav class="topnav" aria-label="主导航">
+    <button class="btn btn--icon is-on" id="nav-explore" type="button" aria-pressed="true">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M10.4 5.6 8.9 8.9 5.6 10.4 7.1 7.1z" fill="currentColor"/></svg>
+      <span>探索</span>
+    </button>
+    <button class="btn btn--icon" id="nav-settings" type="button" aria-pressed="false">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 4.4h12M2 8h12M2 11.6h12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><circle cx="6" cy="4.4" r="1.7" fill="#121519" stroke="currentColor" stroke-width="1.2"/><circle cx="10.6" cy="11.6" r="1.7" fill="#121519" stroke="currentColor" stroke-width="1.2"/></svg>
+      <span>观察设置</span>
+    </button>
+    <button class="btn btn--icon" id="nav-hide" type="button" title="隐藏全部界面（H）">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 8s2.4-4 6-4 6 4 6 4-2.4 4-6 4-6-4-6-4z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M3 13 13 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <span>隐藏界面</span>
+    </button>
+  </nav>
 </header>
-<div class="hud hud--tr meta">
-  <div class="meta__row"><span>贴图</span><b id="m-res">1024 x 512</b></div>
-  <div class="meta__row"><span>细节</span><b id="m-detail">--</b></div>
-  <div class="meta__row"><span>来源</span><b id="m-source">连接中…</b></div>
-  <div class="meta__row"><span>缓存</span><b id="m-cache">--</b></div>
-  <div class="meta__row"><span>帧率</span><b id="m-fps">--</b></div>
-  <div class="meta__row"><span>光照</span><b id="m-phase">--</b></div>
+
+<!-- ============================ 左：地点目录 ============================ -->
+<aside class="panel panel--left" id="ui-catalog" aria-label="地点目录">
+  <div class="panel__head">
+    <h2 class="panel__title">探索月面</h2>
+    <button class="iconbtn" id="catalog-fold" type="button" aria-label="收起地点目录" title="收起目录">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><rect x="2.2" y="3.2" width="11.6" height="9.6" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M6.4 3.4v9.2" stroke="currentColor" stroke-width="1.2"/><path d="M9 8h3.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="segmented" role="tablist" aria-label="地点分类">
+    <button class="seg is-on" id="cat-feature" role="tab" aria-selected="true" type="button">地貌</button>
+    <button class="seg" id="cat-landing" role="tab" aria-selected="false" type="button">着陆点</button>
+  </div>
+
+  <div class="places" id="place-list" role="list"></div>
+
+  <div class="panel__foot">
+    <button class="linkcard" id="facts-open" type="button">
+      <span class="linkcard__t">认识月球</span>
+      <span class="linkcard__s">半径、重力与地月关系</span>
+    </button>
+    <p class="src">精选地貌 · 更多地点可搜索</p>
+  </div>
+</aside>
+
+<!-- ============================ 右：信息卡 + 设置 ============================ -->
+<div class="rightcol" id="ui-rightcol">
+
+  <!-- 地点 / 选点信息卡 -->
+  <section class="panel panel--right" id="ui-infocard" aria-label="地点信息" hidden>
+    <button class="iconbtn iconbtn--close" id="info-close" type="button" aria-label="关闭信息卡">×</button>
+    <p class="kicker" id="info-kicker">CRATER / 陨石坑</p>
+    <h2 class="info__title" id="info-title">—</h2>
+    <p class="info__official" id="info-official"></p>
+    <dl class="rows" id="info-rows"></dl>
+    <p class="info__desc" id="info-desc"></p>
+    <div class="info__actions" id="info-actions"></div>
+    <p class="src" id="info-src"></p>
+  </section>
+
+  <!-- 设置面板（多个视图，同一时间只显示一个） -->
+  <section class="panel panel--settings" id="ui-settings" aria-label="观察设置" hidden>
+    <button class="iconbtn iconbtn--close" id="settings-close" type="button" aria-label="关闭设置面板">×</button>
+
+    <!-- 04 总览 -->
+    <div class="view" id="view-main">
+      <h2 class="panel__title">观察设置</h2>
+      <p class="kicker">画面</p>
+      <label class="ctl" for="exposure">
+        <span class="ctl__k">曝光</span>
+        <input id="exposure" type="range" min="0.2" max="3" step="0.01" value="1.05" />
+        <span class="ctl__v" id="exposure-v">1.05</span>
+      </label>
+      <label class="ctl" for="relief">
+        <span class="ctl__k">地形光照强度</span>
+        <input id="relief" type="range" min="0" max="3" step="0.01" value="1.2" />
+        <span class="ctl__v" id="relief-v">1.20</span>
+      </label>
+      <div class="row" id="quality-row">
+        <span class="row__k">底图画质</span>
+        <button class="row__v row__v--act" id="quality-btn" type="button" aria-haspopup="listbox">自动</button>
+      </div>
+      <div class="opts" id="quality-opts" role="listbox" aria-label="底图画质" hidden>
+        <button class="opt is-on" data-q="auto" role="option" aria-selected="true" type="button">自动</button>
+        <button class="opt" data-q="2048" role="option" aria-selected="false" type="button">2K</button>
+        <button class="opt" data-q="4096" role="option" aria-selected="false" type="button">4K</button>
+        <button class="opt" data-q="8192" role="option" aria-selected="false" type="button">8K</button>
+      </div>
+
+      <button class="navrow" id="go-phase" type="button"><span>模拟月相 / 光照角度</span><span class="navrow__a" id="go-phase-v">104°</span></button>
+
+      <p class="kicker">场景与影像</p>
+      <div class="row"><span class="row__k">星空</span><button class="switch" id="sw-stars" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">地球反照</span><button class="switch" id="sw-earth" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">彩色调制</span><button class="switch" id="sw-color" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">高清细节</span><button class="switch" id="sw-detail" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">亮度标定</span><button class="switch" id="sw-cal" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <button class="navrow" id="go-layers" type="button"><span>图层与影像选项</span><span class="navrow__a">›</span></button>
+
+      <p class="kicker">界面与辅助线</p>
+      <div class="row"><span class="row__k">自转轴</span><button class="switch" id="sw-axis" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">经纬网</span><button class="switch" id="sw-grid" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">地名标注</span><button class="switch" id="sw-markers" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <button class="navrow" id="go-visibility" type="button"><span>显示面板</span><span class="navrow__a">管理可见性 ›</span></button>
+      <button class="navrow" id="go-immersive" type="button"><span>沉浸模式</span><span class="navrow__a">隐藏全部 ›</span></button>
+
+      <p class="hint">参数即时生效 · <button class="link" id="reset-defaults" type="button">恢复默认</button><br />详细缓存与帧率收进高级信息</p>
+    </div>
+
+    <!-- 07 模拟月相 -->
+    <div class="view" id="view-phase" hidden>
+      <button class="back" id="back-from-phase" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">模拟月相</h2>
+      <p class="warn">模拟光照，不表示今天的真实月相。</p>
+      <label class="ctl" for="phase">
+        <span class="ctl__k">光照角度</span>
+        <input id="phase" type="range" min="0" max="360" step="0.5" value="104" />
+        <span class="ctl__v" id="phase-v">104°</span>
+      </label>
+      <div class="row"><span class="row__k">模拟光照比例</span><span class="row__v" id="phase-ratio">—</span></div>
+      <div class="presets">
+        <button class="preset" data-phase="270" type="button">新月</button>
+        <button class="preset" data-phase="0" type="button">上弦</button>
+        <button class="preset" data-phase="90" type="button">满月</button>
+        <button class="preset" data-phase="180" type="button">下弦</button>
+      </div>
+      <p class="hint">光照角度是场景光源的角度，<b>不是天文相位角</b>。四个预设的角度由本模型的固定朝向解出、
+        并在参考视角（0° N · 0° E）逐档核对过画面，因此名称与画面一致；<br />
+        点预设会先把镜头平滑移回该参考视角，再套用对应光照角度。</p>
+      <p class="hint">模拟光照比例按<em>当前镜头方向</em>与光源方向的实际夹角实时计算，会随视角变化，不是旧公式按滑块角度直接换算的百分数。</p>
+      <p class="src" id="phase-src"></p>
+    </div>
+
+    <!-- 09 图层与影像 -->
+    <div class="view" id="view-layers" hidden>
+      <button class="back" id="back-from-layers" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">图层与影像</h2>
+      <p class="kicker">场景</p>
+      <div class="row"><span class="row__k">星空</span><button class="switch" id="sw2-stars" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">地球反照</span><button class="switch" id="sw2-earth" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <p class="kicker">影像</p>
+      <div class="row"><span class="row__k">彩色调制</span><button class="switch" id="sw2-color" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">高清细节</span><button class="switch" id="sw2-detail" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">亮度标定</span><button class="switch" id="sw2-cal" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <p class="kicker">地理辅助</p>
+      <div class="row"><span class="row__k">地名标注</span><button class="switch" id="sw2-markers" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">经纬网</span><button class="switch" id="sw2-grid" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">自转轴</span><button class="switch" id="sw2-axis" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <p class="hint">关闭高清细节继续使用底图。<br />所有图层均可独立隐藏。</p>
+    </div>
+
+    <!-- 10 画质与数据 -->
+    <div class="view" id="view-data" hidden>
+      <button class="back" id="back-from-data" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">画质与数据</h2>
+      <div class="row"><span class="row__k">底图画质</span><span class="row__v" id="data-quality">—</span></div>
+      <p class="hint" id="quality-note"></p>
+      <div class="row"><span class="row__k">可选档位</span><span class="row__v">2K / 4K / 8K</span></div>
+      <div class="row"><span class="row__k">高清细节</span><span class="row__v" id="data-detail">—</span></div>
+      <div class="row"><span class="row__k">最高细节</span><span class="row__v" id="data-maxorder">—</span></div>
+      <p class="kicker" id="data-live-kicker">本次会话 · 仅展开时更新</p>
+      <div class="row"><span class="row__k">可视瓦片</span><span class="row__v" id="data-tiles">—</span></div>
+      <div class="row"><span class="row__k">帧率</span><span class="row__v" id="data-fps">—</span></div>
+      <div class="row"><span class="row__k">内存缓存</span><span class="row__v" id="data-mem">—</span></div>
+      <div class="row"><span class="row__k">本地缓存</span><span class="row__v" id="data-persist">—</span></div>
+      <div class="row"><span class="row__k">累计请求</span><span class="row__v" id="data-req">—</span></div>
+      <button class="navrow" id="go-clear-cache" type="button"><span>清理浏览器缓存</span><span class="navrow__a">仅本程序瓦片</span></button>
+      <p class="hint">以上数值读取实际运行状态，不是设计稿样例。</p>
+      <p class="kicker">数据来源</p>
+      <div class="src-list">
+        <p class="src">影像底图 · NASA SVS / LROC WAC（公有领域）<br />
+          高清细节 · China-VO 嫦娥二号 7 m DOM（CC BY 4.0，需致谢）<br />
+          地形光照 · NASA SVS / LOLA 高程<br />
+          月面地名 · IAU / USGS Gazetteer of Planetary Nomenclature<br />
+          任务资料 · NASA · 中国国家航天局（CNSA）公开资料</p>
+      </div>
+    </div>
+
+    <!-- 08 自转控制 -->
+    <div class="view" id="view-spin" hidden>
+      <button class="back" id="back-from-spin" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">自转控制</h2>
+      <div class="row"><span class="row__k">自动旋转</span><button class="switch" id="sw2-spin" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">速度</span><span class="row__v" id="spin-speed-v">缓慢</span></div>
+      <input id="spin-speed" class="slim" type="range" min="0.25" max="3" step="0.25" value="1" aria-label="自转演示速度" />
+      <div class="row"><span class="row__k">自转轴</span><button class="switch" id="sw2-axis2" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <p class="hint">自动绕月球本地极轴旋转。拖拽、搜索定位与选点时暂停，之后按原状态恢复。</p>
+      <p class="hint">速度是浏览演示速度，不代表真实月球自转周期（约 27.3 天）。</p>
+    </div>
+
+    <!-- 05 自转轴 -->
+    <div class="view" id="view-axis" hidden>
+      <button class="back" id="back-from-axis" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">自转轴</h2>
+      <div class="row"><span class="row__k">显示自转轴</span><button class="switch" id="sw2-axis3" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">极点标注</span><button class="switch" id="sw-poles" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">样式</span><span class="row__v">细线 · 香槟金</span></div>
+      <p class="hint">沿月球模型真实自转轴（本地 ±Y）显示，跟随月球世界变换。<br />北极与南极随视角变化，穿过球体的线段被深度遮挡。</p>
+      <p class="hint accent">自转轴与自动旋转独立控制：关掉自动旋转不会隐藏轴线，隐藏轴线也不会停止自转。</p>
+    </div>
+
+    <!-- 06 经纬网 -->
+    <div class="view" id="view-grid" hidden>
+      <button class="back" id="back-from-grid" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">经纬网</h2>
+      <div class="row"><span class="row__k">经纬网</span><button class="switch" id="sw2-grid3" role="switch" aria-checked="false" type="button"><i></i></button></div>
+      <div class="row"><span class="row__k">整球间隔</span><span class="row__v" id="grid-step">30°</span></div>
+      <div class="row"><span class="row__k">局部间隔</span><span class="row__v">随缩放自适应</span></div>
+      <div class="row"><span class="row__k">坐标标签</span><button class="switch" id="sw-grid-labels" role="switch" aria-checked="true" type="button"><i></i></button></div>
+      <p class="hint">只绘制朝向相机的月面辅助线，背面被月球遮挡。<br />间隔按可见球冠半角分档并有滞回，避免近距时变成密网。</p>
+    </div>
+
+    <!-- 11 面板可见性管理 -->
+    <div class="view" id="view-visibility" hidden>
+      <button class="back" id="back-from-visibility" type="button">‹ 观察设置</button>
+      <h2 class="panel__title">界面显示</h2>
+      <div id="vis-list"></div>
+      <div class="row row--actions">
+        <button class="link" id="vis-hide-all" type="button">隐藏全部</button>
+        <button class="link" id="vis-reset" type="button">恢复默认布局</button>
+      </div>
+      <p class="hint">面板隐藏不改变月球画面参数。<br />沉浸模式临时隐藏全部界面与辅助线，退出后恢复此前的显示状态。</p>
+    </div>
+
+    <!-- 14 月球概览 -->
+    <div class="view" id="view-facts" hidden>
+      <button class="back" id="back-from-facts" type="button">‹ 观察设置</button>
+      <p class="kicker">OUR NATURAL SATELLITE</p>
+      <h2 class="panel__title">认识月球</h2>
+      <p class="info__official">地球唯一的天然卫星</p>
+      <dl class="rows" id="facts-rows"></dl>
+      <p class="hint">以上为概览参考值，不代表当前时刻。时间变化量与实际观测值分开标注。</p>
+      <div class="src-list" id="facts-links"></div>
+      <p class="src" id="facts-src">资料来源 · NASA</p>
+    </div>
+  </section>
 </div>
-<section class="hud hud--b panel">
-  <label class="ctl">
-    <span class="ctl__k">月相</span>
-    <input id="phase" type="range" min="0" max="360" step="0.5" value="104" />
-    <span class="ctl__v" id="phase-v">104</span>
-  </label>
-  <label class="ctl">
-    <span class="ctl__k">曝光</span>
-    <input id="exposure" type="range" min="0.2" max="3" step="0.01" value="1.05" />
-    <span class="ctl__v" id="exposure-v">1.05</span>
-  </label>
-  <label class="ctl">
-    <span class="ctl__k">起伏</span>
-    <input id="relief" type="range" min="0" max="3" step="0.01" value="1.2" />
-    <span class="ctl__v" id="relief-v">1.20</span>
-  </label>
-  <label class="ctl">
-    <span class="ctl__k">画质</span>
-    <select id="quality">
-      <option value="auto" selected>自动</option>
-      <option value="2048">2K</option>
-      <option value="4096">4K</option>
-      <option value="8192">8K</option>
-    </select>
-    <span class="ctl__v" id="quality-v"></span>
-  </label>
-  <div class="toggles">
-    <button class="tg is-on" id="t-spin">自转</button>
-    <button class="tg is-on" id="t-stars">星空</button>
-    <button class="tg is-on" id="t-earth">地球反照</button>
-    <button class="tg is-on" id="t-det">国内细节</button>
-    <button class="tg is-on" id="t-color">彩色</button>
-    <button class="tg is-on" id="t-cal" title="把国内 DOM 的亮度标定到本地底图，减少高清区边界的亮度台阶">亮度标定</button>
+
+<!-- ============================ 底部：观察工具栏 ============================ -->
+<div class="toolbar" id="ui-toolbar" role="toolbar" aria-label="观察工具栏">
+  <button class="tbtn" id="tb-spin" type="button" title="自转（Space）" aria-label="自转（Space）" aria-pressed="true">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M4.4 3.2 12.4 8l-8 4.8z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+    <span>自转</span>
+  </button>
+  <button class="tbtn" id="tb-axis" type="button" title="自转轴（A）" aria-label="自转轴（A）" aria-pressed="false">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M8 2v12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M8 2.4 6.2 4.6M8 2.4 9.8 4.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/></svg>
+    <span>自转轴</span>
+  </button>
+  <button class="tbtn" id="tb-grid" type="button" title="经纬网（G）" aria-label="经纬网（G）" aria-pressed="false">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="5.6" fill="none" stroke="currentColor" stroke-width="1.2"/><ellipse cx="8" cy="8" rx="2.5" ry="5.6" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M2.6 6.2h10.8M2.6 9.8h10.8" stroke="currentColor" stroke-width="1.2"/></svg>
+    <span>经纬网</span>
+  </button>
+  <button class="tbtn" id="tb-phase" type="button" title="模拟月相 / 光照角度" aria-label="模拟月相 / 光照角度">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="5.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 2.6a5.4 5.4 0 0 1 0 10.8z" fill="currentColor" opacity=".85"/></svg>
+    <span>月相</span>
+  </button>
+  <button class="tbtn" id="tb-immersive" type="button" title="沉浸模式（H）" aria-label="沉浸模式（H）">
+    <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2.6 6V3.4h2.6M13.4 6V3.4h-2.6M2.6 10v2.6h2.6M13.4 10v2.6h-2.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+    <span>沉浸</span>
+  </button>
+</div>
+
+<!-- ============================ 底部：坐标栏 ============================ -->
+<footer class="coordbar" id="ui-coordbar">
+  <span class="coord coord--center"><span class="coord__k">视野中心</span><b id="coord-center">—</b></span>
+  <span class="coord coord--hover"><span class="coord__k">指向位置</span><b id="coord-hover">—</b></span>
+  <span class="coord coord--scale">
+    <span class="north" id="north-wrap" hidden><span class="north__arrow" id="north-arrow">↑</span><span class="north__lbl">N</span></span>
+    <span class="scale" id="scale-wrap" hidden><span class="scale__k">局部比例尺</span><span class="scale__bar" id="scale-bar"></span><span class="scale__v" id="scale-v">—</span></span>
+  </span>
+  <span class="coord coord--status"><span class="dot" id="status-dot"></span><span id="status-imagery">底图加载中</span></span>
+</footer>
+
+<!-- ============================ 右下：缩放工具 ============================ -->
+<div class="zoomtools" id="ui-zoomtools">
+  <button class="zbtn" id="zoom-in" type="button" aria-label="放大" title="放大">+</button>
+  <button class="zbtn" id="zoom-out" type="button" aria-label="缩小" title="缩小">−</button>
+  <button class="zbtn" id="zoom-reset" type="button" aria-label="复位视角" title="复位视角（R）">
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3.4 8a4.6 4.6 0 1 0 1.6-3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M3 2.6v2.8h2.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+</div>
+
+<!-- ============================ 沉浸：临时恢复入口 ============================ -->
+<button class="restore" id="restore" type="button" hidden>
+  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M2 8s2.4-4 6-4 6 4 6 4-2.4 4-6 4-6-4-6-4z" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="8" cy="8" r="1.8" fill="currentColor"/></svg>
+  <span>显示界面</span><kbd>H</kbd><span class="restore__sep">/</span><kbd>Esc</kbd>
+</button>
+
+<!-- ============================ 手机：底部抽屉 ============================ -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer__grip" id="drawer-grip" role="separator" aria-label="拖拽调整抽屉高度" tabindex="0"></div>
+  <div class="drawer__tabs" role="tablist" aria-label="抽屉内容">
+    <button class="dtab is-on" id="dtab-catalog" role="tab" aria-selected="true" type="button">目录</button>
+    <button class="dtab" id="dtab-info" role="tab" aria-selected="false" type="button">地点</button>
+    <button class="dtab" id="dtab-settings" role="tab" aria-selected="false" type="button">设置</button>
+    <button class="dtab dtab--close" id="dtab-close" type="button" aria-label="收起抽屉">⌄</button>
   </div>
-  <div class="foot">
-    <span id="credit">细节影像：China-VO 嫦娥二号 DOM 7M（HiPS）</span>
-    <button class="tg tg--mini" id="cache-clear">清理缓存</button>
-  </div>
-</section>
+  <div class="drawer__body" id="drawer-body"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
 <div class="loading" id="loading">
   <div class="loading__inner">
     <div class="loading__mark">◐</div>
@@ -69,6 +340,7 @@
     <div class="loading__bar"><i id="load-bar"></i></div>
   </div>
 </div>
+
 <script type="module" src="./src/main.js"></script>
 </body>
 </html>
