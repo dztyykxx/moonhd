@@ -1,0 +1,4561 @@
+{
+ "source": "astropy-healpix 2.0.1 (BSD-3-Clause), order='nested'",
+ "generated_by": "tools/gen-healpix-reference.py",
+ "vectors": [
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 0,
+   "lon": 44.99999999999999,
+   "lat": 41.810314895778596,
+   "path": "Norder0/Dir0/Npix0.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 1,
+   "lon": 135.0,
+   "lat": 41.810314895778596,
+   "path": "Norder0/Dir0/Npix1.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 2,
+   "lon": 224.99999999999997,
+   "lat": 41.810314895778596,
+   "path": "Norder0/Dir0/Npix2.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 3,
+   "lon": 315.0,
+   "lat": 41.810314895778596,
+   "path": "Norder0/Dir0/Npix3.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 4,
+   "lon": 0.0,
+   "lat": 0.0,
+   "path": "Norder0/Dir0/Npix4.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 5,
+   "lon": 90.0,
+   "lat": 0.0,
+   "path": "Norder0/Dir0/Npix5.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 6,
+   "lon": 180.0,
+   "lat": 0.0,
+   "path": "Norder0/Dir0/Npix6.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 7,
+   "lon": 270.0,
+   "lat": 0.0,
+   "path": "Norder0/Dir0/Npix7.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 8,
+   "lon": 44.99999999999999,
+   "lat": -41.810314895778596,
+   "path": "Norder0/Dir0/Npix8.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 9,
+   "lon": 135.0,
+   "lat": -41.810314895778596,
+   "path": "Norder0/Dir0/Npix9.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 10,
+   "lon": 224.99999999999997,
+   "lat": -41.810314895778596,
+   "path": "Norder0/Dir0/Npix10.png"
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 11,
+   "lon": 315.0,
+   "lat": -41.810314895778596,
+   "path": "Norder0/Dir0/Npix11.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix0.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 1,
+   "lon": 67.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix1.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 2,
+   "lon": 22.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix2.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 66.44353569089876,
+   "path": "Norder1/Dir0/Npix3.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 4,
+   "lon": 135.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix4.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 5,
+   "lon": 157.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix5.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 6,
+   "lon": 112.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix6.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 7,
+   "lon": 135.0,
+   "lat": 66.44353569089876,
+   "path": "Norder1/Dir0/Npix7.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 8,
+   "lon": 224.99999999999997,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix8.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 9,
+   "lon": 247.49999999999997,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix9.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 10,
+   "lon": 202.49999999999997,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix10.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 11,
+   "lon": 224.99999999999997,
+   "lat": 66.44353569089876,
+   "path": "Norder1/Dir0/Npix11.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 12,
+   "lon": 315.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix12.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 13,
+   "lon": 337.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix13.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 14,
+   "lon": 292.5,
+   "lat": 41.810314895778596,
+   "path": "Norder1/Dir0/Npix14.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 15,
+   "lon": 315.0,
+   "lat": 66.44353569089876,
+   "path": "Norder1/Dir0/Npix15.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 16,
+   "lon": 0.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix16.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 17,
+   "lon": 22.500000000000004,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix17.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 18,
+   "lon": 337.5,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix18.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 19,
+   "lon": 0.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix19.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 20,
+   "lon": 90.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix20.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 21,
+   "lon": 112.5,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix21.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 22,
+   "lon": 67.5,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix22.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 23,
+   "lon": 90.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix23.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 24,
+   "lon": 180.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix24.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 25,
+   "lon": 202.49999999999997,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix25.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 26,
+   "lon": 157.5,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix26.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 27,
+   "lon": 180.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix27.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 28,
+   "lon": 270.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix28.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 29,
+   "lon": 292.5,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix29.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 30,
+   "lon": 247.49999999999997,
+   "lat": 0.0,
+   "path": "Norder1/Dir0/Npix30.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 31,
+   "lon": 270.0,
+   "lat": 19.47122063449069,
+   "path": "Norder1/Dir0/Npix31.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 32,
+   "lon": 44.99999999999999,
+   "lat": -66.44353569089878,
+   "path": "Norder1/Dir0/Npix32.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 33,
+   "lon": 67.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix33.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 34,
+   "lon": 22.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix34.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 35,
+   "lon": 45.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix35.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 36,
+   "lon": 135.0,
+   "lat": -66.44353569089878,
+   "path": "Norder1/Dir0/Npix36.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 37,
+   "lon": 157.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix37.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 38,
+   "lon": 112.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix38.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 39,
+   "lon": 135.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix39.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 40,
+   "lon": 224.99999999999997,
+   "lat": -66.44353569089876,
+   "path": "Norder1/Dir0/Npix40.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 41,
+   "lon": 247.49999999999997,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix41.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 42,
+   "lon": 202.49999999999997,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix42.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 43,
+   "lon": 224.99999999999997,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix43.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 44,
+   "lon": 315.0,
+   "lat": -66.44353569089878,
+   "path": "Norder1/Dir0/Npix44.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 45,
+   "lon": 337.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix45.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 46,
+   "lon": 292.5,
+   "lat": -41.810314895778596,
+   "path": "Norder1/Dir0/Npix46.png"
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 47,
+   "lon": 315.0,
+   "lat": -19.47122063449069,
+   "path": "Norder1/Dir0/Npix47.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 9.594068226860461,
+   "path": "Norder2/Dir0/Npix0.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 1,
+   "lon": 56.25,
+   "lat": 19.47122063449069,
+   "path": "Norder2/Dir0/Npix1.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 2,
+   "lon": 33.75,
+   "lat": 19.47122063449069,
+   "path": "Norder2/Dir0/Npix2.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix3.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 4,
+   "lon": 67.5,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix4.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 5,
+   "lon": 78.75,
+   "lat": 41.810314895778596,
+   "path": "Norder2/Dir0/Npix5.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 10,
+   "lon": 11.25,
+   "lat": 41.810314895778596,
+   "path": "Norder2/Dir0/Npix10.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 15,
+   "lon": 44.99999999999999,
+   "lat": 78.28414760510763,
+   "path": "Norder2/Dir0/Npix15.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 20,
+   "lon": 157.5,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix20.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 25,
+   "lon": 123.74999999999999,
+   "lat": 41.810314895778596,
+   "path": "Norder2/Dir0/Npix25.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 30,
+   "lon": 112.5,
+   "lat": 66.44353569089876,
+   "path": "Norder2/Dir0/Npix30.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 35,
+   "lon": 225.0,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix35.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 40,
+   "lon": 202.49999999999997,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix40.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 45,
+   "lon": 247.49999999999997,
+   "lat": 66.44353569089876,
+   "path": "Norder2/Dir0/Npix45.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 50,
+   "lon": 303.75,
+   "lat": 19.47122063449069,
+   "path": "Norder2/Dir0/Npix50.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 55,
+   "lon": 345.0,
+   "lat": 54.34091230386123,
+   "path": "Norder2/Dir0/Npix55.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 60,
+   "lon": 315.0,
+   "lat": 54.34091230386123,
+   "path": "Norder2/Dir0/Npix60.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 65,
+   "lon": 11.25,
+   "lat": -19.47122063449069,
+   "path": "Norder2/Dir0/Npix65.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 70,
+   "lon": 11.25,
+   "lat": 0.0,
+   "path": "Norder2/Dir0/Npix70.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 75,
+   "lon": 337.5,
+   "lat": 9.594068226860461,
+   "path": "Norder2/Dir0/Npix75.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 80,
+   "lon": 90.0,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix80.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 85,
+   "lon": 123.74999999999999,
+   "lat": 0.0,
+   "path": "Norder2/Dir0/Npix85.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 90,
+   "lon": 56.25,
+   "lat": 0.0,
+   "path": "Norder2/Dir0/Npix90.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 95,
+   "lon": 90.0,
+   "lat": 29.999999999999996,
+   "path": "Norder2/Dir0/Npix95.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 100,
+   "lon": 202.49999999999997,
+   "lat": -9.594068226860461,
+   "path": "Norder2/Dir0/Npix100.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 105,
+   "lon": 168.75,
+   "lat": 0.0,
+   "path": "Norder2/Dir0/Npix105.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 110,
+   "lon": 168.75,
+   "lat": 19.47122063449069,
+   "path": "Norder2/Dir0/Npix110.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 115,
+   "lon": 270.0,
+   "lat": -9.594068226860461,
+   "path": "Norder2/Dir0/Npix115.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 120,
+   "lon": 247.49999999999997,
+   "lat": -9.594068226860461,
+   "path": "Norder2/Dir0/Npix120.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 125,
+   "lon": 281.25,
+   "lat": 19.47122063449069,
+   "path": "Norder2/Dir0/Npix125.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 130,
+   "lon": 22.5,
+   "lat": -66.44353569089878,
+   "path": "Norder2/Dir0/Npix130.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 135,
+   "lon": 67.5,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix135.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 140,
+   "lon": 44.99999999999999,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix140.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 145,
+   "lon": 157.5,
+   "lat": -66.44353569089876,
+   "path": "Norder2/Dir0/Npix145.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 150,
+   "lon": 146.25,
+   "lat": -41.810314895778596,
+   "path": "Norder2/Dir0/Npix150.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 155,
+   "lon": 112.5,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix155.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 160,
+   "lon": 224.99999999999997,
+   "lat": -78.28414760510763,
+   "path": "Norder2/Dir0/Npix160.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 165,
+   "lon": 258.75,
+   "lat": -41.810314895778596,
+   "path": "Norder2/Dir0/Npix165.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 170,
+   "lon": 191.25,
+   "lat": -41.810314895778596,
+   "path": "Norder2/Dir0/Npix170.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 175,
+   "lon": 224.99999999999997,
+   "lat": -9.594068226860461,
+   "path": "Norder2/Dir0/Npix175.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 180,
+   "lon": 345.0,
+   "lat": -54.34091230386123,
+   "path": "Norder2/Dir0/Npix180.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 185,
+   "lon": 303.75,
+   "lat": -41.810314895778596,
+   "path": "Norder2/Dir0/Npix185.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 186,
+   "lon": 281.25,
+   "lat": -41.810314895778596,
+   "path": "Norder2/Dir0/Npix186.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 187,
+   "lon": 292.5,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix187.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 188,
+   "lon": 315.0,
+   "lat": -29.999999999999996,
+   "path": "Norder2/Dir0/Npix188.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 189,
+   "lon": 326.25,
+   "lat": -19.47122063449069,
+   "path": "Norder2/Dir0/Npix189.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 190,
+   "lon": 303.75,
+   "lat": -19.47122063449069,
+   "path": "Norder2/Dir0/Npix190.png"
+  },
+  {
+   "order": 2,
+   "nside": 4,
+   "npix": 191,
+   "lon": 315.0,
+   "lat": -9.594068226860461,
+   "path": "Norder2/Dir0/Npix191.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 4.780191847199159,
+   "path": "Norder3/Dir0/Npix0.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 1,
+   "lon": 50.625,
+   "lat": 9.594068226860461,
+   "path": "Norder3/Dir0/Npix1.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 2,
+   "lon": 39.375,
+   "lat": 9.594068226860461,
+   "path": "Norder3/Dir0/Npix2.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 14.477512185929925,
+   "path": "Norder3/Dir0/Npix3.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 4,
+   "lon": 56.25,
+   "lat": 14.477512185929925,
+   "path": "Norder3/Dir0/Npix4.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 5,
+   "lon": 61.87499999999999,
+   "lat": 19.47122063449069,
+   "path": "Norder3/Dir0/Npix5.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 20,
+   "lon": 78.75,
+   "lat": 35.68533471265205,
+   "path": "Norder3/Dir0/Npix20.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 40,
+   "lon": 11.249999999999998,
+   "lat": 35.68533471265205,
+   "path": "Norder3/Dir0/Npix40.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 60,
+   "lon": 44.99999999999999,
+   "lat": 72.38756092964962,
+   "path": "Norder3/Dir0/Npix60.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 80,
+   "lon": 157.5,
+   "lat": 24.624318352164074,
+   "path": "Norder3/Dir0/Npix80.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 100,
+   "lon": 123.74999999999999,
+   "lat": 35.68533471265205,
+   "path": "Norder3/Dir0/Npix100.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 120,
+   "lon": 117.0,
+   "lat": 60.434438844952275,
+   "path": "Norder3/Dir0/Npix120.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 140,
+   "lon": 224.99999999999997,
+   "lat": 24.624318352164074,
+   "path": "Norder3/Dir0/Npix140.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 160,
+   "lon": 202.49999999999997,
+   "lat": 24.624318352164074,
+   "path": "Norder3/Dir0/Npix160.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 180,
+   "lon": 242.99999999999994,
+   "lat": 60.434438844952275,
+   "path": "Norder3/Dir0/Npix180.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 200,
+   "lon": 303.75,
+   "lat": 14.477512185929925,
+   "path": "Norder3/Dir0/Npix200.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 220,
+   "lon": 340.7142857142857,
+   "lat": 48.14120779436026,
+   "path": "Norder3/Dir0/Npix220.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 240,
+   "lon": 315.0,
+   "lat": 48.14120779436028,
+   "path": "Norder3/Dir0/Npix240.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 260,
+   "lon": 11.25,
+   "lat": -24.624318352164074,
+   "path": "Norder3/Dir0/Npix260.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 280,
+   "lon": 11.25,
+   "lat": -4.780191847199159,
+   "path": "Norder3/Dir0/Npix280.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 300,
+   "lon": 337.5,
+   "lat": 4.780191847199159,
+   "path": "Norder3/Dir0/Npix300.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 320,
+   "lon": 90.0,
+   "lat": -35.68533471265205,
+   "path": "Norder3/Dir0/Npix320.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 340,
+   "lon": 123.74999999999999,
+   "lat": -4.780191847199159,
+   "path": "Norder3/Dir0/Npix340.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 360,
+   "lon": 56.25,
+   "lat": -4.780191847199159,
+   "path": "Norder3/Dir0/Npix360.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 380,
+   "lon": 90.0,
+   "lat": 24.624318352164074,
+   "path": "Norder3/Dir0/Npix380.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 400,
+   "lon": 202.49999999999997,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix400.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 420,
+   "lon": 168.75,
+   "lat": -4.780191847199159,
+   "path": "Norder3/Dir0/Npix420.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 440,
+   "lon": 168.75,
+   "lat": 14.477512185929925,
+   "path": "Norder3/Dir0/Npix440.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 460,
+   "lon": 270.0,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix460.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 480,
+   "lon": 247.49999999999997,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix480.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 500,
+   "lon": 281.25,
+   "lat": 14.477512185929925,
+   "path": "Norder3/Dir0/Npix500.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 520,
+   "lon": 15.000000000000002,
+   "lat": -72.38756092964962,
+   "path": "Norder3/Dir0/Npix520.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 540,
+   "lon": 67.5,
+   "lat": -35.68533471265205,
+   "path": "Norder3/Dir0/Npix540.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 560,
+   "lon": 44.99999999999999,
+   "lat": -35.68533471265205,
+   "path": "Norder3/Dir0/Npix560.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 580,
+   "lon": 165.00000000000003,
+   "lat": -72.38756092964962,
+   "path": "Norder3/Dir0/Npix580.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 600,
+   "lon": 147.85714285714286,
+   "lat": -48.14120779436028,
+   "path": "Norder3/Dir0/Npix600.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 620,
+   "lon": 112.5,
+   "lat": -35.68533471265205,
+   "path": "Norder3/Dir0/Npix620.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 640,
+   "lon": 224.99999999999997,
+   "lat": -84.14973293629666,
+   "path": "Norder3/Dir0/Npix640.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 660,
+   "lon": 263.57142857142856,
+   "lat": -48.141207794360284,
+   "path": "Norder3/Dir0/Npix660.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 680,
+   "lon": 186.42857142857142,
+   "lat": -48.14120779436026,
+   "path": "Norder3/Dir0/Npix680.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 700,
+   "lon": 224.99999999999997,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix700.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 720,
+   "lon": 351.0,
+   "lat": -60.434438844952275,
+   "path": "Norder3/Dir0/Npix720.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 740,
+   "lon": 302.14285714285717,
+   "lat": -48.14120779436028,
+   "path": "Norder3/Dir0/Npix740.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 760,
+   "lon": 303.75,
+   "lat": -24.624318352164074,
+   "path": "Norder3/Dir0/Npix760.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 762,
+   "lon": 298.125,
+   "lat": -19.47122063449069,
+   "path": "Norder3/Dir0/Npix762.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 763,
+   "lon": 303.75,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix763.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 764,
+   "lon": 315.0,
+   "lat": -14.477512185929925,
+   "path": "Norder3/Dir0/Npix764.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 765,
+   "lon": 320.625,
+   "lat": -9.594068226860461,
+   "path": "Norder3/Dir0/Npix765.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 766,
+   "lon": 309.375,
+   "lat": -9.594068226860461,
+   "path": "Norder3/Dir0/Npix766.png"
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 767,
+   "lon": 315.0,
+   "lat": -4.780191847199159,
+   "path": "Norder3/Dir0/Npix767.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 0,
+   "lon": 44.99999999999999,
+   "lat": 2.388015463268777,
+   "path": "Norder4/Dir0/Npix0.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1,
+   "lon": 47.8125,
+   "lat": 4.780191847199159,
+   "path": "Norder4/Dir0/Npix1.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2,
+   "lon": 42.1875,
+   "lat": 4.780191847199159,
+   "path": "Norder4/Dir0/Npix2.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 7.180755781458282,
+   "path": "Norder4/Dir0/Npix3.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 4,
+   "lon": 50.625,
+   "lat": 7.180755781458282,
+   "path": "Norder4/Dir0/Npix4.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 5,
+   "lon": 53.4375,
+   "lat": 9.594068226860461,
+   "path": "Norder4/Dir0/Npix5.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 83,
+   "lon": 78.75,
+   "lat": 38.68218745348944,
+   "path": "Norder4/Dir0/Npix83.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 166,
+   "lon": 14.0625,
+   "lat": 41.810314895778596,
+   "path": "Norder4/Dir0/Npix166.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 249,
+   "lon": 33.75,
+   "lat": 78.28414760510763,
+   "path": "Norder4/Dir0/Npix249.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 332,
+   "lon": 157.5,
+   "lat": 32.797168295823646,
+   "path": "Norder4/Dir0/Npix332.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 415,
+   "lon": 121.15384615384616,
+   "lat": 51.25580694880489,
+   "path": "Norder4/Dir0/Npix415.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 498,
+   "lon": 127.50000000000001,
+   "lat": 72.38756092964962,
+   "path": "Norder4/Dir0/Npix498.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 581,
+   "lon": 255.9375,
+   "lat": 29.999999999999996,
+   "path": "Norder4/Dir0/Npix581.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 664,
+   "lon": 208.125,
+   "lat": 38.68218745348944,
+   "path": "Norder4/Dir0/Npix664.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 747,
+   "lon": 186.42857142857142,
+   "lat": 69.4225464945822,
+   "path": "Norder4/Dir0/Npix747.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 830,
+   "lon": 312.1875,
+   "lat": 35.68533471265205,
+   "path": "Norder4/Dir0/Npix830.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 913,
+   "lon": 306.5625,
+   "lat": 35.68533471265205,
+   "path": "Norder4/Dir0/Npix913.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 996,
+   "lon": 305.0,
+   "lat": 63.44828368030107,
+   "path": "Norder4/Dir0/Npix996.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1079,
+   "lon": 5.625,
+   "lat": -7.180755781458282,
+   "path": "Norder4/Dir0/Npix1079.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1162,
+   "lon": 329.0625,
+   "lat": -9.594068226860461,
+   "path": "Norder4/Dir0/Npix1162.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1245,
+   "lon": 14.062499999999998,
+   "lat": 24.624318352164074,
+   "path": "Norder4/Dir0/Npix1245.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1328,
+   "lon": 90.0,
+   "lat": -16.957763300004142,
+   "path": "Norder4/Dir0/Npix1328.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1411,
+   "lon": 67.5,
+   "lat": -12.024699180565822,
+   "path": "Norder4/Dir0/Npix1411.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1494,
+   "lon": 104.0625,
+   "lat": 19.47122063449069,
+   "path": "Norder4/Dir0/Npix1494.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1577,
+   "lon": 165.9375,
+   "lat": -19.47122063449069,
+   "path": "Norder4/Dir0/Npix1577.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1660,
+   "lon": 202.49999999999997,
+   "lat": 12.024699180565822,
+   "path": "Norder4/Dir0/Npix1660.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1743,
+   "lon": 180.0,
+   "lat": 16.957763300004142,
+   "path": "Norder4/Dir0/Npix1743.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1826,
+   "lon": 255.9375,
+   "lat": -24.624318352164074,
+   "path": "Norder4/Dir0/Npix1826.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1909,
+   "lon": 300.9375,
+   "lat": 9.594068226860461,
+   "path": "Norder4/Dir0/Npix1909.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 1992,
+   "lon": 264.375,
+   "lat": 7.180755781458282,
+   "path": "Norder4/Dir0/Npix1992.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2075,
+   "lon": 54.99999999999999,
+   "lat": -63.44828368030107,
+   "path": "Norder4/Dir0/Npix2075.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2158,
+   "lon": 53.43749999999999,
+   "lat": -35.68533471265205,
+   "path": "Norder4/Dir0/Npix2158.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2241,
+   "lon": 47.81250000000001,
+   "lat": -35.68533471265205,
+   "path": "Norder4/Dir0/Npix2241.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2324,
+   "lon": 173.57142857142858,
+   "lat": -69.42254649458224,
+   "path": "Norder4/Dir0/Npix2324.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2407,
+   "lon": 151.875,
+   "lat": -38.68218745348944,
+   "path": "Norder4/Dir0/Npix2407.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2490,
+   "lon": 104.0625,
+   "lat": -29.999999999999996,
+   "path": "Norder4/Dir0/Npix2490.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2573,
+   "lon": 232.5,
+   "lat": -72.38756092964962,
+   "path": "Norder4/Dir0/Npix2573.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2656,
+   "lon": 238.84615384615384,
+   "lat": -51.25580694880489,
+   "path": "Norder4/Dir0/Npix2656.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2739,
+   "lon": 202.5,
+   "lat": -32.797168295823646,
+   "path": "Norder4/Dir0/Npix2739.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2822,
+   "lon": 326.25,
+   "lat": -78.28414760510763,
+   "path": "Norder4/Dir0/Npix2822.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2905,
+   "lon": 345.9375,
+   "lat": -41.810314895778596,
+   "path": "Norder4/Dir0/Npix2905.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 2988,
+   "lon": 281.25,
+   "lat": -38.68218745348944,
+   "path": "Norder4/Dir0/Npix2988.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3066,
+   "lon": 306.5625,
+   "lat": -9.594068226860461,
+   "path": "Norder4/Dir0/Npix3066.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3067,
+   "lon": 309.375,
+   "lat": -7.180755781458282,
+   "path": "Norder4/Dir0/Npix3067.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3068,
+   "lon": 315.0,
+   "lat": -7.180755781458282,
+   "path": "Norder4/Dir0/Npix3068.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3069,
+   "lon": 317.8125,
+   "lat": -4.780191847199159,
+   "path": "Norder4/Dir0/Npix3069.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3070,
+   "lon": 312.1875,
+   "lat": -4.780191847199159,
+   "path": "Norder4/Dir0/Npix3070.png"
+  },
+  {
+   "order": 4,
+   "nside": 16,
+   "npix": 3071,
+   "lon": 315.0,
+   "lat": -2.388015463268777,
+   "path": "Norder4/Dir0/Npix3071.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 1.1937484371410785,
+   "path": "Norder5/Dir0/Npix0.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 1,
+   "lon": 46.40625,
+   "lat": 2.388015463268777,
+   "path": "Norder5/Dir0/Npix1.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 2,
+   "lon": 43.59374999999999,
+   "lat": 2.388015463268777,
+   "path": "Norder5/Dir0/Npix2.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 3.583321698471973,
+   "path": "Norder5/Dir0/Npix3.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 4,
+   "lon": 47.8125,
+   "lat": 3.583321698471973,
+   "path": "Norder5/Dir0/Npix4.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 5,
+   "lon": 49.21875,
+   "lat": 4.780191847199159,
+   "path": "Norder5/Dir0/Npix5.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 332,
+   "lon": 78.75,
+   "lat": 37.16889965599945,
+   "path": "Norder5/Dir0/Npix332.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 664,
+   "lon": 14.062499999999998,
+   "lat": 40.228184728061095,
+   "path": "Norder5/Dir0/Npix664.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 996,
+   "lon": 35.0,
+   "lat": 76.81353334098655,
+   "path": "Norder5/Dir0/Npix996.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 1328,
+   "lon": 157.5,
+   "lat": 31.388166464348547,
+   "path": "Norder5/Dir0/Npix1328.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 1660,
+   "lon": 121.66666666666666,
+   "lat": 49.702390326630685,
+   "path": "Norder5/Dir0/Npix1660.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 1992,
+   "lon": 128.07692307692307,
+   "lat": 70.90666664467564,
+   "path": "Norder5/Dir0/Npix1992.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 2324,
+   "lon": 255.9375,
+   "lat": 28.630989836924346,
+   "path": "Norder5/Dir0/Npix2324.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 2656,
+   "lon": 208.125,
+   "lat": 37.16889965599945,
+   "path": "Norder5/Dir0/Npix2656.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 2988,
+   "lon": 188.99999999999997,
+   "lat": 67.93492864899142,
+   "path": "Norder5/Dir0/Npix2988.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 3320,
+   "lon": 312.1875,
+   "lat": 34.22886632781258,
+   "path": "Norder5/Dir0/Npix3320.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 3652,
+   "lon": 306.5625,
+   "lat": 34.22886632781258,
+   "path": "Norder5/Dir0/Npix3652.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 3984,
+   "lon": 305.5263157894737,
+   "lat": 61.94383702315671,
+   "path": "Norder5/Dir0/Npix3984.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 4316,
+   "lon": 5.625,
+   "lat": -8.385538647081319,
+   "path": "Norder5/Dir0/Npix4316.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 4648,
+   "lon": 329.0625,
+   "lat": -10.806922874860343,
+   "path": "Norder5/Dir0/Npix4648.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 4980,
+   "lon": 14.062500000000002,
+   "lat": 23.31795706533424,
+   "path": "Norder5/Dir0/Npix4980.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 5312,
+   "lon": 90.0,
+   "lat": -18.20995686428301,
+   "path": "Norder5/Dir0/Npix5312.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 5644,
+   "lon": 67.5,
+   "lat": -13.24801490567695,
+   "path": "Norder5/Dir0/Npix5644.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 5976,
+   "lon": 104.0625,
+   "lat": 18.20995686428301,
+   "path": "Norder5/Dir0/Npix5976.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 6308,
+   "lon": 165.9375,
+   "lat": -20.742379954487138,
+   "path": "Norder5/Dir0/Npix6308.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 6640,
+   "lon": 202.5,
+   "lat": 10.806922874860343,
+   "path": "Norder5/Dir0/Npix6640.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 6972,
+   "lon": 180.0,
+   "lat": 15.713861048008214,
+   "path": "Norder5/Dir0/Npix6972.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 7304,
+   "lon": 255.9375,
+   "lat": -25.94447977237001,
+   "path": "Norder5/Dir0/Npix7304.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 7636,
+   "lon": 300.9375,
+   "lat": 8.385538647081319,
+   "path": "Norder5/Dir0/Npix7636.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 7968,
+   "lon": 264.375,
+   "lat": 5.979156796301311,
+   "path": "Norder5/Dir0/Npix7968.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 8300,
+   "lon": 55.58823529411765,
+   "lat": -64.94808409550689,
+   "path": "Norder5/Dir0/Npix8300.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 8632,
+   "lon": 53.43749999999999,
+   "lat": -37.16889965599945,
+   "path": "Norder5/Dir0/Npix8632.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 8964,
+   "lon": 47.8125,
+   "lat": -37.16889965599945,
+   "path": "Norder5/Dir0/Npix8964.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 9296,
+   "lon": 176.53846153846155,
+   "lat": -70.90666664467565,
+   "path": "Norder5/Dir0/Npix9296.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 9628,
+   "lon": 151.875,
+   "lat": -40.228184728061095,
+   "path": "Norder5/Dir0/Npix9628.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 9960,
+   "lon": 104.0625,
+   "lat": -31.388166464348547,
+   "path": "Norder5/Dir0/Npix9960.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 9998,
+   "lon": 133.59375,
+   "lat": -32.797168295823646,
+   "path": "Norder5/Dir0/Npix9998.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 9999,
+   "lon": 135.0,
+   "lat": -31.388166464348547,
+   "path": "Norder5/Dir0/Npix9999.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 10000,
+   "lon": 140.625,
+   "lat": -34.22886632781258,
+   "path": "Norder5/Dir10000/Npix10000.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 10001,
+   "lon": 142.03125,
+   "lat": -32.797168295823646,
+   "path": "Norder5/Dir10000/Npix10001.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 10292,
+   "lon": 233.1818181818182,
+   "lat": -73.86549608859849,
+   "path": "Norder5/Dir10000/Npix10292.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 10624,
+   "lon": 239.4,
+   "lat": -52.80185378173062,
+   "path": "Norder5/Dir10000/Npix10624.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 10956,
+   "lon": 202.5,
+   "lat": -34.22886632781258,
+   "path": "Norder5/Dir10000/Npix10956.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 11288,
+   "lon": 327.85714285714283,
+   "lat": -79.75282793472047,
+   "path": "Norder5/Dir10000/Npix11288.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 11620,
+   "lon": 346.93548387096774,
+   "lat": -43.40685848593698,
+   "path": "Norder5/Dir10000/Npix11620.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 11952,
+   "lon": 281.25,
+   "lat": -40.228184728061095,
+   "path": "Norder5/Dir10000/Npix11952.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12282,
+   "lon": 310.78125,
+   "lat": -4.780191847199159,
+   "path": "Norder5/Dir10000/Npix12282.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12283,
+   "lon": 312.1875,
+   "lat": -3.583321698471973,
+   "path": "Norder5/Dir10000/Npix12283.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12284,
+   "lon": 315.0,
+   "lat": -3.583321698471973,
+   "path": "Norder5/Dir10000/Npix12284.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12285,
+   "lon": 316.40625,
+   "lat": -2.388015463268777,
+   "path": "Norder5/Dir10000/Npix12285.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12286,
+   "lon": 313.59375,
+   "lat": -2.388015463268777,
+   "path": "Norder5/Dir10000/Npix12286.png"
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12287,
+   "lon": 315.0,
+   "lat": -1.1937484371410785,
+   "path": "Norder5/Dir10000/Npix12287.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 0.5968418305070173,
+   "path": "Norder6/Dir0/Npix0.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 1,
+   "lon": 45.703125,
+   "lat": 1.1937484371410785,
+   "path": "Norder6/Dir0/Npix1.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 2,
+   "lon": 44.296875,
+   "lat": 1.1937484371410785,
+   "path": "Norder6/Dir0/Npix2.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 3,
+   "lon": 45.0,
+   "lat": 1.7907846593289494,
+   "path": "Norder6/Dir0/Npix3.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 4,
+   "lon": 46.40624999999999,
+   "lat": 1.7907846593289494,
+   "path": "Norder6/Dir0/Npix4.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 5,
+   "lon": 47.109375,
+   "lat": 2.388015463268777,
+   "path": "Norder6/Dir0/Npix5.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 1328,
+   "lon": 78.75,
+   "lat": 36.42357364233116,
+   "path": "Norder6/Dir0/Npix1328.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 2656,
+   "lon": 14.0625,
+   "lat": 39.45089470914607,
+   "path": "Norder6/Dir0/Npix2656.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 3984,
+   "lon": 35.526315789473685,
+   "lat": 76.07742270175356,
+   "path": "Norder6/Dir0/Npix3984.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 5312,
+   "lon": 157.5,
+   "lat": 30.69158768492234,
+   "path": "Norder6/Dir0/Npix5312.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 6640,
+   "lon": 121.9090909090909,
+   "lat": 48.92279516024729,
+   "path": "Norder6/Dir0/Npix6640.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 7968,
+   "lon": 128.33333333333334,
+   "lat": 70.16502666715499,
+   "path": "Norder6/Dir0/Npix7968.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 9296,
+   "lon": 255.9375,
+   "lat": 27.953186883381132,
+   "path": "Norder6/Dir0/Npix9296.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 9998,
+   "lon": 249.05172413793107,
+   "lat": 46.571847413449575,
+   "path": "Norder6/Dir0/Npix9998.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 9999,
+   "lon": 250.26315789473685,
+   "lat": 47.357576233198984,
+   "path": "Norder6/Dir0/Npix9999.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 10000,
+   "lon": 252.45762711864407,
+   "lat": 45.78396716177501,
+   "path": "Norder6/Dir10000/Npix10000.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 10001,
+   "lon": 253.70689655172413,
+   "lat": 46.571847413449575,
+   "path": "Norder6/Dir10000/Npix10001.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 10624,
+   "lon": 208.125,
+   "lat": 36.42357364233116,
+   "path": "Norder6/Dir10000/Npix10624.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 11952,
+   "lon": 190.1612903225806,
+   "lat": 67.18972162985978,
+   "path": "Norder6/Dir10000/Npix11952.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 13280,
+   "lon": 312.1875,
+   "lat": 33.510056066253014,
+   "path": "Norder6/Dir10000/Npix13280.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 14608,
+   "lon": 306.5625,
+   "lat": 33.510056066253014,
+   "path": "Norder6/Dir10000/Npix14608.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 15936,
+   "lon": 305.7692307692308,
+   "lat": 61.189776278717034,
+   "path": "Norder6/Dir10000/Npix15936.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 17264,
+   "lon": 5.625,
+   "lat": -8.989299345162808,
+   "path": "Norder6/Dir10000/Npix17264.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 18592,
+   "lon": 329.0625,
+   "lat": -11.415157742730491,
+   "path": "Norder6/Dir10000/Npix18592.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 19920,
+   "lon": 14.062500000000002,
+   "lat": 22.669609871750385,
+   "path": "Norder6/Dir10000/Npix19920.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 19999,
+   "lon": 351.5625,
+   "lat": 16.334822780685997,
+   "path": "Norder6/Dir10000/Npix19999.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 20000,
+   "lon": 345.9375,
+   "lat": 12.63562509302112,
+   "path": "Norder6/Dir20000/Npix20000.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 21248,
+   "lon": 90.0,
+   "lat": -18.839404547275457,
+   "path": "Norder6/Dir20000/Npix21248.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 22576,
+   "lon": 67.5,
+   "lat": -13.861949672048636,
+   "path": "Norder6/Dir20000/Npix22576.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 23904,
+   "lon": 104.0625,
+   "lat": 17.58277600842541,
+   "path": "Norder6/Dir20000/Npix23904.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 25232,
+   "lon": 165.9375,
+   "lat": -21.381942579838892,
+   "path": "Norder6/Dir20000/Npix25232.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 26560,
+   "lon": 202.49999999999997,
+   "lat": 10.199918091116304,
+   "path": "Norder6/Dir20000/Npix26560.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 27888,
+   "lon": 180.0,
+   "lat": 15.094787099543193,
+   "path": "Norder6/Dir20000/Npix27888.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 29216,
+   "lon": 255.9375,
+   "lat": -26.610097810733915,
+   "path": "Norder6/Dir20000/Npix29216.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 30544,
+   "lon": 300.9375,
+   "lat": 7.78271438539095,
+   "path": "Norder6/Dir30000/Npix30544.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 31872,
+   "lon": 264.375,
+   "lat": 5.379378991112074,
+   "path": "Norder6/Dir30000/Npix31872.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 33200,
+   "lon": 55.909090909090914,
+   "lat": -65.69633519657744,
+   "path": "Norder6/Dir30000/Npix33200.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 34528,
+   "lon": 53.43749999999999,
+   "lat": -37.921650784291785,
+   "path": "Norder6/Dir30000/Npix34528.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 35856,
+   "lon": 47.8125,
+   "lat": -37.921650784291785,
+   "path": "Norder6/Dir30000/Npix35856.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 37184,
+   "lon": 178.20000000000002,
+   "lat": -71.64750023542261,
+   "path": "Norder6/Dir30000/Npix37184.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 38512,
+   "lon": 151.875,
+   "lat": -41.01449966573052,
+   "path": "Norder6/Dir30000/Npix38512.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 39840,
+   "lon": 104.0625,
+   "lat": -32.0899512562803,
+   "path": "Norder6/Dir30000/Npix39840.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 41168,
+   "lon": 233.57142857142856,
+   "lat": -74.60343607627445,
+   "path": "Norder6/Dir40000/Npix41168.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 42496,
+   "lon": 239.6938775510204,
+   "lat": -53.57223328098855,
+   "path": "Norder6/Dir40000/Npix42496.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 43824,
+   "lon": 202.49999999999997,
+   "lat": -34.95386525718846,
+   "path": "Norder6/Dir40000/Npix43824.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 45152,
+   "lon": 328.8461538461538,
+   "lat": -80.48652047286618,
+   "path": "Norder6/Dir40000/Npix45152.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 46480,
+   "lon": 347.4590163934426,
+   "lat": -44.201529851051355,
+   "path": "Norder6/Dir40000/Npix46480.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 47808,
+   "lon": 281.25,
+   "lat": -41.01449966573052,
+   "path": "Norder6/Dir40000/Npix47808.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49136,
+   "lon": 315.0,
+   "lat": -4.181528273111475,
+   "path": "Norder6/Dir40000/Npix49136.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49146,
+   "lon": 312.890625,
+   "lat": -2.388015463268777,
+   "path": "Norder6/Dir40000/Npix49146.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49147,
+   "lon": 313.59375,
+   "lat": -1.7907846593289494,
+   "path": "Norder6/Dir40000/Npix49147.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49148,
+   "lon": 315.0,
+   "lat": -1.7907846593289494,
+   "path": "Norder6/Dir40000/Npix49148.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49149,
+   "lon": 315.703125,
+   "lat": -1.1937484371410785,
+   "path": "Norder6/Dir40000/Npix49149.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49150,
+   "lon": 314.296875,
+   "lat": -1.1937484371410785,
+   "path": "Norder6/Dir40000/Npix49150.png"
+  },
+  {
+   "order": 6,
+   "nside": 64,
+   "npix": 49151,
+   "lon": 315.0,
+   "lat": -0.5968418305070173,
+   "path": "Norder6/Dir40000/Npix49151.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 0,
+   "lon": 44.99999999999999,
+   "lat": 0.2984168674869428,
+   "path": "Norder7/Dir0/Npix0.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 1,
+   "lon": 45.3515625,
+   "lat": 0.5968418305070173,
+   "path": "Norder7/Dir0/Npix1.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 2,
+   "lon": 44.6484375,
+   "lat": 0.5968418305070173,
+   "path": "Norder7/Dir0/Npix2.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 0.8952829865701303,
+   "path": "Norder7/Dir0/Npix3.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 4,
+   "lon": 45.703125,
+   "lat": 0.8952829865701303,
+   "path": "Norder7/Dir0/Npix4.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 5,
+   "lon": 46.05468750000001,
+   "lat": 1.1937484371410785,
+   "path": "Norder7/Dir0/Npix5.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 5313,
+   "lon": 79.1015625,
+   "lat": 36.42357364233116,
+   "path": "Norder7/Dir0/Npix5313.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 9998,
+   "lon": 32.82786885245901,
+   "lat": 44.201529851051376,
+   "path": "Norder7/Dir0/Npix9998.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 9999,
+   "lon": 33.09917355371902,
+   "lat": 44.59799149300625,
+   "path": "Norder7/Dir0/Npix9999.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 10000,
+   "lon": 34.75609756097561,
+   "lat": 43.804487962974946,
+   "path": "Norder7/Dir10000/Npix10000.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 10001,
+   "lon": 35.04098360655737,
+   "lat": 44.201529851051376,
+   "path": "Norder7/Dir10000/Npix10001.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 10626,
+   "lon": 13.710937500000002,
+   "lat": 39.45089470914607,
+   "path": "Norder7/Dir10000/Npix10626.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 15939,
+   "lon": 35.27027027027027,
+   "lat": 76.44554826498828,
+   "path": "Norder7/Dir10000/Npix15939.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 19999,
+   "lon": 130.78125,
+   "lat": 28.29154886292941,
+   "path": "Norder7/Dir10000/Npix19999.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 20000,
+   "lon": 127.96875,
+   "lat": 26.276811557199984,
+   "path": "Norder7/Dir20000/Npix20000.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 21252,
+   "lon": 158.203125,
+   "lat": 31.039240010397883,
+   "path": "Norder7/Dir20000/Npix21252.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 26565,
+   "lon": 122.91666666666666,
+   "lat": 49.702390326630685,
+   "path": "Norder7/Dir20000/Npix26565.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 31878,
+   "lon": 128.94230769230768,
+   "lat": 70.90666664467562,
+   "path": "Norder7/Dir30000/Npix31878.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 37191,
+   "lon": 256.640625,
+   "lat": 28.971532223711296,
+   "path": "Norder7/Dir30000/Npix37191.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 42504,
+   "lon": 207.421875,
+   "lat": 36.79533013738011,
+   "path": "Norder7/Dir40000/Npix42504.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 47817,
+   "lon": 188.24999999999997,
+   "lat": 67.93492864899142,
+   "path": "Norder7/Dir40000/Npix47817.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 53130,
+   "lon": 311.1328125,
+   "lat": 34.22886632781258,
+   "path": "Norder7/Dir50000/Npix53130.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 58443,
+   "lon": 305.859375,
+   "lat": 34.59057497617662,
+   "path": "Norder7/Dir50000/Npix58443.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 63756,
+   "lon": 305.4,
+   "lat": 62.320400827275,
+   "path": "Norder7/Dir60000/Npix63756.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 69069,
+   "lon": 5.976562500000001,
+   "lat": -7.78271438539095,
+   "path": "Norder7/Dir60000/Npix69069.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 74382,
+   "lon": 328.7109375,
+   "lat": -10.199918091116304,
+   "path": "Norder7/Dir70000/Npix74382.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 79695,
+   "lon": 14.0625,
+   "lat": 24.296477994805652,
+   "path": "Norder7/Dir70000/Npix79695.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 85008,
+   "lon": 91.40625,
+   "lat": -17.89608931623464,
+   "path": "Norder7/Dir80000/Npix85008.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 90321,
+   "lon": 69.2578125,
+   "lat": -12.63562509302112,
+   "path": "Norder7/Dir90000/Npix90321.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 95634,
+   "lon": 105.1171875,
+   "lat": 18.839404547275457,
+   "path": "Norder7/Dir90000/Npix95634.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 99998,
+   "lon": 183.86718749999997,
+   "lat": -18.839404547275457,
+   "path": "Norder7/Dir90000/Npix99998.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 99999,
+   "lon": 184.21874999999997,
+   "lat": -18.524391073865782,
+   "path": "Norder7/Dir90000/Npix99999.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 100000,
+   "lon": 181.40624999999997,
+   "lat": -20.42361536381095,
+   "path": "Norder7/Dir100000/Npix100000.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 100001,
+   "lon": 181.75781249999997,
+   "lat": -20.10550978791601,
+   "path": "Norder7/Dir100000/Npix100001.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 100947,
+   "lon": 167.34375,
+   "lat": -19.788049410669572,
+   "path": "Norder7/Dir100000/Npix100947.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 106260,
+   "lon": 204.60937499999997,
+   "lat": 11.71976030578878,
+   "path": "Norder7/Dir100000/Npix106260.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 111573,
+   "lon": 182.46093749999997,
+   "lat": 16.957763300004142,
+   "path": "Norder7/Dir110000/Npix111573.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 116886,
+   "lon": 257.6953125,
+   "lat": -24.624318352164074,
+   "path": "Norder7/Dir110000/Npix116886.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 122199,
+   "lon": 303.046875,
+   "lat": 9.896853442815875,
+   "path": "Norder7/Dir120000/Npix122199.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 127512,
+   "lon": 265.078125,
+   "lat": 6.880079227870645,
+   "path": "Norder7/Dir120000/Npix127512.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 132825,
+   "lon": 56.875,
+   "lat": -63.44828368030107,
+   "path": "Norder7/Dir130000/Npix132825.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 138138,
+   "lon": 53.7890625,
+   "lat": -35.68533471265205,
+   "path": "Norder7/Dir130000/Npix138138.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 143451,
+   "lon": 48.515625,
+   "lat": -35.318772903011535,
+   "path": "Norder7/Dir140000/Npix143451.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 148764,
+   "lon": 176.05263157894734,
+   "lat": -69.0509806793522,
+   "path": "Norder7/Dir140000/Npix148764.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 154077,
+   "lon": 153.6328125,
+   "lat": -37.921650784291785,
+   "path": "Norder7/Dir150000/Npix154077.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 159390,
+   "lon": 105.1171875,
+   "lat": -29.31319896416834,
+   "path": "Norder7/Dir150000/Npix159390.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 164703,
+   "lon": 235.58823529411768,
+   "lat": -71.2771821379778,
+   "path": "Norder7/Dir160000/Npix164703.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 170016,
+   "lon": 237.4752475247525,
+   "lat": -52.416011889394284,
+   "path": "Norder7/Dir170000/Npix170016.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 175329,
+   "lon": 201.4453125,
+   "lat": -33.510056066253014,
+   "path": "Norder7/Dir170000/Npix175329.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 180642,
+   "lon": 319.5,
+   "lat": -79.0187139489105,
+   "path": "Norder7/Dir180000/Npix180642.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 185955,
+   "lon": 344.76377952755905,
+   "lat": -42.21036983965019,
+   "path": "Norder7/Dir180000/Npix185955.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 191268,
+   "lon": 280.546875,
+   "lat": -39.0654946644526,
+   "path": "Norder7/Dir190000/Npix191268.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196581,
+   "lon": 314.6484375,
+   "lat": -2.388015463268777,
+   "path": "Norder7/Dir190000/Npix196581.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196602,
+   "lon": 313.9453125,
+   "lat": -1.1937484371410785,
+   "path": "Norder7/Dir190000/Npix196602.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196603,
+   "lon": 314.296875,
+   "lat": -0.8952829865701303,
+   "path": "Norder7/Dir190000/Npix196603.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196604,
+   "lon": 315.0,
+   "lat": -0.8952829865701303,
+   "path": "Norder7/Dir190000/Npix196604.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196605,
+   "lon": 315.3515625,
+   "lat": -0.5968418305070173,
+   "path": "Norder7/Dir190000/Npix196605.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196606,
+   "lon": 314.6484375,
+   "lat": -0.5968418305070173,
+   "path": "Norder7/Dir190000/Npix196606.png"
+  },
+  {
+   "order": 7,
+   "nside": 128,
+   "npix": 196607,
+   "lon": 315.0,
+   "lat": -0.2984168674869428,
+   "path": "Norder7/Dir190000/Npix196607.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 0,
+   "lon": 45.0,
+   "lat": 0.1492079277958127,
+   "path": "Norder8/Dir0/Npix0.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 1,
+   "lon": 45.17578125000001,
+   "lat": 0.2984168674869428,
+   "path": "Norder8/Dir0/Npix1.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 2,
+   "lon": 44.82421874999999,
+   "lat": 0.2984168674869428,
+   "path": "Norder8/Dir0/Npix2.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 3,
+   "lon": 45.0,
+   "lat": 0.4476278310304714,
+   "path": "Norder8/Dir0/Npix3.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 4,
+   "lon": 45.3515625,
+   "lat": 0.4476278310304714,
+   "path": "Norder8/Dir0/Npix4.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 5,
+   "lon": 45.52734375000001,
+   "lat": 0.5968418305070173,
+   "path": "Norder8/Dir0/Npix5.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 9998,
+   "lon": 39.19921875,
+   "lat": 20.42361536381095,
+   "path": "Norder8/Dir0/Npix9998.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 9999,
+   "lon": 39.375,
+   "lat": 20.582914410065598,
+   "path": "Norder8/Dir0/Npix9999.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 10000,
+   "lon": 40.078125,
+   "lat": 20.264481067727523,
+   "path": "Norder8/Dir10000/Npix10000.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 10001,
+   "lon": 40.25390624999999,
+   "lat": 20.42361536381095,
+   "path": "Norder8/Dir10000/Npix10001.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 19999,
+   "lon": 65.390625,
+   "lat": 34.77202020380473,
+   "path": "Norder8/Dir10000/Npix19999.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 20000,
+   "lon": 63.984375,
+   "lat": 33.6891932562074,
+   "path": "Norder8/Dir20000/Npix20000.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 21254,
+   "lon": 78.92578125,
+   "lat": 36.42357364233116,
+   "path": "Norder8/Dir20000/Npix21254.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 42508,
+   "lon": 14.062499999999998,
+   "lat": 39.644395843880865,
+   "path": "Norder8/Dir40000/Npix42508.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 63762,
+   "lon": 37.0945945945946,
+   "lat": 76.44554826498828,
+   "path": "Norder8/Dir60000/Npix63762.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 85016,
+   "lon": 157.8515625,
+   "lat": 31.213542287678777,
+   "path": "Norder8/Dir80000/Npix85016.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 99998,
+   "lon": 114.43359375,
+   "lat": 30.34518296958826,
+   "path": "Norder8/Dir90000/Npix99998.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 99999,
+   "lon": 114.60937499999999,
+   "lat": 30.518231007545985,
+   "path": "Norder8/Dir90000/Npix99999.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 100000,
+   "lon": 113.203125,
+   "lat": 29.48446128370136,
+   "path": "Norder8/Dir100000/Npix100000.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 100001,
+   "lon": 113.37890625,
+   "lat": 29.656013541178417,
+   "path": "Norder8/Dir100000/Npix100001.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 106270,
+   "lon": 122.17289719626169,
+   "lat": 50.091456801832585,
+   "path": "Norder8/Dir100000/Npix106270.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 127524,
+   "lon": 127.28571428571429,
+   "lat": 70.7213335641402,
+   "path": "Norder8/Dir120000/Npix127524.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 148778,
+   "lon": 254.70703125000003,
+   "lat": 28.630989836924346,
+   "path": "Norder8/Dir140000/Npix148778.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 170032,
+   "lon": 208.125,
+   "lat": 37.35637765332712,
+   "path": "Norder8/Dir170000/Npix170032.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 191286,
+   "lon": 188.1465517241379,
+   "lat": 68.67919198537577,
+   "path": "Norder8/Dir190000/Npix191286.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 212540,
+   "lon": 312.1875,
+   "lat": 35.13611463511055,
+   "path": "Norder8/Dir210000/Npix212540.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 233794,
+   "lon": 307.79296875,
+   "lat": 34.59057497617662,
+   "path": "Norder8/Dir230000/Npix233794.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 255048,
+   "lon": 307.1476510067114,
+   "lat": 62.50856820035667,
+   "path": "Norder8/Dir250000/Npix255048.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 276302,
+   "lon": 6.85546875,
+   "lat": -7.48163126424696,
+   "path": "Norder8/Dir270000/Npix276302.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 297556,
+   "lon": 331.5234375,
+   "lat": -9.745426482773613,
+   "path": "Norder8/Dir290000/Npix297556.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 318810,
+   "lon": 15.644531250000002,
+   "lat": 24.624318352164074,
+   "path": "Norder8/Dir310000/Npix318810.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 340064,
+   "lon": 90.703125,
+   "lat": -17.42632336106968,
+   "path": "Norder8/Dir340000/Npix340064.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 361318,
+   "lon": 68.37890625,
+   "lat": -12.024699180565822,
+   "path": "Norder8/Dir360000/Npix361318.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 382572,
+   "lon": 104.765625,
+   "lat": 19.629556913945443,
+   "path": "Norder8/Dir380000/Npix382572.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 403826,
+   "lon": 167.16796875,
+   "lat": -19.155010073563737,
+   "path": "Norder8/Dir400000/Npix403826.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 425080,
+   "lon": 203.55468749999997,
+   "lat": 12.482759503805378,
+   "path": "Norder8/Dir420000/Npix425080.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 446334,
+   "lon": 181.23046874999997,
+   "lat": 17.89608931623464,
+   "path": "Norder8/Dir440000/Npix446334.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 467588,
+   "lon": 254.8828125,
+   "lat": -25.447729744851898,
+   "path": "Norder8/Dir460000/Npix467588.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 488842,
+   "lon": 299.00390625,
+   "lat": 8.989299345162808,
+   "path": "Norder8/Dir480000/Npix488842.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 510096,
+   "lon": 263.671875,
+   "lat": 6.7298128418305865,
+   "path": "Norder8/Dir510000/Npix510096.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 531350,
+   "lon": 54.06249999999999,
+   "lat": -63.44828368030107,
+   "path": "Norder8/Dir530000/Npix531350.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 552604,
+   "lon": 52.734375,
+   "lat": -35.50184469445802,
+   "path": "Norder8/Dir550000/Npix552604.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 573858,
+   "lon": 45.52734375,
+   "lat": -36.05358859962302,
+   "path": "Norder8/Dir570000/Npix573858.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 595112,
+   "lon": 168.24324324324323,
+   "lat": -69.60824716728739,
+   "path": "Norder8/Dir590000/Npix595112.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 616366,
+   "lon": 149.58984375,
+   "lat": -38.3009224658677,
+   "path": "Norder8/Dir610000/Npix616366.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 637620,
+   "lon": 103.0078125,
+   "lat": -29.48446128370136,
+   "path": "Norder8/Dir630000/Npix637620.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 658874,
+   "lon": 227.25,
+   "lat": -71.64750023542261,
+   "path": "Norder8/Dir650000/Npix658874.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 680128,
+   "lon": 238.77990430622006,
+   "lat": -51.06204088458253,
+   "path": "Norder8/Dir680000/Npix680128.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 701382,
+   "lon": 202.67578124999997,
+   "lat": -32.0899512562803,
+   "path": "Norder8/Dir700000/Npix701382.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 722636,
+   "lon": 325.4347826086957,
+   "lat": -77.36525618115257,
+   "path": "Norder8/Dir720000/Npix722636.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 743890,
+   "lon": 346.46484375,
+   "lat": -40.62018519067268,
+   "path": "Norder8/Dir740000/Npix743890.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 765144,
+   "lon": 281.6015625,
+   "lat": -37.35637765332712,
+   "path": "Norder8/Dir760000/Npix765144.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786398,
+   "lon": 315.52734375,
+   "lat": -0.8952829865701303,
+   "path": "Norder8/Dir780000/Npix786398.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786426,
+   "lon": 314.47265625,
+   "lat": -0.5968418305070173,
+   "path": "Norder8/Dir780000/Npix786426.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786427,
+   "lon": 314.6484375,
+   "lat": -0.4476278310304714,
+   "path": "Norder8/Dir780000/Npix786427.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786428,
+   "lon": 315.0,
+   "lat": -0.4476278310304714,
+   "path": "Norder8/Dir780000/Npix786428.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786429,
+   "lon": 315.17578125,
+   "lat": -0.2984168674869428,
+   "path": "Norder8/Dir780000/Npix786429.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786430,
+   "lon": 314.82421875,
+   "lat": -0.2984168674869428,
+   "path": "Norder8/Dir780000/Npix786430.png"
+  },
+  {
+   "order": 8,
+   "nside": 256,
+   "npix": 786431,
+   "lon": 315.0,
+   "lat": -0.1492079277958127,
+   "path": "Norder8/Dir780000/Npix786431.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 0,
+   "lon": 44.99999999999999,
+   "lat": 0.07460390065517279,
+   "path": "Norder9/Dir0/Npix0.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1,
+   "lon": 45.087890625,
+   "lat": 0.1492079277958127,
+   "path": "Norder9/Dir0/Npix1.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2,
+   "lon": 44.912109375,
+   "lat": 0.1492079277958127,
+   "path": "Norder9/Dir0/Npix2.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3,
+   "lon": 44.99999999999999,
+   "lat": 0.22381220790931697,
+   "path": "Norder9/Dir0/Npix3.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 4,
+   "lon": 45.17578125000001,
+   "lat": 0.22381220790931697,
+   "path": "Norder9/Dir0/Npix4.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 5,
+   "lon": 45.263671875,
+   "lat": 0.2984168674869428,
+   "path": "Norder9/Dir0/Npix5.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 9998,
+   "lon": 42.09960937499999,
+   "lat": 10.04835025979025,
+   "path": "Norder9/Dir0/Npix9998.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 9999,
+   "lon": 42.18749999999999,
+   "lat": 10.124125226137863,
+   "path": "Norder9/Dir0/Npix9999.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 10000,
+   "lon": 42.53906250000001,
+   "lat": 9.972593046957053,
+   "path": "Norder9/Dir10000/Npix10000.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 10001,
+   "lon": 42.626953125,
+   "lat": 10.04835025979025,
+   "path": "Norder9/Dir10000/Npix10001.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 19999,
+   "lon": 55.1953125,
+   "lat": 16.568188623579267,
+   "path": "Norder9/Dir10000/Npix19999.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 20000,
+   "lon": 54.4921875,
+   "lat": 16.101735180505223,
+   "path": "Norder9/Dir20000/Npix20000.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 85019,
+   "lon": 78.92578125,
+   "lat": 36.516345090790985,
+   "path": "Norder9/Dir80000/Npix85019.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 99998,
+   "lon": 57.21679687499999,
+   "lat": 35.869247731982924,
+   "path": "Norder9/Dir90000/Npix99998.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 99999,
+   "lon": 57.30468749999999,
+   "lat": 35.96136437892839,
+   "path": "Norder9/Dir90000/Npix99999.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 100000,
+   "lon": 56.6015625,
+   "lat": 35.41025681599151,
+   "path": "Norder9/Dir100000/Npix100000.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 100001,
+   "lon": 56.689453125,
+   "lat": 35.50184469445802,
+   "path": "Norder9/Dir100000/Npix100001.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 170038,
+   "lon": 14.150390625,
+   "lat": 39.838439976999084,
+   "path": "Norder9/Dir170000/Npix170038.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 255057,
+   "lon": 39.14383561643836,
+   "lat": 76.62955811663267,
+   "path": "Norder9/Dir250000/Npix255057.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 340076,
+   "lon": 157.8515625,
+   "lat": 31.475600332361097,
+   "path": "Norder9/Dir340000/Npix340076.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 425095,
+   "lon": 121.13793103448275,
+   "lat": 49.41027234283239,
+   "path": "Norder9/Dir420000/Npix425095.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 510114,
+   "lon": 125.35714285714286,
+   "lat": 70.7213335641402,
+   "path": "Norder9/Dir510000/Npix510114.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 595133,
+   "lon": 255.32226562499997,
+   "lat": 29.142223594988323,
+   "path": "Norder9/Dir590000/Npix595133.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 680152,
+   "lon": 208.30078124999997,
+   "lat": 37.827138740095826,
+   "path": "Norder9/Dir680000/Npix680152.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 765171,
+   "lon": 187.27074235807856,
+   "lat": 68.9580545691971,
+   "path": "Norder9/Dir760000/Npix765171.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 850190,
+   "lon": 313.505859375,
+   "lat": 34.77202020380473,
+   "path": "Norder9/Dir850000/Npix850190.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 935209,
+   "lon": 307.529296875,
+   "lat": 34.95386525718846,
+   "path": "Norder9/Dir930000/Npix935209.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1020228,
+   "lon": 309.16382252559725,
+   "lat": 62.97865739355593,
+   "path": "Norder9/Dir1020000/Npix1020228.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1105247,
+   "lon": 8.0859375,
+   "lat": -6.955230191010185,
+   "path": "Norder9/Dir1100000/Npix1105247.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1190266,
+   "lon": 330.908203125,
+   "lat": -9.291553238770263,
+   "path": "Norder9/Dir1190000/Npix1190266.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1275285,
+   "lon": 15.380859374999998,
+   "lat": 24.624318352164074,
+   "path": "Norder9/Dir1270000/Npix1275285.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1360304,
+   "lon": 90.703125,
+   "lat": -16.87978435164281,
+   "path": "Norder9/Dir1360000/Npix1360304.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1445323,
+   "lon": 68.73046875,
+   "lat": -11.643578515914646,
+   "path": "Norder9/Dir1440000/Npix1445323.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1530342,
+   "lon": 105.205078125,
+   "lat": 20.10550978791601,
+   "path": "Norder9/Dir1530000/Npix1530342.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1615361,
+   "lon": 164.619140625,
+   "lat": -20.582914410065598,
+   "path": "Norder9/Dir1610000/Npix1615361.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1700380,
+   "lon": 201.44531249999997,
+   "lat": 11.491277385808047,
+   "path": "Norder9/Dir1700000/Npix1700380.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1785399,
+   "lon": 178.76953125,
+   "lat": 16.72392284144527,
+   "path": "Norder9/Dir1780000/Npix1785399.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1870418,
+   "lon": 255.498046875,
+   "lat": -24.788560709502725,
+   "path": "Norder9/Dir1870000/Npix1870418.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1955437,
+   "lon": 299.970703125,
+   "lat": 9.745426482773613,
+   "path": "Norder9/Dir1950000/Npix1955437.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2040456,
+   "lon": 262.08984375,
+   "lat": 6.804940156413812,
+   "path": "Norder9/Dir2040000/Npix2040456.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2125475,
+   "lon": 50.644599303135884,
+   "lat": -63.54215420240565,
+   "path": "Norder9/Dir2120000/Npix2125475.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2210494,
+   "lon": 51.240234375,
+   "lat": -35.13611463511055,
+   "path": "Norder9/Dir2210000/Npix2210494.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2295513,
+   "lon": 46.66992187500001,
+   "lat": -34.95386525718846,
+   "path": "Norder9/Dir2290000/Npix2295513.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2380532,
+   "lon": 169.08510638297872,
+   "lat": -68.40020160140809,
+   "path": "Norder9/Dir2380000/Npix2380532.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2465551,
+   "lon": 151.875,
+   "lat": -38.016284446057824,
+   "path": "Norder9/Dir2460000/Npix2465551.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2550570,
+   "lon": 103.447265625,
+   "lat": -29.31319896416834,
+   "path": "Norder9/Dir2550000/Npix2550570.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2635589,
+   "lon": 234.48529411764702,
+   "lat": -71.2771821379778,
+   "path": "Norder9/Dir2630000/Npix2635589.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2720608,
+   "lon": 238.84615384615384,
+   "lat": -49.99423533482589,
+   "path": "Norder9/Dir2720000/Npix2720608.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2805627,
+   "lon": 203.02734374999997,
+   "lat": -30.952208526769947,
+   "path": "Norder9/Dir2800000/Npix2805627.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2890646,
+   "lon": 324.0625,
+   "lat": -76.81353334098657,
+   "path": "Norder9/Dir2890000/Npix2890646.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 2975665,
+   "lon": 345.322265625,
+   "lat": -40.03303395017787,
+   "path": "Norder9/Dir2970000/Npix2975665.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3060684,
+   "lon": 281.25,
+   "lat": -36.70222268886712,
+   "path": "Norder9/Dir3060000/Npix3060684.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145703,
+   "lon": 314.82421875,
+   "lat": -0.5222343880155633,
+   "path": "Norder9/Dir3140000/Npix3145703.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145722,
+   "lon": 314.736328125,
+   "lat": -0.2984168674869428,
+   "path": "Norder9/Dir3140000/Npix3145722.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145723,
+   "lon": 314.82421875,
+   "lat": -0.22381220790931697,
+   "path": "Norder9/Dir3140000/Npix3145723.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145724,
+   "lon": 315.0,
+   "lat": -0.22381220790931697,
+   "path": "Norder9/Dir3140000/Npix3145724.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145725,
+   "lon": 315.087890625,
+   "lat": -0.1492079277958127,
+   "path": "Norder9/Dir3140000/Npix3145725.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145726,
+   "lon": 314.912109375,
+   "lat": -0.1492079277958127,
+   "path": "Norder9/Dir3140000/Npix3145726.png"
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145727,
+   "lon": 315.0,
+   "lat": -0.07460390065517279,
+   "path": "Norder9/Dir3140000/Npix3145727.png"
+  }
+ ],
+ "landmarks": {
+  "Tycho": {
+   "3": {
+    "lon": -11.36,
+    "lat": -43.31,
+    "npix": 724,
+    "center_lon": 353.57142857142856,
+    "center_lat": -48.141207794360284
+   },
+   "5": {
+    "lon": -11.36,
+    "lat": -43.31,
+    "npix": 11599,
+    "center_lon": 349.83870967741933,
+    "center_lat": -43.40685848593698
+   },
+   "7": {
+    "lon": -11.36,
+    "lat": -43.31,
+    "npix": 185594,
+    "center_lon": 348.75,
+    "center_lat": -43.406858485936986
+   },
+   "9": {
+    "lon": -11.36,
+    "lat": -43.31,
+    "npix": 2969516,
+    "center_lon": 348.68209255533196,
+    "center_lat": -43.30735843754739
+   }
+  },
+  "Copernicus": {
+   "3": {
+    "lon": -20.08,
+    "lat": 9.62,
+    "npix": 301,
+    "center_lon": 343.125,
+    "center_lat": 9.594068226860461
+   },
+   "5": {
+    "lon": -20.08,
+    "lat": 9.62,
+    "npix": 4826,
+    "center_lon": 338.90625,
+    "center_lat": 9.594068226860461
+   },
+   "7": {
+    "lon": -20.08,
+    "lat": 9.62,
+    "npix": 77221,
+    "center_lon": 339.9609375,
+    "center_lat": 9.594068226860461
+   },
+   "9": {
+    "lon": -20.08,
+    "lat": 9.62,
+    "npix": 1235545,
+    "center_lon": 339.873046875,
+    "center_lat": 9.594068226860461
+   }
+  },
+  "Mare Crisium": {
+   "3": {
+    "lon": 59.1,
+    "lat": 17.0,
+    "npix": 5,
+    "center_lon": 61.87499999999999,
+    "center_lat": 19.47122063449069
+   },
+   "5": {
+    "lon": 59.1,
+    "lat": 17.0,
+    "npix": 88,
+    "center_lon": 59.0625,
+    "center_lat": 18.20995686428301
+   },
+   "7": {
+    "lon": 59.1,
+    "lat": 17.0,
+    "npix": 1408,
+    "center_lon": 59.0625,
+    "center_lat": 17.270004694974467
+   },
+   "9": {
+    "lon": 59.1,
+    "lat": 17.0,
+    "npix": 22528,
+    "center_lon": 59.0625,
+    "center_lat": 17.0357746230459
+   }
+  },
+  "Tycho_antipode": {
+   "3": {
+    "lon": 168.64,
+    "lat": 43.31,
+    "npix": 87,
+    "center_lon": 173.57142857142858,
+    "center_lat": 48.141207794360284
+   },
+   "5": {
+    "lon": 168.64,
+    "lat": 43.31,
+    "npix": 1392,
+    "center_lon": 169.83870967741936,
+    "center_lat": 43.40685848593698
+   },
+   "7": {
+    "lon": 168.64,
+    "lat": 43.31,
+    "npix": 22282,
+    "center_lon": 168.75,
+    "center_lat": 43.406858485936986
+   },
+   "9": {
+    "lon": 168.64,
+    "lat": 43.31,
+    "npix": 356515,
+    "center_lon": 168.682092555332,
+    "center_lat": 43.30735843754739
+   }
+  },
+  "South Pole": {
+   "3": {
+    "lon": 0.0,
+    "lat": -90.0,
+    "npix": 512,
+    "center_lon": 44.99999999999999,
+    "center_lat": -84.14973293629666
+   },
+   "5": {
+    "lon": 0.0,
+    "lat": -90.0,
+    "npix": 8192,
+    "center_lon": 44.99999999999999,
+    "center_lat": -88.53802883735192
+   },
+   "7": {
+    "lon": 0.0,
+    "lat": -90.0,
+    "npix": 131072,
+    "center_lon": 45.0,
+    "center_lat": -89.63451650477155
+   },
+   "9": {
+    "lon": 0.0,
+    "lat": -90.0,
+    "npix": 2097152,
+    "center_lon": 44.99999999999999,
+    "center_lat": -89.90862927142345
+   }
+  },
+  "North Pole": {
+   "3": {
+    "lon": 0.0,
+    "lat": 90.0,
+    "npix": 63,
+    "center_lon": 44.99999999999999,
+    "center_lat": 84.14973293629666
+   },
+   "5": {
+    "lon": 0.0,
+    "lat": 90.0,
+    "npix": 1023,
+    "center_lon": 44.99999999999999,
+    "center_lat": 88.5380288373519
+   },
+   "7": {
+    "lon": 0.0,
+    "lat": 90.0,
+    "npix": 16383,
+    "center_lon": 45.0,
+    "center_lat": 89.63451650477154
+   },
+   "9": {
+    "lon": 0.0,
+    "lat": 90.0,
+    "npix": 262143,
+    "center_lon": 44.99999999999999,
+    "center_lat": 89.90862927142344
+   }
+  },
+  "DateLine": {
+   "3": {
+    "lon": 180.0,
+    "lat": 0.0,
+    "npix": 432,
+    "center_lon": 180.0,
+    "center_lat": 4.780191847199159
+   },
+   "5": {
+    "lon": 180.0,
+    "lat": 0.0,
+    "npix": 6912,
+    "center_lon": 180.0,
+    "center_lat": 1.1937484371410785
+   },
+   "7": {
+    "lon": 180.0,
+    "lat": 0.0,
+    "npix": 110592,
+    "center_lon": 180.0,
+    "center_lat": 0.2984168674869428
+   },
+   "9": {
+    "lon": 180.0,
+    "lat": 0.0,
+    "npix": 1769472,
+    "center_lon": 180.0,
+    "center_lat": 0.07460390065517279
+   }
+  },
+  "DateLineW": {
+   "3": {
+    "lon": -180.0,
+    "lat": 0.0,
+    "npix": 432,
+    "center_lon": 180.0,
+    "center_lat": 4.780191847199159
+   },
+   "5": {
+    "lon": -180.0,
+    "lat": 0.0,
+    "npix": 6912,
+    "center_lon": 180.0,
+    "center_lat": 1.1937484371410785
+   },
+   "7": {
+    "lon": -180.0,
+    "lat": 0.0,
+    "npix": 110592,
+    "center_lon": 180.0,
+    "center_lat": 0.2984168674869428
+   },
+   "9": {
+    "lon": -180.0,
+    "lat": 0.0,
+    "npix": 1769472,
+    "center_lon": 180.0,
+    "center_lat": 0.07460390065517279
+   }
+  }
+ },
+ "corners": [
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 0,
+   "corners_lon": [
+    0.0,
+    0.0,
+    44.99999999999999,
+    90.0
+   ],
+   "corners_lat": [
+    90.0,
+    41.810314895778596,
+    0.0,
+    41.810314895778596
+   ]
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 1,
+   "corners_lon": [
+    0.0,
+    90.0,
+    135.0,
+    180.0
+   ],
+   "corners_lat": [
+    90.0,
+    41.810314895778596,
+    0.0,
+    41.810314895778596
+   ]
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 5,
+   "corners_lon": [
+    90.0,
+    44.99999999999999,
+    90.0,
+    135.0
+   ],
+   "corners_lat": [
+    41.810314895778596,
+    0.0,
+    -41.810314895778596,
+    0.0
+   ]
+  },
+  {
+   "order": 0,
+   "nside": 1,
+   "npix": 11,
+   "corners_lon": [
+    315.0,
+    270.0,
+    180.0,
+    0.0
+   ],
+   "corners_lat": [
+    0.0,
+    -41.810314895778596,
+    -90.0,
+    -41.810314895778596
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 0,
+   "corners_lon": [
+    44.99999999999999,
+    22.5,
+    44.99999999999999,
+    67.5
+   ],
+   "corners_lat": [
+    41.810314895778596,
+    19.47122063449069,
+    0.0,
+    19.47122063449069
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 1,
+   "corners_lon": [
+    90.0,
+    44.99999999999999,
+    67.5,
+    90.0
+   ],
+   "corners_lat": [
+    66.44353569089876,
+    41.810314895778596,
+    19.47122063449069,
+    41.810314895778596
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 2,
+   "corners_lon": [
+    0.0,
+    0.0,
+    22.5,
+    44.99999999999999
+   ],
+   "corners_lat": [
+    66.44353569089876,
+    41.810314895778596,
+    19.47122063449069,
+    41.810314895778596
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 23,
+   "corners_lon": [
+    90.0,
+    67.5,
+    90.0,
+    112.5
+   ],
+   "corners_lat": [
+    41.810314895778596,
+    19.47122063449069,
+    0.0,
+    19.47122063449069
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 24,
+   "corners_lon": [
+    180.0,
+    157.5,
+    180.0,
+    202.5
+   ],
+   "corners_lat": [
+    0.0,
+    -19.47122063449069,
+    -41.810314895778596,
+    -19.47122063449069
+   ]
+  },
+  {
+   "order": 1,
+   "nside": 2,
+   "npix": 47,
+   "corners_lon": [
+    315.0,
+    292.5,
+    315.0,
+    337.5
+   ],
+   "corners_lat": [
+    0.0,
+    -19.47122063449069,
+    -41.810314895778596,
+    -19.47122063449069
+   ]
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 0,
+   "corners_lon": [
+    45.0,
+    39.375,
+    44.99999999999999,
+    50.625
+   ],
+   "corners_lat": [
+    9.594068226860461,
+    4.780191847199159,
+    0.0,
+    4.780191847199159
+   ]
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 5,
+   "corners_lon": [
+    61.87499999999999,
+    56.25,
+    61.87499999999999,
+    67.5
+   ],
+   "corners_lat": [
+    24.624318352164074,
+    19.47122063449069,
+    14.477512185929925,
+    19.47122063449069
+   ]
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 383,
+   "corners_lon": [
+    90.0,
+    84.375,
+    90.0,
+    95.625
+   ],
+   "corners_lat": [
+    41.810314895778596,
+    35.68533471265205,
+    29.999999999999996,
+    35.68533471265205
+   ]
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 384,
+   "corners_lon": [
+    180.0,
+    174.375,
+    180.0,
+    185.62499999999997
+   ],
+   "corners_lat": [
+    -29.999999999999996,
+    -35.68533471265205,
+    -41.810314895778596,
+    -35.68533471265205
+   ]
+  },
+  {
+   "order": 3,
+   "nside": 8,
+   "npix": 767,
+   "corners_lon": [
+    315.0,
+    309.375,
+    315.0,
+    320.625
+   ],
+   "corners_lat": [
+    0.0,
+    -4.780191847199159,
+    -9.594068226860461,
+    -4.780191847199159
+   ]
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 0,
+   "corners_lon": [
+    44.99999999999999,
+    43.59375,
+    44.99999999999999,
+    46.40624999999999
+   ],
+   "corners_lat": [
+    2.388015463268777,
+    1.1937484371410785,
+    0.0,
+    1.1937484371410785
+   ]
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 1,
+   "corners_lon": [
+    46.40625,
+    44.99999999999999,
+    46.40624999999999,
+    47.8125
+   ],
+   "corners_lat": [
+    3.583321698471973,
+    2.388015463268777,
+    1.1937484371410785,
+    2.388015463268777
+   ]
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 6143,
+   "corners_lon": [
+    90.0,
+    88.59375,
+    90.0,
+    91.40625
+   ],
+   "corners_lat": [
+    41.810314895778596,
+    40.228184728061095,
+    38.68218745348944,
+    40.228184728061095
+   ]
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 6144,
+   "corners_lon": [
+    180.0,
+    178.59375,
+    180.0,
+    181.40624999999997
+   ],
+   "corners_lat": [
+    -38.68218745348944,
+    -40.228184728061095,
+    -41.810314895778596,
+    -40.228184728061095
+   ]
+  },
+  {
+   "order": 5,
+   "nside": 32,
+   "npix": 12287,
+   "corners_lon": [
+    315.0,
+    313.59375,
+    315.0,
+    316.40625
+   ],
+   "corners_lat": [
+    0.0,
+    -1.1937484371410785,
+    -2.388015463268777,
+    -1.1937484371410785
+   ]
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 0,
+   "corners_lon": [
+    45.0,
+    44.912109375,
+    44.99999999999999,
+    45.087890625
+   ],
+   "corners_lat": [
+    0.1492079277958127,
+    0.07460390065517279,
+    0.0,
+    0.07460390065517279
+   ]
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 1,
+   "corners_lon": [
+    45.087890625,
+    45.0,
+    45.087890625,
+    45.17578125000001
+   ],
+   "corners_lat": [
+    0.22381220790931697,
+    0.1492079277958127,
+    0.07460390065517279,
+    0.1492079277958127
+   ]
+  },
+  {
+   "order": 9,
+   "nside": 512,
+   "npix": 3145727,
+   "corners_lon": [
+    315.0,
+    314.912109375,
+    315.0,
+    315.087890625
+   ],
+   "corners_lat": [
+    0.0,
+    -0.07460390065517279,
+    -0.1492079277958127,
+    -0.07460390065517279
+   ]
+  }
+ ]
+}

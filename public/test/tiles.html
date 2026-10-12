@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>moonhd · 瓦片层隔离测试</title>
+<style>html,body{margin:0;background:#05070c;color:#ccc;font:12px ui-monospace,monospace}canvas{display:block}#log{padding:8px;white-space:pre-wrap}</style>
+<script type="importmap">
+{"imports":{"three":"../vendor/three/three.module.js","three/addons/":"../vendor/three/addons/"}}
+</script>
+</head>
+<body>
+<canvas id="c" width="800" height="600"></canvas>
+<div id="log"></div>
+<script type="module">
+/**
+ * 隔离测试页：只搭"底图球 + 瓦片层"，没有自转/交互/主循环，
+ * 用于确定性地验证瓦片是否渲染、注入是否生效、标定是否起作用。
+ *
+ * 用法：/test/tiles.html?d=1.35&lon=-11.36&lat=-43.31&tiles=1
+ */
+import * as THREE from 'three';
+import { fetchSourceConfig, DEFAULT_SOURCE } from '../src/hips/meta.js';
+import { HttpTileLoader } from '../src/hips/loader.js';
+import { TileScheduler, TileState } from '../src/hips/scheduler.js';
+import { visibleCapBySampling, selectTiles } from '../src/hips/lod.js';
+import { TileAtlas, TileLayer } from '../src/hips/tiles.js';
+
+const log = (...a) => { document.getElementById('log').textContent += a.join(' ') + '\n'; console.log(...a); };
+const q = new URLSearchParams(location.search);
+const num = (k, d) => (q.has(k) ? Number(q.get(k)) : d);
+
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.setClearAlpha(0);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, canvas.width / canvas.height, 0.01, 4000);
+const sun = new THREE.DirectionalLight(0xfff6ea, 1.4);
+scene.add(sun, sun.target);
+sun.position.set(0.5, 0.1, -0.8).normalize().multiplyScalar(80);
+scene.add(new THREE.AmbientLight(0x35507a, 0.055));
+
+// 底图球：用纯灰材质模拟（不加载 8K，聚焦瓦片层）
+// 用 ~0.3 的反照率，接近真实月面灰度（0x808080 在光强 4 下会过曝到纯白）
+const moonMat = new THREE.MeshStandardMaterial({ color: 0x4d4d4d, roughness: 1, metalness: 0 });
+const moon = new THREE.Mesh(new THREE.SphereGeometry(0.997, 64, 32), moonMat);
+scene.add(moon);
+
+const d = num('d', 1.35), lon = num('lon', -11.36), lat = num('lat', -43.31);
+const c = Math.cos(lat * Math.PI / 180);
+const dirLocal = new THREE.Vector3(c * Math.cos(lon * Math.PI / 180), c * Math.sin(lon * Math.PI / 180), Math.sin(lat * Math.PI / 180));
+const dirWorld = dirLocal.clone().applyMatrix4(new THREE.Matrix4().extractRotation(moon.matrixWorld)).normalize();
+camera.position.copy(dirWorld.multiplyScalar(d));
+camera.lookAt(0, 0, 0);
+camera.updateMatrixWorld(true);
+
+const atlas = new TileAtlas({ renderer, maxPages: 2, mipmaps: false });
+const layer = new TileLayer({ renderer, atlas });
+layer.createMaterial();
+// 捕获编译后的片元源码，用于确认注入是否生效
+layer.material.onBeforeCompile = ((orig) => (sh) => {
+  orig(sh);
+  window.__frag = sh.fragmentShader;
+  window.__vert = sh.vertexShader;
+})(layer.material.onBeforeCompile);
+layer.setCalibration(num('gain', 7.5), 0);
+scene.add(layer.group);
+
+const { config } = await fetchSourceConfig(DEFAULT_SOURCE);
+const loader = new HttpTileLoader(config);
+const scheduler = new TileScheduler({ loader, concurrency: 4, memoryBudget: 128 * 1024 * 1024 });
+log('source:', config.label, 'orderMax', config.orderMax);
+
+const rot = new THREE.Matrix4();
+const right = new THREE.Vector3(), up = new THREE.Vector3(), fwd = new THREE.Vector3(), dir = new THREE.Vector3();
+const w = new THREE.Vector3();
+function refresh() {
+  camera.updateMatrixWorld(true);
+  moon.updateMatrixWorld(true);
+  const inv = new THREE.Matrix4().copy(moon.matrixWorld).invert();
+  rot.extractRotation(inv);
+  const e = camera.matrixWorld.elements;
+  right.set(e[0], e[1], e[2]).normalize();
+  up.set(e[4], e[5], e[6]).normalize();
+  fwd.set(-e[8], -e[9], -e[10]).normalize();
+  const camLocal = camera.position.clone().applyMatrix4(inv);
+  const th = Math.tan(camera.fov * Math.PI / 360);
+  const unproj = (nx, ny) => {
+    dir.copy(fwd).addScaledVector(right, nx * th * camera.aspect).addScaledVector(up, ny * th).normalize();
+    dir.applyMatrix4(rot).normalize();
+    return [dir.x, dir.y, dir.z];
+  };
+  const cap = visibleCapBySampling([camLocal.x, camLocal.y, camLocal.z], unproj);
+  const sel = selectTiles({
+    camLocal: [camLocal.x, camLocal.y, camLocal.z],
+    project: (v) => {
+      w.set(v[0], v[1], v[2]).applyMatrix4(moon.matrixWorld).project(camera);
+      return [(w.x * 0.5 + 0.5) * canvas.width, (-w.y * 0.5 + 0.5) * canvas.height];
+    },
+    screenW: canvas.width, screenH: canvas.height,
+    orderMax: config.orderMax, cap,
+  });
+  const ready = new Set();
+  const want = new Set();
+  for (const t of sel.tiles) {
+    const key = t.order + '/' + t.npix;
+    want.add(key);
+    if (!atlas.allocate(key)) continue;
+    const entry = scheduler.peek(t.order, t.npix);
+    if (entry && entry.state === TileState.READY && entry.image) {
+      atlas.upload(key, entry.image); ready.add(key);
+    } else {
+      scheduler.request(t.order, t.npix, t.priority);
+    }
+  }
+  for (const k of [...atlas.slotOf.keys()]) if (!want.has(k)) atlas.release(k);
+  atlas.flush(performance.now());
+  layer.sync(sel.tiles, (key) => atlas.slotUv(key));
+  layer.update(1, ready);
+  return { sel, ready, cap };
+}
+
+let last = null;
+for (let i = 0; i < 30; i++) {
+  last = refresh();
+  await new Promise((r) => setTimeout(r, 700));
+  if (last.ready.size === last.sel.tiles.length && last.sel.tiles.length > 0) break;
+}
+last = refresh();
+log('capDeg', last.cap.radiusDeg.toFixed(2), 'tiles', last.sel.tiles.length, 'ready', last.ready.size,
+    'order', last.sel.maxOrder, 'verts', layer.vertices);
+
+// 渲染并统计
+function measure() {
+  const rt = new THREE.WebGLRenderTarget(canvas.width, canvas.height);
+  const buf = new Uint8Array(canvas.width * canvas.height * 4);
+  renderer.setRenderTarget(rt);
+  renderer.render(scene, camera);
+  renderer.readRenderTargetPixels(rt, 0, 0, canvas.width, canvas.height, buf);
+  renderer.setRenderTarget(null);
+  let s = 0, n = 0, mx = 0;
+  for (let i = 0; i < buf.length; i += 4) {
+    const v = (buf[i] + buf[i + 1] + buf[i + 2]) / 3;
+    if (v > 3) { s += v; n++; }
+    if (v > mx) mx = v;
+  }
+  rt.dispose();
+  return { mean: n ? +(s / n).toFixed(2) : 0, max: mx, lit: n };
+}
+
+const stats = {};
+layer.setMix(1); stats.mix1 = measure();
+layer.setMix(0); stats.mix0 = measure();
+layer.setMix(1);
+// 关闭色调映射与光照影响，直接看瓦片颜色
+{
+  const prevTone = renderer.toneMapping;
+  renderer.toneMapping = THREE.NoToneMapping;
+  sun.intensity = 0; scene.children.forEach(c => { if (c.isAmbientLight) c.intensity = 3; });
+  moonMat.color.setHex(0x4d4d4d);
+  stats.noTone = measure();
+  renderer.toneMapping = prevTone;
+  sun.intensity = 1.4; scene.children.forEach(c => { if (c.isAmbientLight) c.intensity = 0.055; });
+}
+// 直接采样图集纹理，确认纹理本身亮度
+{
+  const page = atlas.pages[0];
+  const ctx = page.ctx;
+  const d = ctx.getImageData(256, 256, 1, 1).data;
+  stats.atlasPixel = [d[0], d[1], d[2]];
+  stats.gain = layer._uniforms.detailGain.value;
+  stats.bias = layer._uniforms.detailBias.value;
+}
+stats.groupChildren = layer.group.children.length;
+stats.materialDepthTest = layer.material.depthTest;
+stats.frustumCulled = layer.group.children[0] ? layer.group.children[0].frustumCulled : null;
+log('stats', JSON.stringify(stats));
+const frag = window.__frag || '', vert = window.__vert || '';
+log('inject: fragLen', frag.length,
+    'hasColorFragment', frag.indexOf('#include <color_fragment>') >= 0,
+    'hasTileAtlas', frag.indexOf('tileAtlas') >= 0,
+    'hasDetailMix', frag.indexOf('detailMix') >= 0,
+    'hasFrontFacing', frag.indexOf('gl_FrontFacing') >= 0,
+    'vertHasTileUv', vert.indexOf('vTileUv') >= 0);
+{
+  const i = frag.indexOf('tileAtlas');
+  log('snippet:', i >= 0 ? JSON.stringify(frag.slice(Math.max(0, i - 120), i + 320)) : '(no tileAtlas in fragment)');
+  const j = vert.indexOf('vTileUv');
+  log('vert snippet:', j >= 0 ? JSON.stringify(vert.slice(Math.max(0, j - 160), j + 160)) : '(no vTileUv in vertex)');
+}
+window.__test = { layer, atlas, scheduler, camera, moon, scene, renderer, refresh, measure, stats };
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "moonhd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "test:healpix": "node --test test/healpix.test.mjs",
+    "ref:healpix": "PYTHONPATH=./tools/pyref python3 tools/gen-healpix-reference.py",
+    "validate:coords": "node tools/validate-coordinates.mjs",
+    "calib:gain": "node tools/derive-calibration.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "three": "^0.186.1"
+  }
+}

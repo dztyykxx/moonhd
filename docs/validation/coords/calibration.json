@@ -1,0 +1,390 @@
+{
+  "generatedAt": "2026-10-11T18:00:28.466Z",
+  "sourceReport": "tile-report.json",
+  "method": "渲染域反解：纹理 sRGB→linear→×k→ACES→sRGB，求使瓦片输出等于底图输出的增益",
+  "exposure": 1.05,
+  "lightFactorK": 15.6591,
+  "lightFactorProbe": {
+    "albedo": 77,
+    "output": 232,
+    "recomputed": 232
+  },
+  "chosenGain": 4.558,
+  "bias": 0,
+  "gainSpread": {
+    "min": 1.896,
+    "p10": 2.284,
+    "median": 4.558,
+    "p90": 17.281,
+    "max": 29.235
+  },
+  "residualAfterGain": {
+    "medianAbs": 3.3,
+    "maxAbs": 97.5,
+    "note": "单一全局增益无法同时匹配所有区域；残差来自两套产品的实际定标差异"
+  },
+  "previousValue": 0.533,
+  "previousValueNote": "旧值是\"瓦片均值/底图均值\"的原始像素比（中位数 0.46），衡量的是瓦片比底图暗多少，方向用反了，导致瓦片被进一步压暗。",
+  "rows": [
+    {
+      "name": "近边北",
+      "center": [
+        1.4063,
+        30
+      ],
+      "tileMean": 25.5,
+      "baseMean": 69.13,
+      "rawRatio": 0.3689,
+      "linearRatio": 5.9599,
+      "renderGain": 5.9599
+    },
+    {
+      "name": "近边南",
+      "center": [
+        1.4063,
+        -30
+      ],
+      "tileMean": 97.07,
+      "baseMean": 144.83,
+      "rawRatio": 0.6702,
+      "linearRatio": 2.359,
+      "renderGain": 2.359
+    },
+    {
+      "name": "危海/东侧",
+      "center": [
+        60.4688,
+        14.4775
+      ],
+      "tileMean": 1.22,
+      "baseMean": 26.79,
+      "rawRatio": 0.0455,
+      "linearRatio": 29.2353,
+      "renderGain": 29.2353
+    },
+    {
+      "name": "背面",
+      "center": [
+        180,
+        -1.1937
+      ],
+      "tileMean": 100.19,
+      "baseMean": 148.11,
+      "rawRatio": 0.6765,
+      "linearRatio": 2.3183,
+      "renderGain": 2.3183
+    },
+    {
+      "name": "南极",
+      "center": [
+        6.4286,
+        -79.7528
+      ],
+      "tileMean": 75.45,
+      "baseMean": 194.6,
+      "rawRatio": 0.3877,
+      "linearRatio": 7.6277,
+      "renderGain": 7.6277
+    },
+    {
+      "name": "北极",
+      "center": [
+        5.625,
+        78.2841
+      ],
+      "tileMean": 66.81,
+      "baseMean": 195.87,
+      "rawRatio": 0.3411,
+      "linearRatio": 9.8757,
+      "renderGain": 9.8757
+    },
+    {
+      "name": "第谷",
+      "center": [
+        -10.5,
+        -44.9939
+      ],
+      "tileMean": 124.6,
+      "baseMean": 172.33,
+      "rawRatio": 0.723,
+      "linearRatio": 2.0342,
+      "renderGain": 2.0342
+    },
+    {
+      "name": "哥白尼",
+      "center": [
+        -19.6875,
+        10.8069
+      ],
+      "tileMean": 73.83,
+      "baseMean": 100.66,
+      "rawRatio": 0.7335,
+      "linearRatio": 1.8957,
+      "renderGain": 1.8957
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -16.875,
+        -18.21
+      ],
+      "tileMean": 3.59,
+      "baseMean": 37.72,
+      "rawRatio": 0.0952,
+      "linearRatio": 17.5586,
+      "renderGain": 17.5586
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        161.4706,
+        -64.9481
+      ],
+      "tileMean": 37.69,
+      "baseMean": 126.39,
+      "rawRatio": 0.2982,
+      "linearRatio": 10.9929,
+      "renderGain": 10.9929
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        59.0625,
+        -13.248
+      ],
+      "tileMean": 23.9,
+      "baseMean": 74.56,
+      "rawRatio": 0.3205,
+      "linearRatio": 7.6603,
+      "renderGain": 7.6603
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        36.5625,
+        -66.4435
+      ],
+      "tileMean": 76.31,
+      "baseMean": 159.56,
+      "rawRatio": 0.4783,
+      "linearRatio": 4.7948,
+      "renderGain": 4.7948
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -75.9375,
+        5.9792
+      ],
+      "tileMean": 70.25,
+      "baseMean": 120.26,
+      "rawRatio": 0.5842,
+      "linearRatio": 3.0591,
+      "renderGain": 3.0591
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -146.25,
+        -37.1689
+      ],
+      "tileMean": 40.7,
+      "baseMean": 81.71,
+      "rawRatio": 0.4981,
+      "linearRatio": 3.8276,
+      "renderGain": 3.8276
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        127.1739,
+        55.8734
+      ],
+      "tileMean": 56.88,
+      "baseMean": 129.67,
+      "rawRatio": 0.4387,
+      "linearRatio": 5.448,
+      "renderGain": 5.448
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        156.6,
+        -52.8019
+      ],
+      "tileMean": 33.83,
+      "baseMean": 101.47,
+      "rawRatio": 0.3334,
+      "linearRatio": 8.2856,
+      "renderGain": 8.2856
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -68.9063,
+        -16.9578
+      ],
+      "tileMean": 46.87,
+      "baseMean": 97.32,
+      "rawRatio": 0.4816,
+      "linearRatio": 4.2561,
+      "renderGain": 4.2561
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -36.5625,
+        40.2282
+      ],
+      "tileMean": 15.59,
+      "baseMean": 63.42,
+      "rawRatio": 0.2458,
+      "linearRatio": 10.0451,
+      "renderGain": 10.0451
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -50.625,
+        78.2841
+      ],
+      "tileMean": 84.17,
+      "baseMean": 197.6,
+      "rawRatio": 0.426,
+      "linearRatio": 6.3146,
+      "renderGain": 6.3146
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        172.9688,
+        24.6243
+      ],
+      "tileMean": 106.03,
+      "baseMean": 145.12,
+      "rawRatio": 0.7306,
+      "linearRatio": 1.9669,
+      "renderGain": 1.9669
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        92.8125,
+        31.3882
+      ],
+      "tileMean": 73.15,
+      "baseMean": 127.07,
+      "rawRatio": 0.5757,
+      "linearRatio": 3.176,
+      "renderGain": 3.176
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        155.8929,
+        48.1412
+      ],
+      "tileMean": 67.38,
+      "baseMean": 121.61,
+      "rawRatio": 0.5541,
+      "linearRatio": 3.4051,
+      "renderGain": 3.4051
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        97.0313,
+        -38.6822
+      ],
+      "tileMean": 22.36,
+      "baseMean": 70.63,
+      "rawRatio": 0.3166,
+      "linearRatio": 7.5884,
+      "renderGain": 7.5884
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        15.4688,
+        7.1808
+      ],
+      "tileMean": 28.63,
+      "baseMean": 64.46,
+      "rawRatio": 0.4442,
+      "linearRatio": 4.3208,
+      "renderGain": 4.3208
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -150.5769,
+        -51.2558
+      ],
+      "tileMean": 10.98,
+      "baseMean": 67.95,
+      "rawRatio": 0.1616,
+      "linearRatio": 17.2811,
+      "renderGain": 17.2811
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -105.4688,
+        41.8103
+      ],
+      "tileMean": 90.46,
+      "baseMean": 145.08,
+      "rawRatio": 0.6235,
+      "linearRatio": 2.7435,
+      "renderGain": 2.7435
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -70.2,
+        -52.8019
+      ],
+      "tileMean": 65.18,
+      "baseMean": 125.79,
+      "rawRatio": 0.5182,
+      "linearRatio": 3.9113,
+      "renderGain": 3.9113
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        8.4375,
+        -40.2282
+      ],
+      "tileMean": 96.39,
+      "baseMean": 141.74,
+      "rawRatio": 0.68,
+      "linearRatio": 2.2838,
+      "renderGain": 2.2838
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        -147.6563,
+        0
+      ],
+      "tileMean": 82.73,
+      "baseMean": 131.25,
+      "rawRatio": 0.6303,
+      "linearRatio": 2.6524,
+      "renderGain": 2.6524
+    },
+    {
+      "name": "随机抽样",
+      "center": [
+        155.25,
+        -60.4344
+      ],
+      "tileMean": 29.62,
+      "baseMean": 103.12,
+      "rawRatio": 0.2872,
+      "linearRatio": 10.6929,
+      "renderGain": 10.6929
+    }
+  ]
+}

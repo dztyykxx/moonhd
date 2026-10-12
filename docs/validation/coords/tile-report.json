@@ -1,0 +1,530 @@
+{
+  "generatedAt": "2026-10-11T17:03:03.390Z",
+  "source": "https://hips.china-vo.org/change2-moon-7m-dom/",
+  "order": 5,
+  "tileCount": 30,
+  "errors": [],
+  "checks": {
+    "placement": {
+      "description": "瓦片平均亮度 vs 8K 底图同经纬度局部平均亮度（半径 60px≈2.6°）",
+      "pearson": 0.8304,
+      "spearman": 0.8647,
+      "threshold": "spearman > 0.5",
+      "pass": true
+    }
+  },
+  "tiles": [
+    {
+      "npix": 5082,
+      "name": "近边北",
+      "cached": true,
+      "center": [
+        1.4063,
+        30
+      ],
+      "faceXY": {
+        "face": 4,
+        "x": 28,
+        "y": 27
+      },
+      "tileMean": 25.5,
+      "baseMean": 69.13
+    },
+    {
+      "npix": 4122,
+      "name": "近边南",
+      "cached": false,
+      "bytes": 225198,
+      "center": [
+        1.4063,
+        -30
+      ],
+      "faceXY": {
+        "face": 4,
+        "x": 4,
+        "y": 3
+      },
+      "tileMean": 97.07,
+      "baseMean": 144.83
+    },
+    {
+      "npix": 69,
+      "name": "危海/东侧",
+      "cached": false,
+      "bytes": 17053,
+      "center": [
+        60.4688,
+        14.4775
+      ],
+      "faceXY": {
+        "face": 0,
+        "x": 11,
+        "y": 0
+      },
+      "tileMean": 1.22,
+      "baseMean": 26.79
+    },
+    {
+      "npix": 6399,
+      "name": "背面",
+      "cached": false,
+      "bytes": 208177,
+      "center": [
+        180,
+        -1.1937
+      ],
+      "faceXY": {
+        "face": 6,
+        "x": 15,
+        "y": 15
+      },
+      "tileMean": 100.19,
+      "baseMean": 148.11
+    },
+    {
+      "npix": 8232,
+      "name": "南极",
+      "cached": true,
+      "center": [
+        6.4286,
+        -79.7528
+      ],
+      "faceXY": {
+        "face": 8,
+        "x": 0,
+        "y": 6
+      },
+      "tileMean": 75.45,
+      "baseMean": 194.6
+    },
+    {
+      "npix": 1002,
+      "name": "北极",
+      "cached": false,
+      "bytes": 276620,
+      "center": [
+        5.625,
+        78.2841
+      ],
+      "faceXY": {
+        "face": 0,
+        "x": 24,
+        "y": 31
+      },
+      "tileMean": 66.81,
+      "baseMean": 195.87
+    },
+    {
+      "npix": 11598,
+      "name": "第谷",
+      "cached": true,
+      "center": [
+        -10.5,
+        -44.9939
+      ],
+      "faceXY": {
+        "face": 11,
+        "x": 26,
+        "y": 3
+      },
+      "tileMean": 124.6,
+      "baseMean": 172.33
+    },
+    {
+      "npix": 4827,
+      "name": "哥白尼",
+      "cached": false,
+      "bytes": 209663,
+      "center": [
+        -19.6875,
+        10.8069
+      ],
+      "faceXY": {
+        "face": 4,
+        "x": 13,
+        "y": 27
+      },
+      "tileMean": 73.83,
+      "baseMean": 100.66
+    },
+    {
+      "npix": 4268,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 76282,
+      "center": [
+        -16.875,
+        -18.21
+      ],
+      "faceXY": {
+        "face": 4,
+        "x": 2,
+        "y": 14
+      },
+      "tileMean": 3.59,
+      "baseMean": 37.72
+    },
+    {
+      "npix": 9307,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 220026,
+      "center": [
+        161.4706,
+        -64.9481
+      ],
+      "faceXY": {
+        "face": 9,
+        "x": 13,
+        "y": 3
+      },
+      "tileMean": 37.69,
+      "baseMean": 126.39
+    },
+    {
+      "npix": 9079,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 188957,
+      "center": [
+        59.0625,
+        -13.248
+      ],
+      "faceXY": {
+        "face": 8,
+        "x": 31,
+        "y": 21
+      },
+      "tileMean": 23.9,
+      "baseMean": 74.56
+    },
+    {
+      "npix": 8342,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 260261,
+      "center": [
+        36.5625,
+        -66.4435
+      ],
+      "faceXY": {
+        "face": 8,
+        "x": 6,
+        "y": 9
+      },
+      "tileMean": 76.31,
+      "baseMean": 159.56
+    },
+    {
+      "npix": 7607,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 189915,
+      "center": [
+        -75.9375,
+        5.9792
+      ],
+      "faceXY": {
+        "face": 7,
+        "x": 23,
+        "y": 13
+      },
+      "tileMean": 70.25,
+      "baseMean": 120.26
+    },
+    {
+      "npix": 10867,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 214084,
+      "center": [
+        -146.25,
+        -37.1689
+      ],
+      "faceXY": {
+        "face": 10,
+        "x": 13,
+        "y": 21
+      },
+      "tileMean": 40.7,
+      "baseMean": 81.71
+    },
+    {
+      "npix": 1836,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 228184,
+      "center": [
+        127.1739,
+        55.8734
+      ],
+      "faceXY": {
+        "face": 1,
+        "x": 18,
+        "y": 22
+      },
+      "tileMean": 56.88,
+      "baseMean": 129.67
+    },
+    {
+      "npix": 9516,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 214635,
+      "center": [
+        156.6,
+        -52.8019
+      ],
+      "faceXY": {
+        "face": 9,
+        "x": 18,
+        "y": 6
+      },
+      "tileMean": 33.83,
+      "baseMean": 101.47
+    },
+    {
+      "npix": 7426,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 188646,
+      "center": [
+        -68.9063,
+        -16.9578
+      ],
+      "faceXY": {
+        "face": 7,
+        "x": 16,
+        "y": 1
+      },
+      "tileMean": 46.87,
+      "baseMean": 97.32
+    },
+    {
+      "npix": 3492,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 148681,
+      "center": [
+        -36.5625,
+        40.2282
+      ],
+      "faceXY": {
+        "face": 3,
+        "x": 18,
+        "y": 12
+      },
+      "tileMean": 15.59,
+      "baseMean": 63.42
+    },
+    {
+      "npix": 4069,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 283680,
+      "center": [
+        -50.625,
+        78.2841
+      ],
+      "faceXY": {
+        "face": 3,
+        "x": 27,
+        "y": 28
+      },
+      "tileMean": 84.17,
+      "baseMean": 197.6
+    },
+    {
+      "npix": 7093,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 207625,
+      "center": [
+        172.9688,
+        24.6243
+      ],
+      "faceXY": {
+        "face": 6,
+        "x": 23,
+        "y": 28
+      },
+      "tileMean": 106.03,
+      "baseMean": 145.12
+    },
+    {
+      "npix": 6107,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 201682,
+      "center": [
+        92.8125,
+        31.3882
+      ],
+      "faceXY": {
+        "face": 5,
+        "x": 29,
+        "y": 27
+      },
+      "tileMean": 73.15,
+      "baseMean": 127.07
+    },
+    {
+      "npix": 1482,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 220541,
+      "center": [
+        155.8929,
+        48.1412
+      ],
+      "faceXY": {
+        "face": 1,
+        "x": 24,
+        "y": 11
+      },
+      "tileMean": 67.38,
+      "baseMean": 121.61
+    },
+    {
+      "npix": 9901,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 190602,
+      "center": [
+        97.0313,
+        -38.6822
+      ],
+      "faceXY": {
+        "face": 9,
+        "x": 3,
+        "y": 30
+      },
+      "tileMean": 22.36,
+      "baseMean": 70.63
+    },
+    {
+      "npix": 4578,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 172291,
+      "center": [
+        15.4688,
+        7.1808
+      ],
+      "faceXY": {
+        "face": 4,
+        "x": 24,
+        "y": 13
+      },
+      "tileMean": 28.63,
+      "baseMean": 64.46
+    },
+    {
+      "npix": 10818,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 141750,
+      "center": [
+        -150.5769,
+        -51.2558
+      ],
+      "faceXY": {
+        "face": 10,
+        "x": 8,
+        "y": 17
+      },
+      "tileMean": 10.98,
+      "baseMean": 67.95
+    },
+    {
+      "npix": 2406,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 233238,
+      "center": [
+        -105.4688,
+        41.8103
+      ],
+      "faceXY": {
+        "face": 2,
+        "x": 26,
+        "y": 5
+      },
+      "tileMean": 90.46,
+      "baseMean": 145.08
+    },
+    {
+      "npix": 11803,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 234545,
+      "center": [
+        -70.2,
+        -52.8019
+      ],
+      "faceXY": {
+        "face": 11,
+        "x": 5,
+        "y": 19
+      },
+      "tileMean": 65.18,
+      "baseMean": 125.79
+    },
+    {
+      "npix": 8871,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 226791,
+      "center": [
+        8.4375,
+        -40.2282
+      ],
+      "faceXY": {
+        "face": 8,
+        "x": 3,
+        "y": 29
+      },
+      "tileMean": 96.39,
+      "baseMean": 141.74
+    },
+    {
+      "npix": 6501,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 204469,
+      "center": [
+        -147.6563,
+        0
+      ],
+      "faceXY": {
+        "face": 6,
+        "x": 27,
+        "y": 4
+      },
+      "tileMean": 82.73,
+      "baseMean": 131.25
+    },
+    {
+      "npix": 9334,
+      "name": "随机抽样",
+      "cached": false,
+      "bytes": 210392,
+      "center": [
+        155.25,
+        -60.4344
+      ],
+      "faceXY": {
+        "face": 9,
+        "x": 14,
+        "y": 5
+      },
+      "tileMean": 29.62,
+      "baseMean": 103.12
+    }
+  ],
+  "notes": [
+    "位置检查：瓦片尺度约 1.5°（45 km），远大于底图分辨率（赤道约 1500 m/px），对\"瓦片被放到错误经纬度\"敏感；用 Spearman 秩相关消除两套产品的定标差异。",
+    "瓦片内部图像方向（TILE_CORNER_UV）的证据：（a）与 LROC WMS 做梯度相关时，翻转/镜像后的相关系数一致低于当前方向；（b）第谷区域按当前方向重投影后，环形山亮环与 LROC WMS 在同一经纬度重合（见 docs/validation/coords/tycho-*.png 与 phase1 报告）。",
+    "未验证项：moc_sky_fraction=1 是发布者声明，本轮只抽样检查了数十张瓦片，不代表全月 314 万张都存在且内容正确。"
+  ]
+}

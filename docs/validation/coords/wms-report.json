@@ -1,0 +1,473 @@
+{
+  "generatedAt": "2026-10-11T16:54:30.087Z",
+  "hips": "https://hips.china-vo.org/change2-moon-7m-dom/",
+  "wms": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global",
+  "method": "HiPS 瓦片逐像素反算经纬度，再在 LROC WMS (EPSG:4326, luna_wac_global) 上双线性采样，逐像素零均值归一化互相关。两份数据来自不同产品（嫦娥二号 DOM vs LROC WAC），且分辨率不同，相关系数不会等于 1；判据是\"正确方向显著高于翻转/镜像/平移\"。",
+  "landmarks": [
+    {
+      "name": "tycho",
+      "label": "第谷环形山",
+      "requested": {
+        "lon": -11.36,
+        "lat": -43.31
+      },
+      "order": 6,
+      "nside": 64,
+      "npix": 46398,
+      "path": "Norder6/Dir40000/Npix46398.png",
+      "http": {
+        "status": 200,
+        "size": 284217,
+        "type": "image/png"
+      },
+      "tileCenter": {
+        "lon": -10.887097,
+        "lat": -43.406858
+      },
+      "centerOffsetDeg": {
+        "lon": 0.4729,
+        "lat": -0.0969
+      },
+      "tileCorners": [
+        [
+          -10.3279,
+          -44.2015
+        ],
+        [
+          -10.1613,
+          -43.4069
+        ],
+        [
+          -11.4286,
+          -42.6098
+        ],
+        [
+          -11.6129,
+          -43.4069
+        ]
+      ],
+      "cornerUV": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "wmsUrl": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global&bbox=-11.6855,-44.2811,-10.0887,-42.5302&width=1024&height=1024",
+      "wmsBbox": [
+        -11.685483870967753,
+        -44.28111599472206,
+        -10.088709677419374,
+        -42.53022083396693
+      ],
+      "wmsHttp": {
+        "status": 200,
+        "size": 406120,
+        "type": "image/jpeg"
+      },
+      "tileStats": {
+        "mean": 169.84,
+        "sd": 30.56,
+        "min": 14,
+        "max": 254
+      },
+      "wmsStats": {
+        "mean": 150.55,
+        "sd": 18.04,
+        "min": 126,
+        "max": 193
+      },
+      "correlation": {
+        "asIs": -0.1093,
+        "flipV": 0.0294,
+        "flipH": 0.0151,
+        "flipBoth": 0.0707,
+        "shiftLon1Tile": -0.0423
+      },
+      "verdict": "CHECK: 最高是 flipBoth (0.0707) vs asIs -0.1093"
+    },
+    {
+      "name": "copernicus",
+      "label": "哥白尼环形山",
+      "requested": {
+        "lon": -20.08,
+        "lat": 9.62
+      },
+      "order": 6,
+      "nside": 64,
+      "npix": 19305,
+      "path": "Norder6/Dir10000/Npix19305.png",
+      "http": {
+        "status": 200,
+        "size": 208468,
+        "type": "image/png"
+      },
+      "tileCenter": {
+        "lon": -20.390625,
+        "lat": 9.594068
+      },
+      "centerOffsetDeg": {
+        "lon": -0.3106,
+        "lat": -0.0259
+      },
+      "tileCorners": [
+        [
+          -20.3906,
+          8.9893
+        ],
+        [
+          -19.6875,
+          9.5941
+        ],
+        [
+          -20.3906,
+          10.1999
+        ],
+        [
+          -21.0937,
+          9.5941
+        ]
+      ],
+      "cornerUV": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "wmsUrl": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global&bbox=-21.1641,8.9288,-19.6172,10.2604&width=1024&height=1024",
+      "wmsBbox": [
+        -21.16406249999999,
+        8.928768407865133,
+        -19.617187499999996,
+        10.260449028413978
+      ],
+      "wmsHttp": {
+        "status": 200,
+        "size": 301481,
+        "type": "image/jpeg"
+      },
+      "tileStats": {
+        "mean": 83.45,
+        "sd": 17.72,
+        "min": 47,
+        "max": 206
+      },
+      "wmsStats": {
+        "mean": 82.81,
+        "sd": 8.59,
+        "min": 75,
+        "max": 116
+      },
+      "correlation": {
+        "asIs": -0.0466,
+        "flipV": 0.0086,
+        "flipH": -0.0306,
+        "flipBoth": -0.245,
+        "shiftLon1Tile": -0.1575
+      },
+      "verdict": "CHECK: 最高是 flipV (0.0086) vs asIs -0.0466"
+    },
+    {
+      "name": "crisium",
+      "label": "危海",
+      "requested": {
+        "lon": 59.1,
+        "lat": 17
+      },
+      "order": 5,
+      "nside": 32,
+      "npix": 88,
+      "path": "Norder5/Dir0/Npix88.png",
+      "http": {
+        "status": 200,
+        "size": 21822,
+        "type": "image/png"
+      },
+      "tileCenter": {
+        "lon": 59.0625,
+        "lat": 18.209957
+      },
+      "centerOffsetDeg": {
+        "lon": -0.0375,
+        "lat": 1.21
+      },
+      "tileCorners": [
+        [
+          59.0625,
+          16.9578
+        ],
+        [
+          60.4688,
+          18.21
+        ],
+        [
+          59.0625,
+          19.4712
+        ],
+        [
+          57.6562,
+          18.21
+        ]
+      ],
+      "cornerUV": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "wmsUrl": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global&bbox=57.5156,16.8321,60.6094,19.5969&width=1024&height=1024",
+      "wmsBbox": [
+        57.51562499999999,
+        16.832090433279816,
+        60.609375,
+        19.596893501215018
+      ],
+      "wmsHttp": {
+        "status": 200,
+        "size": 193339,
+        "type": "image/jpeg"
+      },
+      "tileStats": {
+        "mean": 1.22,
+        "sd": 1.03,
+        "min": 1,
+        "max": 26
+      },
+      "wmsStats": {
+        "mean": 39.48,
+        "sd": 2.19,
+        "min": 30,
+        "max": 44
+      },
+      "correlation": {
+        "asIs": 0.0051,
+        "flipV": 0.0153,
+        "flipH": 0.0127,
+        "flipBoth": -0.0061,
+        "shiftLon1Tile": 0.0074
+      },
+      "verdict": "CHECK: 最高是 flipV (0.0153) vs asIs 0.0051"
+    },
+    {
+      "name": "tycho-antipode",
+      "label": "第谷对跖点（另一半球）",
+      "requested": {
+        "lon": 168.64,
+        "lat": 43.31
+      },
+      "order": 5,
+      "nside": 32,
+      "npix": 1392,
+      "path": "Norder5/Dir0/Npix1392.png",
+      "http": {
+        "status": 200,
+        "size": 227591,
+        "type": "image/png"
+      },
+      "tileCenter": {
+        "lon": 169.83871,
+        "lat": 43.406858
+      },
+      "centerOffsetDeg": {
+        "lon": 1.1987,
+        "lat": 0.0969
+      },
+      "tileCorners": [
+        [
+          168.75,
+          41.8103
+        ],
+        [
+          171.2903,
+          43.4069
+        ],
+        [
+          171,
+          44.9939
+        ],
+        [
+          168.3871,
+          43.4069
+        ]
+      ],
+      "cornerUV": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "wmsUrl": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global&bbox=168.2419,41.6511,171.4355,45.1531&width=1024&height=1024",
+      "wmsBbox": [
+        168.24193548387095,
+        41.65113663304467,
+        171.43548387096774,
+        45.15305841319105
+      ],
+      "wmsHttp": {
+        "status": 200,
+        "size": 279718,
+        "type": "image/jpeg"
+      },
+      "tileStats": {
+        "mean": 70.67,
+        "sd": 26.4,
+        "min": 1,
+        "max": 231
+      },
+      "wmsStats": {
+        "mean": 95.34,
+        "sd": 30.63,
+        "min": 51,
+        "max": 168
+      },
+      "correlation": {
+        "asIs": -0.0365,
+        "flipV": -0.1848,
+        "flipH": 0.2472,
+        "flipBoth": 0.0068,
+        "shiftLon1Tile": -0.1125
+      },
+      "verdict": "CHECK: 最高是 flipH (0.2472) vs asIs -0.0365"
+    },
+    {
+      "name": "dateline",
+      "label": "±180° 经度接缝",
+      "requested": {
+        "lon": 180,
+        "lat": 0
+      },
+      "order": 5,
+      "nside": 32,
+      "npix": 6912,
+      "path": "Norder5/Dir0/Npix6912.png",
+      "http": {
+        "status": 200,
+        "size": 207713,
+        "type": "image/png"
+      },
+      "tileCenter": {
+        "lon": 180,
+        "lat": 1.193748
+      },
+      "centerOffsetDeg": {
+        "lon": 0,
+        "lat": 1.1937
+      },
+      "tileCorners": [
+        [
+          180,
+          0
+        ],
+        [
+          -178.5938,
+          1.1937
+        ],
+        [
+          180,
+          2.388
+        ],
+        [
+          178.5938,
+          1.1937
+        ]
+      ],
+      "cornerUV": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "wmsUrl": "https://wms.im-ldi.com/lroc/wms?service=WMS&version=1.1.1&request=GetMap&styles=&format=image/jpeg&srs=EPSG:4326&layers=luna_wac_global&bbox=163.5469,-0.1194,556.4531,2.5074&width=1024&height=1024",
+      "wmsBbox": [
+        163.54687499999997,
+        -0.11940077316343885,
+        556.453125,
+        2.5074162364322157
+      ],
+      "wmsHttp": {
+        "status": 200,
+        "size": 313690,
+        "type": "image/jpeg"
+      },
+      "tileStats": {
+        "mean": 101.43,
+        "sd": 17.97,
+        "min": 56,
+        "max": 213
+      },
+      "wmsStats": {
+        "mean": 75.14,
+        "sd": 26.26,
+        "min": 49,
+        "max": 167
+      },
+      "correlation": {
+        "asIs": -0.0307,
+        "flipV": -0.0118,
+        "flipH": -0.1992,
+        "flipBoth": 0.0143,
+        "shiftLon1Tile": -0.0614
+      },
+      "verdict": "CHECK: 最高是 flipBoth (0.0143) vs asIs -0.0307"
+    }
+  ]
+}

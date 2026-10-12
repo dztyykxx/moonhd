@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>LUNA · 超高清月球</title>
+<link rel="stylesheet" href="./src/style.css" />
+<script type="importmap">
+{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}
+</script>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<header class="hud hud--tl">
+  <h1>LUNA<span>月球 · 8K 实时渲染</span></h1>
+  <p class="tag">LROC 全球影像 + LOLA 真实高程 · 拖拽旋转 / 滚轮缩放</p>
+</header>
+<div class="hud hud--tr meta">
+  <div class="meta__row"><span>贴图</span><b id="m-res">1024 x 512</b></div>
+  <div class="meta__row"><span>细节</span><b id="m-detail">--</b></div>
+  <div class="meta__row"><span>来源</span><b id="m-source">连接中…</b></div>
+  <div class="meta__row"><span>缓存</span><b id="m-cache">--</b></div>
+  <div class="meta__row"><span>帧率</span><b id="m-fps">--</b></div>
+  <div class="meta__row"><span>光照</span><b id="m-phase">--</b></div>
+</div>
+<section class="hud hud--b panel">
+  <label class="ctl">
+    <span class="ctl__k">月相</span>
+    <input id="phase" type="range" min="0" max="360" step="0.5" value="104" />
+    <span class="ctl__v" id="phase-v">104</span>
+  </label>
+  <label class="ctl">
+    <span class="ctl__k">曝光</span>
+    <input id="exposure" type="range" min="0.2" max="3" step="0.01" value="1.05" />
+    <span class="ctl__v" id="exposure-v">1.05</span>
+  </label>
+  <label class="ctl">
+    <span class="ctl__k">起伏</span>
+    <input id="relief" type="range" min="0" max="3" step="0.01" value="1.2" />
+    <span class="ctl__v" id="relief-v">1.20</span>
+  </label>
+  <label class="ctl">
+    <span class="ctl__k">画质</span>
+    <select id="quality">
+      <option value="auto" selected>自动</option>
+      <option value="2048">2K</option>
+      <option value="4096">4K</option>
+      <option value="8192">8K</option>
+    </select>
+    <span class="ctl__v" id="quality-v"></span>
+  </label>
+  <div class="toggles">
+    <button class="tg is-on" id="t-spin">自转</button>
+    <button class="tg is-on" id="t-stars">星空</button>
+    <button class="tg is-on" id="t-earth">地球反照</button>
+    <button class="tg is-on" id="t-det">国内细节</button>
+    <button class="tg is-on" id="t-color">彩色</button>
+    <button class="tg is-on" id="t-cal" title="把国内 DOM 的亮度标定到本地底图，减少高清区边界的亮度台阶">亮度标定</button>
+  </div>
+  <div class="foot">
+    <span id="credit">细节影像：China-VO 嫦娥二号 DOM 7M（HiPS）</span>
+    <button class="tg tg--mini" id="cache-clear">清理缓存</button>
+  </div>
+</section>
+<div class="loading" id="loading">
+  <div class="loading__inner">
+    <div class="loading__mark">◐</div>
+    <div class="loading__txt" id="load-txt">正在建立月球…</div>
+    <div class="loading__bar"><i id="load-bar"></i></div>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

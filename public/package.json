@@ -1,0 +1,6 @@
+{
+  "//": "public/ 下的脚本是浏览器 ES 模块（无构建步骤）。这里声明 type=module，只影响 Node 解析方式，不影响静态托管。",
+  "name": "moonhd-public",
+  "private": true,
+  "type": "module"
+}
