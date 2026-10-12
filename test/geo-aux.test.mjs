@@ -18,7 +18,9 @@ import { pickLocal, raySphereNearest, occludedBySphere, PICK_RADIUS, SURFACE_LIF
 import {
   buildGraticule, pickStep, capAngleDeg, axisSegments, poleLabels, STEP_LEVELS, AXIS_REACH,
 } from '../public/src/geo/graticule.js';
-import { niceScale, sampleLocalScale, northTangent, eastTangent, formatScaleKm } from '../public/src/geo/metrics.js';
+import {
+  niceScale, sampleLocalScale, northTangent, eastTangent, formatScaleKm, dragRotateRadPerScreen,
+} from '../public/src/geo/metrics.js';
 import { dirFromLatLon, MOON_RADIUS_KM } from '../public/src/geo/coords.js';
 
 const close = (a, b, eps = 1e-9) => Math.abs(a - b) <= eps;
@@ -238,4 +240,42 @@ test('比例尺标签：整数与小数的显示', () => {
   assert.equal(formatScaleKm(2000), '2,000 km');
   assert.equal(formatScaleKm(2.5), '2.5 km');
   assert.equal(formatScaleKm(NaN), '—');
+});
+
+test('拖拽旋转：一屏拖拽的转角让月面 1:1 跟随指针', () => {
+  const fov = 30;
+  const screenH = 900;
+  // 期望：拖 Δpx，月面在屏幕上就移动 Δpx。
+  // 屏幕在视中心处的世界尺度 = 2(d−1)tan(fov/2) 个世界单位/满屏。
+  for (const d of [5.25, 3, 2, 1.35, 1.12, 1.05]) {
+    const rad = dragRotateRadPerScreen(d, fov);
+    const worldPerScreen = 2 * (d - 1) * Math.tan((fov * Math.PI) / 360);
+    // 转角对应的球面位移（球半径 1）= rad；换算成像素
+    const movedPx = (rad / worldPerScreen) * screenH;
+    assert.ok(close(movedPx, screenH, 1e-6), `d=${d} 一屏拖拽应移动一屏，实际 ${movedPx}`);
+  }
+});
+
+test('拖拽旋转：随缩放单调变慢，且有下限不会转不动', () => {
+  const fov = 30;
+  const floor = 1.2 * Math.PI / 180;
+  const speeds = [5.25, 3, 2, 1.35, 1.12, 1.05, 1.02]
+    .map((d) => dragRotateRadPerScreen(d, fov, floor));
+  for (let i = 1; i < speeds.length; i++) {
+    assert.ok(speeds[i] <= speeds[i - 1] + 1e-12, `第 ${i} 档不应比上一档快`);
+  }
+  // 整球到最近，灵敏度至少要降两个数量级——否则"拖一点就飘走"
+  assert.ok(speeds[0] / speeds[speeds.length - 1] > 50, '缩放带来的灵敏度差应显著');
+  // 下限生效：d 再小也不会低于保底
+  assert.ok(close(speeds[speeds.length - 1], floor, 1e-12), '最近处应取到保底值');
+  assert.ok(dragRotateRadPerScreen(1.0001, fov, floor) === floor);
+  // 保底不应把"能微调"变成"完全转不动"
+  assert.ok(speeds[speeds.length - 1] > 0.01, '保底要仍可微调');
+});
+
+test('拖拽旋转：非法输入回退到下限而不是 NaN', () => {
+  assert.equal(dragRotateRadPerScreen(0, 30, 0.02), 0.02);
+  assert.equal(dragRotateRadPerScreen(1, 0, 0.02), 0.02);
+  assert.equal(dragRotateRadPerScreen(NaN, 30, 0.02), 0.02);
+  assert.equal(dragRotateRadPerScreen(1.5, -10, 0.02), 0.02);
 });

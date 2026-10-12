@@ -13,7 +13,7 @@ import { createUI } from './ui/app.js';
 import { createOverlays } from './scene/overlays.js';
 import { PICK_RADIUS, pickLocal, occludedBySphere } from './geo/pick.js';
 import { MOON_RADIUS_KM, dirFromLatLon, latLonFromDir, separationDeg } from './geo/coords.js';
-import { northTangent, sampleLocalScale } from './geo/metrics.js';
+import { northTangent, sampleLocalScale, dragRotateRadPerScreen } from './geo/metrics.js';
 import { capAngleDeg, pickStep, STEP_LEVELS, poleLabels } from './geo/graticule.js';
 
 const $ = (s) => document.querySelector(s);
@@ -74,7 +74,7 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.dampingFactor = 0.06;
 controls.enablePan = false;
-controls.rotateSpeed = 0.45;
+controls.rotateSpeed = 0.45;   // 初值；每帧由 updateRotateSpeed() 按缩放改写
 controls.zoomSpeed = 0.75;
 controls.minDistance = 1.02;
 controls.maxDistance = 30;
@@ -783,6 +783,37 @@ function zoomBy(factor) {
   controls.enabled = false;
 }
 
+/**
+ * 拖拽旋转速度随缩放变化——"抓住月面"的规律。
+ *
+ * OrbitControls 的转角是固定角速度：`angle = 2π·dx·rotateSpeed / clientHeight`，
+ * 与相机远近无关。整球视角下这没问题，但贴到最近（d=1.02）时屏幕上只有约 19 km
+ * 月面，同样一次拖拽却仍然转 162°，于是"拖一点就飘到别的地方去"。
+ *
+ * 正确的映射是让月面**跟着指针走**：相机绕月球转 δ 时，视中心那块月面沿球面移动
+ * δ·R；而屏幕在视中心处的深度是 (d−1)，满屏高度对应 (d−1)·2·tan(fov/2) 个世界单位。
+ * 两者相除，一屏拖拽应转的角度恰好是
+ *
+ *     θ_screen = 2·(d−1)·tan(fov/2)          （弧度）
+ *
+ * 这个取法在任意距离下都给出 1:1 的跟随（不是近似）：
+ *   拖 Δpx → 月面移动 Δpx 像素。整球 d=5.25 时 θ_screen≈130°，
+ *   与原来的固定手感接近；d=1.35 时约 10.7°；d=1.02 时约 0.61°。
+ *
+ * 下限是为了不出现"贴到最近就转不动"：d < 1.04 之后不再继续变慢，
+ * 满屏拖拽保底 1.2°（此时月面会比指针快约 2 倍，仍属可控微调）。
+ */
+const ROTATE_FLOOR_RAD = 1.2 * (Math.PI / 180);
+const ROTATE_SPEED_MAX = 0.45;   // 与历史手感一致的上限
+const ROTATE_SPEED_MIN = 0.002;
+function updateRotateSpeed() {
+  const perScreen = dragRotateRadPerScreen(camera.position.length(), camera.fov, ROTATE_FLOOR_RAD);
+  // OrbitControls 满屏拖拽转 2π·rotateSpeed，所以这里反解 rotateSpeed
+  controls.rotateSpeed = THREE.MathUtils.clamp(
+    perScreen / (2 * Math.PI), ROTATE_SPEED_MIN, ROTATE_SPEED_MAX,
+  );
+}
+
 function stepFlight(dt) {
   if (!flight.active) return;
   flight.t += dt;
@@ -951,6 +982,16 @@ const api = {
   /** UI 清空选点。 */
   clearPoint() { selectedPoint = null; },
   lastGestureWasDrag: () => lastGesture.dragged,
+  /** 当前拖拽旋转灵敏度（验收脚本用）。 */
+  rotateInfo: () => {
+    const d = camera.position.length();
+    return {
+      distance: d,
+      rotateSpeed: controls.rotateSpeed,
+      degPerScreen: (2 * Math.PI * controls.rotateSpeed * 180) / Math.PI,
+      grabDegPerScreen: (2 * Math.max(0, d - 1) * Math.tan((camera.fov * Math.PI) / 360) * 180) / Math.PI,
+    };
+  },
 };
 
 /* ============ 屏幕方向与比例尺 ============ */
@@ -1368,6 +1409,7 @@ function frame() {
   // 自愈：除非显式 ?lock=1，任何情况下都不允许交互被永久关掉
   // （用户反馈过"进去以后不能旋转和缩放"，这里加一道兜底）
   if (!controls.enabled && !flight.active && !TEST.lock) controls.enabled = true;
+  updateRotateSpeed();
   controls.update();
   syncLocalFrame();
 

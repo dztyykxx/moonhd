@@ -13,6 +13,10 @@ node tools/build-places.mjs    # 由已核验的官方数据重建 public/data/*
 操作：拖拽旋转 · 滚轮/双指缩放 · 单击月面选点 · 双击放大 · 快捷键 `H` 沉浸 · `Esc` 退出 ·
 `A` 自转轴 · `G` 经纬网 · `R` 复位 · `Space` 自转 · `/` 搜索。
 
+拖拽灵敏度**随缩放变化**，按"抓住月面"的规律：满屏拖拽转 `2·(d−1)·tan(fov/2)`，
+在任意距离下都是 1:1 跟随（拖多少像素，月面就移动多少像素），并有 1.2°/满屏的下限
+保证贴到最近时仍能微调。见 `geo/metrics.js` 的 `dragRotateRadPerScreen()`。
+
 ## 界面与地理交互
 
 UI 按 `docs/design/luna-ui-design-spec.md` 实现，模块划分：

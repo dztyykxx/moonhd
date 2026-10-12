@@ -85,6 +85,30 @@ export function sampleLocalScale({ pickAt, screenW, ndcSpan = 0.12, radiusKm = M
   return { km: nice.km, px: nice.px, kmPerPx, sign, d2r, spanDeg: ang / d2r };
 }
 
+/**
+ * 拖拽旋转的灵敏度：一屏高度的拖拽应该让相机绕月球转多少弧度。
+ *
+ * 目标是让**月面跟着指针走**。相机绕球心转 δ 时，视中心那块月面沿球面移动 δ·R；
+ * 而屏幕在视中心处的深度是 (d−1)，满屏高度对应 (d−1)·2·tan(fov/2) 个世界单位。
+ * 两者相除，一屏拖拽对应的转角恰好是
+ *
+ *     θ_screen = 2·(d−1)·tan(fov/2)
+ *
+ * 这个取法在任意距离下都给出精确的 1:1 跟随：拖 Δ 像素，月面就移动 Δ 像素。
+ * 如果用一个固定角速度（three.js OrbitControls 的默认行为），贴到最近时屏幕上
+ * 只有约 19 km 月面，一次满屏拖拽却仍要转 162°，看起来就是"拖一点就飘走"。
+ *
+ * @param {number} distance 相机到球心的距离（球半径 = 1）
+ * @param {number} fovDeg 垂直视场角（度）
+ * @param {number} [floorRad] 下限弧度；d→1 时 θ→0 会转不动，给一个保底
+ * @returns {number} 弧度 / 满屏高度
+ */
+export function dragRotateRadPerScreen(distance, fovDeg, floorRad = 0) {
+  if (!(distance > 0) || !(fovDeg > 0)) return floorRad;
+  const grab = 2 * Math.max(0, distance - 1) * Math.tan((fovDeg * Math.PI) / 360);
+  return Math.max(grab, floorRad);
+}
+
 /** 把公里数写成界面用的短标签（1/2/5 系列必然是整数或一位小数）。 */
 export function formatScaleKm(km) {
   if (!Number.isFinite(km)) return '—';
