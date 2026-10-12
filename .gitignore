@@ -5,10 +5,9 @@ node_modules/
 # 重建：见 README 或 package.json 的 ref:healpix 脚本
 tools/pyref/
 
-# ── 体积大的原始数据（都是从公开源下载的，可重新获取） ──────────────
-# LOLA 高程与 LROC WAC 原始大图；public/assets/*.webp 就是从这些转出来的。
-# 下载地址见 README「数据源」一节。
-assets/raw/
+# 注意：assets/raw/ 是**入库**的（约 63 MB）。
+# 它是 public/assets/*.webp 的唯一来源，而仓库里没有生成脚本，
+# 丢了就只能回 NASA SVS 重新下（实测 ~100 KB/s）。下载地址见 README「数据源」。
 
 # 从 HiPS 瓦片服务器抽样的缓存（坐标核验用，可重新拉取）
 docs/validation/coords/tiles/
