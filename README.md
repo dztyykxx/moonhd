@@ -3,10 +3,14 @@
 three.js 实时渲染的月球探索器。**本地 8K 底图（LROC WAC）+ 按需拉取的嫦娥二号 7 m 高清瓦片（China-VO HiPS）
 + LOLA 真实高程光照 + 月面地名/坐标/经纬网交互**。静态站点，无构建步骤，无运行时依赖（three.js r186 已本地内置）。
 
+**在线演示：<https://luna.dztyykxx.cn/>**
+
+![探索月面：8K 底图、地名标注与观察工具栏](docs/screenshots/01-explore.webp)
+
 ```bash
 cd public && python3 -m http.server 5173
 # 打开 http://localhost:5173    （必须走 http，importmap 不支持 file://）
-npm test                       # 97 个用例，纯 Node，不需要浏览器
+npm test                       # 100 个用例，纯 Node，不需要浏览器
 node tools/build-places.mjs    # 由已核验的官方数据重建 public/data/*.json
 ```
 
@@ -16,6 +20,13 @@ node tools/build-places.mjs    # 由已核验的官方数据重建 public/data/*
 拖拽灵敏度**随缩放变化**，按"抓住月面"的规律：满屏拖拽转 `2·(d−1)·tan(fov/2)`，
 在任意距离下都是 1:1 跟随（拖多少像素，月面就移动多少像素），并有 1.2°/满屏的下限
 保证贴到最近时仍能微调。见 `geo/metrics.js` 的 `dragRotateRadPerScreen()`。
+
+## 截图
+
+| 嫦娥二号 7 m 高清瓦片（第谷环形山） | 沉浸模式（LOLA 高程光照） |
+|---|---|
+| ![第谷环形山高清细节](docs/screenshots/02-detail-tycho.webp) | ![沉浸模式](docs/screenshots/03-immersive.webp) |
+| 放大到局部后自动切到 China-VO HiPS 高清层，右侧信息卡给出 IAU/USGS 核验的经纬度与直径（左下角比例尺 10 km）。 | `H` 隐藏全部界面。明暗交界处的地形阴影来自 LOLA 高程法线，不是贴图自带的阴影。 |
 
 ## 界面与地理交互
 
