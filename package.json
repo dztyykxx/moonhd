@@ -1,7 +1,7 @@
 {
   "name": "moonhd",
   "version": "1.0.0",
-  "description": "",
+  "description": "LUNA · 超高清月球：three.js 实时月球探索器（8K 底图 + 嫦娥二号 7m HiPS 按需高清 + LOLA 高程光照 + 月面地名交互）",
   "main": "index.js",
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",
@@ -10,11 +10,23 @@
     "validate:coords": "node tools/validate-coordinates.mjs",
     "calib:gain": "node tools/derive-calibration.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "three.js",
+    "moon",
+    "lunar",
+    "healpix",
+    "hips",
+    "webgl",
+    "3d"
+  ],
+  "author": "dztyykxx",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "three": "^0.186.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dztyykxx/moonhd.git"
   }
 }
