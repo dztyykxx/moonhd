@@ -1,0 +1,7 @@
+# 只有站点和 nginx 配置进构建上下文，避免把 video/、压缩包、node_modules 传给 daemon
+*
+!public/
+!public/**
+!deploy/
+!deploy/Dockerfile
+!deploy/nginx.conf

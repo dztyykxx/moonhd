@@ -25,3 +25,19 @@ luna-8k-sites.tar.gz
 .DS_Store
 *.swp
 *~
+
+# ── 部署（含真实服务器地址与镜像仓库命名空间，不公开） ────────────
+deploy/
+luna-explorer-sites-*.tar.gz
+
+# ── 宣传片工程：只保留脚本，产物不入库 ────────────────────────────
+video/node_modules/
+video/.venv/
+.venv/
+video/build/
+video/frames*/
+video/final-frames/
+video/*.mp4
+video/*.webm
+video/*.wav
+video/*.png
