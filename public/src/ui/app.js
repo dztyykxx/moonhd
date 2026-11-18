@@ -895,7 +895,7 @@ export function createUI(api) {
       ['back-from-phase', 'main'], ['back-from-layers', 'main'], ['back-from-data', 'main'],
       ['back-from-spin', 'main'], ['back-from-axis', 'main'], ['back-from-grid', 'main'],
       ['back-from-visibility', 'main'], ['back-from-facts', 'main'],
-    ]) { const n = $(id); if (n) n.addEventListener('click', () => showView(view)); }
+    ]) { const n = $('#' + id); if (n) n.addEventListener('click', () => showView(view)); }
 
     // 参数
     const exp = $('#exposure');
