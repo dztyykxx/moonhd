@@ -2390,7 +2390,7 @@
               "id": "Can9N",
               "name": "目录标题",
               "width": "fill_container",
-              "height": 28,
+              "height": 32,
               "gap": 12,
               "justifyContent": "space_between",
               "alignItems": "center",
@@ -3617,7 +3617,7 @@
               "id": "au1He",
               "name": "目录标题",
               "width": "fill_container",
-              "height": 28,
+              "height": 32,
               "gap": 12,
               "justifyContent": "space_between",
               "alignItems": "center",
@@ -14081,6 +14081,917 @@
               "fontWeight": "normal"
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "KgaJF",
+      "x": 3040,
+      "y": 4000,
+      "name": "15 · 手机 / 月面探索",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "iNgLn",
+          "x": -271,
+          "y": 20,
+          "name": "月球场景 · 手机适配",
+          "fill": [
+            "#ffffff",
+            {
+              "type": "image",
+              "enabled": true,
+              "url": "luna-explorer-ui-assets/screenshot-localhost-4.png",
+              "mode": "cover"
+            }
+          ],
+          "width": 932,
+          "height": 583
+        },
+        {
+          "type": "frame",
+          "id": "ZRE6O",
+          "x": 20,
+          "y": 24,
+          "name": "手机顶栏 · 可隐藏",
+          "width": 350,
+          "height": 44,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "yVRvk",
+              "name": "品牌",
+              "fill": "$gold",
+              "content": "LUNA",
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "FHnJi",
+              "name": "搜索与设置",
+              "fill": "$ink",
+              "content": "⌕    ☷",
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vyCDN",
+          "x": 12,
+          "y": 492,
+          "name": "底部抽屉 · 可收起",
+          "width": 366,
+          "height": 328,
+          "fill": "$panel",
+          "cornerRadius": 16,
+          "stroke": "$line",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "fGtQj",
+              "name": "拖拽把手容器",
+              "width": "fill_container",
+              "height": 8,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "Y0h7en",
+                  "name": "拖拽把手",
+                  "fill": "#FFFFFF30",
+                  "width": 36,
+                  "height": 3
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sM6u5",
+              "name": "详情标题",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "v5HYS",
+                  "name": "标题",
+                  "fill": "$ink",
+                  "content": "第谷环形山",
+                  "fontFamily": "$body",
+                  "fontSize": 22,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bX5Xa",
+                  "name": "收起",
+                  "fill": "$ink",
+                  "content": "⌄",
+                  "fontFamily": "$body",
+                  "fontSize": 18,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "U38xr9",
+              "name": "英文",
+              "fill": "$gold",
+              "content": "TYCHO / 陨石坑",
+              "fontFamily": "$body",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "U0mLqO",
+              "name": "经纬度",
+              "fill": "$ink",
+              "content": "43.31° S · 11.36° W",
+              "fontFamily": "$body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "RI5sB",
+              "name": "尺寸",
+              "fill": "$muted",
+              "content": "直径 85 km",
+              "fontFamily": "$body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "F6n4JZ",
+              "name": "简介",
+              "fill": "$muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "明亮的辐射纹向四周延伸，是月面最醒目的撞击坑之一。",
+              "lineHeight": 1.6,
+              "fontFamily": "$body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "uuCQs",
+              "name": "动作",
+              "fill": "$gold",
+              "content": "⌖ 定位此处      复制坐标",
+              "fontFamily": "$body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "MycK5",
+      "x": 3510,
+      "y": 4000,
+      "name": "16 · 手机 / 观察设置",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "ZETJf",
+          "x": -271,
+          "y": 20,
+          "name": "月球场景 · 手机适配",
+          "fill": [
+            "#ffffff",
+            {
+              "type": "image",
+              "enabled": true,
+              "url": "luna-explorer-ui-assets/screenshot-localhost-4.png",
+              "mode": "cover"
+            }
+          ],
+          "width": 932,
+          "height": 583
+        },
+        {
+          "type": "frame",
+          "id": "Zd9Pn",
+          "x": 20,
+          "y": 24,
+          "name": "手机顶栏 · 可隐藏",
+          "width": 350,
+          "height": 44,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "c1pEHg",
+              "name": "品牌",
+              "fill": "$gold",
+              "content": "LUNA",
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Lj4ac",
+              "name": "搜索与设置",
+              "fill": "$ink",
+              "content": "⌕    ☷",
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S0b3Mv",
+          "x": 12,
+          "y": 410,
+          "name": "底部抽屉 · 可收起",
+          "width": 366,
+          "height": 410,
+          "fill": "$panel",
+          "cornerRadius": 16,
+          "stroke": "$line",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "o46Ya",
+              "name": "拖拽把手容器",
+              "width": "fill_container",
+              "height": 8,
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 2,
+                  "id": "ixBKW",
+                  "name": "拖拽把手",
+                  "fill": "#FFFFFF30",
+                  "width": 36,
+                  "height": 3
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "E5yNx",
+              "name": "标题",
+              "fill": "$ink",
+              "content": "观察设置",
+              "fontFamily": "$body",
+              "fontSize": 22,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "tjJPR",
+              "name": "自转",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "n8rdXO",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "自转",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bgDER",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "暂停",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MqDK6",
+              "name": "自转轴",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Eiv3v",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "自转轴",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "hCY6n",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "开启",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "n0i04",
+              "name": "经纬网",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P8fDFp",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "经纬网",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "miQcp",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "关闭",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "RLJF8",
+              "name": "曝光",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "xsogS",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "曝光",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "jxuQ8",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "1.05",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Urti2",
+              "name": "地形光照强度",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "atCBO",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "地形光照强度",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "QVDum",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "1.20",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pwCGs",
+              "name": "界面显示",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Qg7Sv",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "界面显示",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TGOtx",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "管理 ›",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OOHVN",
+              "name": "沉浸模式",
+              "width": "fill_container",
+              "height": 36,
+              "gap": 10,
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iNq8h",
+                  "name": "名称",
+                  "fill": "$ink",
+                  "content": "沉浸模式",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "x4ELkC",
+                  "name": "值",
+                  "fill": "$gold",
+                  "content": "隐藏全部 ›",
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JkTd7",
+      "x": 0,
+      "y": 5000,
+      "name": "17 · 组件与异常状态规范",
+      "width": 1440,
+      "height": 900,
+      "fill": "$bg",
+      "layout": "vertical",
+      "gap": 28,
+      "padding": 40,
+      "children": [
+        {
+          "type": "text",
+          "id": "p4tyN",
+          "name": "标题",
+          "fill": "$gold",
+          "content": "LUNA / 组件与状态",
+          "fontFamily": "$body",
+          "fontSize": 28,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "d7xOm",
+          "name": "说明",
+          "fill": "$muted",
+          "content": "所有控件都可隐藏；保持键盘操作、焦点可见与独立恢复入口。",
+          "fontFamily": "$body",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "qbca9",
+          "name": "组件样例",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "fKDfn",
+              "name": "普通按钮",
+              "reusable": true,
+              "width": 200,
+              "height": 56,
+              "fill": "$panel",
+              "cornerRadius": 8,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SP75x",
+                  "name": "按钮文字",
+                  "fill": "$ink",
+                  "content": "普通按钮",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Q3VIN",
+              "name": "已选中",
+              "reusable": true,
+              "width": 200,
+              "height": 56,
+              "fill": "#C8AA731A",
+              "cornerRadius": 8,
+              "stroke": "$gold",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vP4T7",
+                  "name": "按钮文字",
+                  "fill": "$gold",
+                  "content": "已选中",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YAhMz",
+              "name": "键盘焦点",
+              "reusable": true,
+              "width": 200,
+              "height": 56,
+              "fill": "$panel",
+              "cornerRadius": 8,
+              "stroke": "$gold",
+              "strokeWidth": 2,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "XHKBM",
+                  "name": "按钮文字",
+                  "fill": "$ink",
+                  "content": "键盘焦点",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CngiK",
+              "name": "不可用",
+              "reusable": true,
+              "opacity": 0.4,
+              "width": 200,
+              "height": 56,
+              "fill": "$panel",
+              "cornerRadius": 8,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ubJoj",
+                  "name": "按钮文字",
+                  "fill": "$ink",
+                  "content": "不可用",
+                  "fontFamily": "$body",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XEsce",
+          "name": "反馈状态",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "x6rbzH",
+              "name": "搜索无结果",
+              "width": "fill_container",
+              "height": 168,
+              "fill": "$panel",
+              "cornerRadius": 10,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "SwOig",
+                  "name": "反馈标题",
+                  "fill": "$ink",
+                  "content": "搜索无结果",
+                  "fontFamily": "$body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "r2CrKu",
+                  "name": "反馈内容",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "未找到该地点\n试试正式名称或输入经纬度。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pK1Jm",
+              "name": "坐标无效",
+              "width": "fill_container",
+              "height": 168,
+              "fill": "$panel",
+              "cornerRadius": 10,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "q3D33W",
+                  "name": "反馈标题",
+                  "fill": "$ink",
+                  "content": "坐标无效",
+                  "fontFamily": "$body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "G0v2J",
+                  "name": "反馈内容",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "纬度须在 −90° 至 90° 之间\n输入格式：纬度, 经度",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ipjgM",
+              "name": "高清暂不可用",
+              "width": "fill_container",
+              "height": 168,
+              "fill": "$panel",
+              "cornerRadius": 10,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "W1bdO",
+                  "name": "反馈标题",
+                  "fill": "$ink",
+                  "content": "高清暂不可用",
+                  "fontFamily": "$body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TSS5t",
+                  "name": "反馈内容",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当前使用 8K 底图\n网络恢复后自动重试。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fyCWV",
+              "name": "已复制",
+              "width": "fill_container",
+              "height": 168,
+              "fill": "$panel",
+              "cornerRadius": 10,
+              "stroke": "$line",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "bcrSq",
+                  "name": "反馈标题",
+                  "fill": "$ink",
+                  "content": "已复制",
+                  "fontFamily": "$body",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "uWEKl",
+                  "name": "反馈内容",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "坐标已复制到剪贴板\n轻提示 2 秒后消失。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$body",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "nY8V8",
+          "name": "说明",
+          "fill": "$muted",
+          "content": "影像加载：底图先显示，高清按需淡入；不使用遮住月球的全屏等待弹窗。",
+          "fontFamily": "$body",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Y8sxP",
+          "name": "坐标与加载状态",
+          "width": "fill_container",
+          "height": 70,
+          "fill": "$panel",
+          "cornerRadius": 10,
+          "gap": 40,
+          "padding": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "ab9xy",
+              "name": "空坐标",
+              "fill": "$muted",
+              "content": "指向位置   —",
+              "fontFamily": "$body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "wUJEg",
+              "name": "加载状态",
+              "fill": "$ink",
+              "content": "◌ 高清细节加载中",
+              "fontFamily": "$body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Ga3h5",
+              "name": "比例尺未知",
+              "fill": "$muted",
+              "content": "局部比例尺   —",
+              "fontFamily": "$body",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "kMKjB",
+          "name": "快捷键",
+          "fill": "$ink",
+          "content": "H / Esc · 显示界面     R · 复位     G · 经纬网     A · 自转轴     Space · 暂停 / 自转",
+          "fontFamily": "$body",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "N1DFB",
+          "name": "设计边界",
+          "fill": "$muted",
+          "content": "本稿的坐标、地名和性能数值用于界面示例；地理数据核对后接入，禁止把截图作为最终 UI。",
+          "fontFamily": "$body",
+          "fontSize": 13,
+          "fontWeight": "normal"
         }
       ]
     }
