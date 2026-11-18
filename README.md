@@ -1,7 +1,6 @@
 # LUNA · 超高清月球
 
-three.js 实时渲染的月球探索器。**本地 8K 底图（LROC WAC）+ 按需拉取的嫦娥二号 7 m 高清瓦片（China-VO HiPS）
-+ LOLA 真实高程光照 + 月面地名/坐标/经纬网交互**。静态站点，无构建步骤，无运行时依赖（three.js r186 已本地内置）。
+three.js 实时渲染的月球探索器。**本地 8K 底图（LROC WAC）+ 按需拉取的嫦娥二号 7 m 高清瓦片（China-VO HiPS）+ LOLA 真实高程光照 + 月面地名/坐标/经纬网交互**。静态站点，无构建步骤，无运行时依赖（three.js r186 已本地内置）。
 
 **在线演示：<https://luna.dztyykxx.cn/>**
 
