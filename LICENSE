@@ -19,16 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-The MIT license above covers the source code of this project only.
-
-Third-party data bundled in this repository remains under its own terms:
-
-- `assets/raw/`, `public/assets/` — NASA SVS CGI Moon Kit and LROC imagery,
-  produced by NASA / USGS, are in the public domain.
-- HiPS base-map derivatives follow the terms described in the README section
-  "许可与致谢"; the 嫦娥二号 7 m DOM detail layer is fetched at runtime from
-  China-VO and is NOT distributed with this repository.
-- three.js is licensed under the MIT license.

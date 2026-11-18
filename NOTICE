@@ -1,0 +1,13 @@
+# NOTICE
+
+本仓库的**源代码**采用 MIT 许可证（见 [LICENSE](LICENSE)）。
+
+仓库内随附的第三方数据与素材**不属于** MIT 许可证的授权范围，各自遵循原始条款：
+
+| 内容 | 来源 | 条款 |
+|---|---|---|
+| `assets/raw/`、`public/assets/` 中的底图、彩色影像、高程数据 | NASA SVS「CGI Moon Kit」、LROC | 公有领域（公有领域影像可自由使用，NASA 不背书） |
+| three.js（`public/vendor/`） | three.js 项目 | MIT |
+| 嫦娥二号 7 m DOM 细节影像 | 中国科学院国家天文台（地面应用系统）/ 国家空间科学数据中心 | CC BY 4.0（引用 + 致谢）；**不在本仓库分发**，由浏览器运行时按需从 China-VO HiPS 服务拉取 |
+
+完整的引用格式与致谢文字见 README 的「许可与致谢」一节。
